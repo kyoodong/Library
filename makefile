@@ -1,4 +1,4 @@
-ompile: main.o file.o list.o
+compile: main.o file.o list.o
 		gcc main.o file.o list.o
 main.o: main.c
 		gcc -c main.c

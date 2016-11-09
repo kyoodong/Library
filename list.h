@@ -15,6 +15,12 @@
 
 #endif /* list_h */
 
+client initClient();
+clientNode initClientNode();
+
 
 void addClient(clientNode *clientList, clientNode *addedClient);
+void insertClient(clientNode *clientList, clientNode *addedClient, int index);
+clientNode* getClientNode(clientNode* clientList, int at);
 int clientLength(clientNode clientList);
+int isEmptyClient(client client);
