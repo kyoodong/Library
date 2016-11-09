@@ -16,6 +16,10 @@ void addClient(clientNode *clientList, clientNode *addedClient) {
         clientList -> client = addedClient -> client;
     } else {
         // TODO - 맨뒤에 추가하는거로 수정해야함
+        while (clientList -> next != NULL) {
+            clientList = clientList -> next;
+        }
+        
         clientList -> next = addedClient;
     }
 }
