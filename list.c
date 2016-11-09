@@ -20,6 +20,41 @@ void addClient(clientNode *clientList, clientNode *addedClient) {
     }
 }
 
+// client List의 at번째 원소를 지우는 함수
+void removeClient(clientNode *clientList, int at) {
+    int length = clientLength(*clientList);
+    if (length <= at) {
+        printf("길이 %d인 리스트에서 %d번째 요소를 제거할 수 없습니다.\n", length, at);
+        return;
+    }
+    
+    if (at == 0) {
+        // clientList에 값이 없거나 하나 뿐일 때
+        if (length <= 1) {
+            clientList -> client = initClient();
+        } else {
+            // Header를 다음 것으로 이동
+            *clientList = *(clientList -> next);
+        }
+    } else {
+        clientNode* beforeClientNode = getClientNode(clientList, at - 1);
+        
+        // 맨 마지막 원소를 제거한다면
+        if (length == at + 1) {
+            beforeClientNode -> next = NULL;
+        } else {
+            clientNode* nextClientNode = getClientNode(beforeClientNode, 2);
+            beforeClientNode -> next = nextClientNode;
+        }
+    }
+}
+
+// client List를 비워버리는 함수
+void clearClient(clientNode *clientList) {
+    clientList -> client = initClient();
+    clientList -> next = NULL;
+}
+
 // client List의 index 번째에 client를 하나 추가하는 함수
 void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
     printf("66\n");
@@ -84,6 +119,7 @@ clientNode* getClientNode(clientNode* clientList, int at) {
 // client List의 길이를 구하는 함수
 int clientLength(clientNode clientList) {
     int count = 1;
+    
     while (clientList.next != NULL) {
         count++;
         if (clientList.next == NULL) {
@@ -91,6 +127,12 @@ int clientLength(clientNode clientList) {
         }
         clientList = *(clientList.next);
     }
+    
+    // 첫 번째 요소가 비었을 때는 길이 0
+    if (count == 1 && isEmptyClient(clientList.client)) {
+        return 0;
+    }
+    
     return count;
 }
 
