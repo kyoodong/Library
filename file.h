@@ -40,7 +40,6 @@ typedef struct {
 } borrow;
 
 typedef struct clientNode {
-    int a;
     client client;
     struct clientNode *next;
 } clientNode;
