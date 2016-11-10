@@ -41,5 +41,18 @@ void removeBook(bookNode *bookList, int at);
 void clearBook(bookNode *);
 
 
+borrow initBorrow();
+borrowNode initBorrowNode();
+
+
+void addBorrow(borrowNode *borrowList, borrowNode *addedBorrow);
+void insertBorrow(borrowNode *borrowList, borrowNode *addedBorrow, int index);
+borrowNode* getBorrowNode(borrowNode* borrowList, int at);
+int borrowLength(borrowNode borrowList);
+int isEmptyBorrow(borrow borrow);
+void removeBorrow(borrowNode *borrowList, int at);
+void clearBorrow(borrowNode *);
+
+
 
 
