@@ -9,8 +9,6 @@
 #ifndef file_h
 #define file_h
 
-#endif /* file_h */
-
 #include <stdio.h>
 #include <time.h>
 
@@ -54,4 +52,6 @@ typedef struct borrowNode {
     struct borrowNode *next;
 } borrowNode;
 
-void loadFile(client*, book*, borrow*);
+void loadFile(clientNode*, bookNode*, borrowNode*);
+
+#endif /* file_h */
