@@ -54,6 +54,7 @@ void loadFile(clientNode *clients, bookNode *books, borrowNode *borrows) {
     while (!feof(bookFile)) {
         // TODO - 동적 생성 수정해야함
         bookNode* node = (bookNode *) calloc(1, sizeof(bookNode));
+
         fscanf(bookFile, "%d||%[^|]||%[^|]||%[^|]||%ld||%[^|]||%c\n", &(node -> book.bookId), node -> book.name, node -> book.publisherName, node -> book.authorName, &(node -> book.ISBN), node -> book.holdingInstitudtion, &(node -> book.isBorrowable));
         addBook(books, node);
         i++;
