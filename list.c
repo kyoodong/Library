@@ -176,7 +176,7 @@ client initClient() {
 
 
 int isEmptyClient(client client) {
-    return client.studentId == 0;
+    return client.studentId == 0 && !strcmp(client.phone, "") && !strcmp(client.address, "") && !strcmp(client.name, "") && !strcmp(client.password, "");
 }
 
 
@@ -189,7 +189,7 @@ int isEmptyClient(client client) {
 ///////////////////////////// 책 ////////////////////////////////////
 
 int isEmptyBook(book book) {
-    return book.bookId == 0;
+    return book.bookId == 0 && book.isBorrowable == 0 && book.ISBN == 0 && !strcmp(book.authorName, "") && !strcmp(book.holdingInstitudtion, "") && !strcmp(book.name, "") && !strcmp(book.publisherName, "");
 }
 
 
@@ -350,7 +350,7 @@ book initBook() {
     strcpy(book.holdingInstitudtion, "");
     strcpy(book.publisherName, "");
     book.ISBN = 0;
-    book.isBorrowable = 'Y';
+    book.isBorrowable = 0;
     return book;
 }
 
@@ -363,7 +363,7 @@ book initBook() {
 ///////////////////////////// Borrow ////////////////////////////////////
 
 int isEmptyBorrow(borrow borrow) {
-    return borrow.studentId == 0;
+    return borrow.studentId == 0 && borrow.studentId == 0 && borrow.borrowDateSec == 0 && borrow.returnDateSec == 0;
 }
 
 
