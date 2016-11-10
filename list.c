@@ -7,8 +7,7 @@
 //
 
 #include "list.h"
-
-
+#include <stdlib.h>
 
 
 
@@ -17,11 +16,18 @@
 
 // client List의 맨 뒤에 client를 하나 추가하는 함수
 void addClient(clientNode *clientList, clientNode *addedClient) {
+    if (clientList == NULL) {
+        printf("clientList는 NULL 일 수 없습니다.\n");
+        return;
+    } else if (addedClient == NULL) {
+        printf("addedClient는 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     // List의 첫 번째 요소라면
-    if (clientList -> client.studentId == 0) {
+    if (isEmptyClient(clientList -> client)) {
         clientList -> client = addedClient -> client;
     } else {
-        // TODO - 맨뒤에 추가하는거로 수정해야함
         while (clientList -> next != NULL) {
             clientList = clientList -> next;
         }
@@ -32,6 +38,11 @@ void addClient(clientNode *clientList, clientNode *addedClient) {
 
 // client List의 at번째 원소를 지우는 함수
 void removeClient(clientNode *clientList, int at) {
+    if (clientList == NULL) {
+        printf("clientList는 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     if (at < 0) {
         printf("음수는 불가합니다.\n");
         return;
@@ -66,12 +77,25 @@ void removeClient(clientNode *clientList, int at) {
 
 // client List를 비워버리는 함수
 void clearClient(clientNode *clientList) {
+    if (clientList == NULL) {
+        printf("clientList는 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     clientList -> client = initClient();
     clientList -> next = NULL;
 }
 
 // client List의 index 번째에 client를 하나 추가하는 함수
 void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
+    if (clientList == NULL) {
+        printf("clientList는 NULL 일 수 없습니다.\n");
+        return;
+    } else if (addedClient == NULL) {
+        printf("clientList는 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     if (at < 0) {
         printf("음수는 불가합니다.\n");
         return;
@@ -113,6 +137,10 @@ void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
 }
 
 clientNode* getClientNode(clientNode* clientList, int at) {
+    if (clientList == NULL) {
+        printf("clientList는 NULL 일 수 없습니다.\n");
+        return NULL;
+    }
     int index = 0;
     
     while (clientList -> next != NULL) {
@@ -195,6 +223,14 @@ int isEmptyBook(book book) {
 
 // book List의 맨 뒤에 book을 하나 추가하는 함수
 void addBook(bookNode *bookList, bookNode *addedBook) {
+    if (bookList == NULL) {
+        printf("bookList는 NULL 일 수 없습니다.\n");
+        return;
+    } else if (addedBook == NULL) {
+        printf("addedBook은 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     // List의 첫 번째 요소라면
     if (bookList -> book.bookId == 0) {
         bookList -> book = addedBook -> book;
@@ -210,6 +246,11 @@ void addBook(bookNode *bookList, bookNode *addedBook) {
 
 // book List의 at번째 원소를 지우는 함수
 void removeBook(bookNode *bookList, int at) {
+    if (bookList == NULL) {
+        printf("bookList는 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     if (at < 0) {
         printf("음수는 불가합니다.\n");
         return;
@@ -244,12 +285,25 @@ void removeBook(bookNode *bookList, int at) {
 
 // book List를 비워버리는 함수
 void clearBook(bookNode *bookList) {
+    if (bookList == NULL) {
+        printf("bookList는 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     bookList -> book = initBook();
     bookList -> next = NULL;
 }
 
 // book List의 index 번째에 book를 하나 추가하는 함수
-void insertBook(bookNode *bookList, bookNode *addedbook, int at) {
+void insertBook(bookNode *bookList, bookNode *addedBook, int at) {
+    if (bookList == NULL) {
+        printf("bookList는 NULL 일 수 없습니다.\n");
+        return;
+    } else if (addedBook == NULL) {
+        printf("addedBook은 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     if (at < 0) {
         printf("음수는 불가합니다.\n");
         return;
@@ -259,9 +313,9 @@ void insertBook(bookNode *bookList, bookNode *addedbook, int at) {
     if (at == 0) {
         // 추가될 리스트에 아무 값도 없다면
         if (isEmptyBook(bookList -> book)) {
-            *bookList = *addedbook;
+            *bookList = *addedBook;
         } else {
-            addedbook -> next = bookList;
+            addedBook -> next = bookList;
         }
     }
     
@@ -281,16 +335,21 @@ void insertBook(bookNode *bookList, bookNode *addedbook, int at) {
         changedbookNode = getBookNode(bookList, at - 1);
         pushedbookNode = getBookNode(changedbookNode, 1);
         
-        changedbookNode -> next = addedbook;
+        changedbookNode -> next = addedBook;
         
         // at번째 노드가 마지막 노드가 아니라면
         if (pushedbookNode != NULL) {
-            addedbook -> next = pushedbookNode;
+            addedBook -> next = pushedbookNode;
         }
     }
 }
 
 bookNode* getBookNode(bookNode* bookList, int at) {
+    if (bookList == NULL) {
+        printf("bookList는 NULL 일 수 없습니다.\n");
+        return NULL;
+    }
+    
     int index = 0;
     
     while (bookList -> next != NULL) {
@@ -369,6 +428,14 @@ int isEmptyBorrow(borrow borrow) {
 
 // borrow List의 맨 뒤에 borrow을 하나 추가하는 함수
 void addBorrow(borrowNode *borrowList, borrowNode *addedBorrow) {
+    if (borrowList == NULL) {
+        printf("borrowList는 NULL 일 수 없습니다.\n");
+        return;
+    } else if (addedBorrow == NULL) {
+        printf("addedBorrow은 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     // List의 첫 번째 요소라면
     if (borrowList -> borrow.studentId == 0) {
         borrowList -> borrow = addedBorrow -> borrow;
@@ -384,6 +451,11 @@ void addBorrow(borrowNode *borrowList, borrowNode *addedBorrow) {
 
 // borrow List의 at번째 원소를 지우는 함수
 void removeBorrow(borrowNode *borrowList, int at) {
+    if (borrowList == NULL) {
+        printf("borrowList는 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     if (at < 0) {
         printf("음수는 불가합니다.\n");
         return;
@@ -418,12 +490,22 @@ void removeBorrow(borrowNode *borrowList, int at) {
 
 // borrow List를 비워버리는 함수
 void clearBorrow(borrowNode *borrowList) {
+    if (borrowList == NULL) {
+        printf("borrowList는 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     borrowList -> borrow = initBorrow();
     borrowList -> next = NULL;
 }
 
 // borrow List의 index 번째에 borrow를 하나 추가하는 함수
 void insertBorrow(borrowNode *borrowList, borrowNode *addedBorrow, int at) {
+    if (borrowList == NULL) {
+        printf("borrowList는 NULL 일 수 없습니다.\n");
+        return;
+    }
+    
     if (at < 0) {
         printf("음수는 불가합니다.\n");
         return;
@@ -465,6 +547,11 @@ void insertBorrow(borrowNode *borrowList, borrowNode *addedBorrow, int at) {
 }
 
 borrowNode* getBorrowNode(borrowNode* borrowList, int at) {
+    if (borrowList == NULL) {
+        printf("borrowList는 NULL 일 수 없습니다.\n");
+        return NULL;
+    }
+    
     int index = 0;
     
     while (borrowList -> next != NULL) {
