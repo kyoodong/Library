@@ -42,6 +42,7 @@ void loadFile(client *clients, book *books, borrow *borrows) {
     
     // client 파일 데이터 추출
     while (!feof(clientFile)) {
+        // TODO - 동적 생성 수정해야함
         clients = calloc(1, sizeof(client));
         fscanf(clientFile, "%d||%[^|]||%[^|]||%[^|]||%s\n", &(clients[i].studentId), clients[i].password, clients[i].name, clients[i].address, clients[i].phone);
         i++;

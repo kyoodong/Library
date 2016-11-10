@@ -360,5 +360,176 @@ book initBook() {
 
 
 
+///////////////////////////// Borrow ////////////////////////////////////
+
+int isEmptyBorrow(borrow borrow) {
+    return borrow.studentId == 0;
+}
+
+
+// borrow List의 맨 뒤에 borrow을 하나 추가하는 함수
+void addBorrow(borrowNode *borrowList, borrowNode *addedBorrow) {
+    // List의 첫 번째 요소라면
+    if (borrowList -> borrow.studentId == 0) {
+        borrowList -> borrow = addedBorrow -> borrow;
+    } else {
+        // TODO - 맨뒤에 추가하는거로 수정해야함
+        while (borrowList -> next != NULL) {
+            borrowList = borrowList -> next;
+        }
+        
+        borrowList -> next = addedBorrow;
+    }
+}
+
+// borrow List의 at번째 원소를 지우는 함수
+void removeBorrow(borrowNode *borrowList, int at) {
+    if (at < 0) {
+        printf("음수는 불가합니다.\n");
+        return;
+    }
+    
+    int length = borrowLength(*borrowList);
+    if (length <= at) {
+        printf("길이 %d인 리스트에서 %d번째 요소를 제거할 수 없습니다.\n", length, at);
+        return;
+    }
+    
+    if (at == 0) {
+        // borrowList에 값이 없거나 하나 뿐일 때
+        if (length <= 1) {
+            borrowList -> borrow = initBorrow();
+        } else {
+            // Header를 다음 것으로 이동
+            *borrowList = *(borrowList -> next);
+        }
+    } else {
+        borrowNode* beforeBorrowNode = getBorrowNode(borrowList, at - 1);
+        
+        // 맨 마지막 원소를 제거한다면
+        if (length == at + 1) {
+            beforeBorrowNode -> next = NULL;
+        } else {
+            borrowNode* nextborrowNode = getBorrowNode(beforeBorrowNode, 2);
+            beforeBorrowNode -> next = nextborrowNode;
+        }
+    }
+}
+
+// borrow List를 비워버리는 함수
+void clearBorrow(borrowNode *borrowList) {
+    borrowList -> borrow = initBorrow();
+    borrowList -> next = NULL;
+}
+
+// borrow List의 index 번째에 borrow를 하나 추가하는 함수
+void insertBorrow(borrowNode *borrowList, borrowNode *addedBorrow, int at) {
+    if (at < 0) {
+        printf("음수는 불가합니다.\n");
+        return;
+    }
+    
+    // 0번째에 추가 일 때
+    if (at == 0) {
+        // 추가될 리스트에 아무 값도 없다면
+        if (isEmptyBorrow(borrowList -> borrow)) {
+            *borrowList = *addedBorrow;
+        } else {
+            addedBorrow -> next = borrowList;
+        }
+    }
+    
+    else {
+        int length = borrowLength(*borrowList);
+        if (length < at) {
+            printf("%d는 List크기(%d)보다 큽니다.\n", at, length);
+        }
+        
+        
+        // next값이 바뀔 borrowNode
+        borrowNode* changedBorrowNode;
+        
+        // 밀려날 borrowNode
+        borrowNode* pushedBorrowNode;
+        
+        changedBorrowNode = getBorrowNode(borrowList, at - 1);
+        pushedBorrowNode = getBorrowNode(changedBorrowNode, 1);
+        
+        changedBorrowNode -> next = addedBorrow;
+        
+        // at번째 노드가 마지막 노드가 아니라면
+        if (pushedBorrowNode != NULL) {
+            addedBorrow -> next = pushedBorrowNode;
+        }
+    }
+}
+
+borrowNode* getBorrowNode(borrowNode* borrowList, int at) {
+    int index = 0;
+    
+    while (borrowList -> next != NULL) {
+        // 원하는 index에 도달하면 1을 리턴하고 retborrow에 borrow정보 assign
+        if (at == index++) {
+            return borrowList;
+        }
+        
+        if (borrowList -> next == NULL) {
+            break;
+        }
+        borrowList = borrowList -> next;
+    }
+    
+    if (at == index++) {
+        return borrowList;
+    }
+    
+    // at보다 길이가 짧을 때 0을 리턴
+    return NULL;
+}
+
+// borrow List의 길이를 구하는 함수
+int borrowLength(borrowNode borrowList) {
+    int count = 1;
+    
+    while (borrowList.next != NULL) {
+        count++;
+        if (borrowList.next == NULL) {
+            break;
+        }
+        borrowList = *(borrowList.next);
+    }
+    
+    // 첫 번째 요소가 비었을 때는 길이 0
+    if (count == 1 && isEmptyBorrow(borrowList.borrow)) {
+        return 0;
+    }
+    
+    return count;
+}
+
+
+borrowNode initBorrowNode() {
+    borrowNode node;
+    node.borrow = initBorrow();
+    node.next = NULL;
+    return node;
+}
+
+
+borrow initBorrow() {
+    borrow borrow;
+    borrow.studentId = 0;
+    borrow.studentId = 0;
+    borrow.borrowDateSec = 0;
+    borrow.returnDateSec = 0;
+    return borrow;
+}
+
+
+///////////////////////////// Borrow ////////////////////////////////////
+
+
+
+
 
 
