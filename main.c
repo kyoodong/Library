@@ -1,5 +1,6 @@
 #include "member.h"
 #include "admin.h"
+#include <stdlib.h>
 
 // 메뉴
 int selectLibraryMenu();
@@ -9,7 +10,7 @@ void signUp();
 void signIn();
 
 int main(void) {
-    clientNode *clientList = calloc(1, sizeof(clientNode)), a, b;
+    clientNode *clientList = calloc(1, sizeof(clientNode));
     bookNode *bookList = calloc(1, sizeof(bookNode));
     borrowNode *borrowList = calloc(1, sizeof(borrowNode));
     loadFile(clientList, bookList, borrowList);
@@ -32,7 +33,23 @@ int main(void) {
 
 // 회원가입
 void signUp() {
+    client newClient;
     
+    printf("학번 : ");
+    scanf("%d", &(newClient.studentId));
+    getchar();
+    printf("비밀번호 : ");
+    scanf("%[^\n]", newClient.password);
+    getchar();
+    printf("이름 : ");
+    scanf("%[^\n]", newClient.name);
+    getchar();
+    printf("주소 : ");
+    scanf("%[^\n]", newClient.address);
+    getchar();
+    printf("전화번호 : ");
+    scanf("%[^\n]", newClient.phone);
+    getchar();
 }
 
 // 로그인

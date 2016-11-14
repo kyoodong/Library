@@ -15,7 +15,7 @@
 
 
 void registBook();
-void removeBook();
+void deleteBook();
 void lendBook();
 void returnedBook();
 void searchBook();

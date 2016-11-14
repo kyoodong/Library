@@ -15,7 +15,7 @@ void registBook() {
 }
 
 // 도서 삭제
-void removeBook() {
+void deleteBook() {
     
 }
 
