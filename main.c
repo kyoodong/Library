@@ -15,6 +15,8 @@ int main(void) {
     borrowNode *borrowList = calloc(1, sizeof(borrowNode));
     loadFile(clientList, bookList, borrowList);
     
+    printf("%s\n", clientList -> client.name);
+    
     switch (selectLibraryMenu()) {
         case 1: // 회원가입
             signUp();
@@ -50,6 +52,8 @@ void signUp() {
     printf("전화번호 : ");
     scanf("%[^\n]", newClient.phone);
     getchar();
+    
+    
 }
 
 // 로그인
