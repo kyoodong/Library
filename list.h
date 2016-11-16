@@ -53,6 +53,8 @@ int isEmptyBorrow(borrow borrow);
 void removeBorrow(borrowNode *borrowList, int at);
 void clearBorrow(borrowNode *);
 
+clientNode findClientById(clientNode list, int id);
+
 
 
 

@@ -187,6 +187,18 @@ int clientLength(clientNode clientList) {
 }
 
 
+// studentId 로 client 찾기
+clientNode findClientById(clientNode list, int id) {
+    while (!isEmptyClient(list.client)) {
+        if (list.client.studentId == id) {
+            return list;
+        }
+        list = *(list.next);
+    }
+    return initClientNode();
+}
+
+
 clientNode initClientNode() {
     clientNode node;
     node.client = initClient();

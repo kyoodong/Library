@@ -43,17 +43,10 @@ void signUp() {
     scanf("%d", &(newClient.studentId));
     getchar();
 
-    clientNode list = clientList;
-
-    // studentId 중복 검사
-    while (!isEmptyClient(list.client)) {
-        if (list.client.studentId == newClient.studentId) {
-            printf("studentId는 중복될 수 없습니다.\n");
-            return;
-        } else if (list.client.studentId > newClient.studentId)
-            break;
-
-        list = *(list.next);
+    // studentId 중복검사
+    if (!isEmptyClient(findClientById(clientList, newClient.studentId).client)) {
+        printf("studentId는 중복될 수 없습니다.\n");
+        return;
     }
 
     printf("비밀번호 : ");
