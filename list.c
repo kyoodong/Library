@@ -107,7 +107,10 @@ void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
         if (isEmptyClient(clientList -> client)) {
             *clientList = *addedClient;
         } else {
-            addedClient -> next = clientList;
+            clientNode* tmpClientNode = calloc(1, sizeof(clientNode));
+            *tmpClientNode = *clientList;
+            addedClient -> next = tmpClientNode;
+            *clientList = *addedClient;
         }
     }
     
@@ -155,7 +158,7 @@ clientNode* getClientNode(clientNode* clientList, int at) {
         clientList = clientList -> next;
     }
     
-    if (at == index++) {
+    if (at == index) {
         return clientList;
     }
     
@@ -203,8 +206,8 @@ client initClient() {
 }
 
 
-int isEmptyClient(client client) {
-    return client.studentId == 0 && !strcmp(client.phone, "") && !strcmp(client.address, "") && !strcmp(client.name, "") && !strcmp(client.password, "");
+int isEmptyClient(client c) {
+    return c.studentId == 0 && !strcmp(c.phone, "") && !strcmp(c.address, "") && !strcmp(c.name, "") && !strcmp(c.password, "");
 }
 
 

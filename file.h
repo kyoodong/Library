@@ -12,6 +12,10 @@
 #include <stdio.h>
 #include <time.h>
 
+#define CLIENT_FILE_PATH "./client.txt"
+#define BOOK_FILE_PATH "./book.txt"
+#define BORROW_FILE_PATH "./borrow.txt"
+
 typedef struct {
     int studentId;             // 학번
     char password[20];  // 비밀번호
@@ -52,6 +56,20 @@ typedef struct borrowNode {
     struct borrowNode *next;
 } borrowNode;
 
+
+
 void loadFile(clientNode*, bookNode*, borrowNode*);
+
+clientNode* readClientFileLine(FILE* clientFile);
+bookNode* readBookFileLine(FILE* bookFile);
+borrowNode* readBorrowFileLine(FILE* borrowFile);
+
+void popClientFileLine(FILE* clientFile);
+void popBookFileLine(FILE* bookFile);
+void popBorrowFileLine(FILE* borrowFile);
+
+
+void rewriteClientFile(clientNode node);
+void printClient(client c);
 
 #endif /* file_h */
