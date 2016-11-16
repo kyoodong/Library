@@ -9,14 +9,13 @@ int selectMemberMenu();
 void signUp();
 void signIn();
 
+clientNode clientList;
+bookNode bookList;
+borrowNode borrowList;
+
 int main(void) {
-    clientNode *clientList = calloc(1, sizeof(clientNode));
-    bookNode *bookList = calloc(1, sizeof(bookNode));
-    borrowNode *borrowList = calloc(1, sizeof(borrowNode));
-    loadFile(clientList, bookList, borrowList);
-    
-    printf("%s\n", clientList -> client.name);
-    
+    loadFile(&clientList, &bookList, &borrowList);
+
     switch (selectLibraryMenu()) {
         case 1: // 회원가입
             signUp();
@@ -52,8 +51,11 @@ void signUp() {
     printf("전화번호 : ");
     scanf("%[^\n]", newClient.phone);
     getchar();
-    
-    insertClientToFile(newClient, 0);
+
+    clientNode node;
+    node.client = newClient;
+    insertClient(&clientList, &node, 0);
+    rewriteClientFile(clientList);
 }
 
 // 로그인

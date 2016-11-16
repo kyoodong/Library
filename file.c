@@ -33,29 +33,23 @@ void loadFile(clientNode *clients, bookNode *books, borrowNode *borrows) {
         printf("borrow 파일이 없습니다.\n");
         return;
     }
-    
-    // client 파일 데이터 추출 기본 단계
-    int i = 0;
-    
+
     // client 파일 데이터 추출
     while (!feof(clientFile)) {
-        clientNode node = readClientFileLine(clientFile);
-        addClient(clients, &node);
-        i++;
+        clientNode* node = readClientFileLine(clientFile);
+        addClient(clients, node);
     }
-    
+
     // book 파일 데이터 추출
     while (!feof(bookFile)) {
-        bookNode node = readBookFileLine(bookFile);
-        addBook(books, &node);
-        i++;
+        bookNode* node = readBookFileLine(bookFile);
+        addBook(books, node);
     }
     
     // borrow 파일 데이터 추출
     while (!feof(borrowFile)) {
-        borrowNode node = readBorrowFileLine(borrowFile);
-        addBorrow(borrows, &node);
-        i++;
+        borrowNode* node = readBorrowFileLine(borrowFile);
+        addBorrow(borrows, node);
     }
     
     fclose(clientFile);
@@ -64,73 +58,72 @@ void loadFile(clientNode *clients, bookNode *books, borrowNode *borrows) {
 }
 
 
-// client파일 한 줄 읽기
-clientNode readClientFileLine(FILE* clientFile) {
+// client 파일 한 줄 읽기
+// TODO: 질문하기 clientNode* 이 clientNode였을 때 잘 안됐던 이유
+clientNode* readClientFileLine(FILE* clientFile) {
     clientNode* node = (clientNode *) calloc(1, sizeof(clientNode));
     fscanf(clientFile, "%d||%[^|]||%[^|]||%[^|]||%[^\n]", &(node -> client.studentId), node -> client.password, node -> client.name, node -> client.address, node -> client.phone);
-    return *node;
+    return node;
 }
 
-// book파일 한 줄 읽기
-bookNode readBookFileLine(FILE* bookFile) {
+// book 파일 한 줄 읽기
+bookNode* readBookFileLine(FILE* bookFile) {
     bookNode* node = (bookNode *) calloc(1, sizeof(bookNode));
     fscanf(bookFile, "%d||%[^|]||%[^|]||%[^|]||%ld||%[^|]||%c\n", &(node -> book.bookId), node -> book.name, node -> book.publisherName, node -> book.authorName, &(node -> book.ISBN), node -> book.holdingInstitudtion, &(node -> book.isBorrowable));
-    return *node;
+    return node;
 }
 
-// borrow파일 한 줄 읽기
-borrowNode readBorrowFileLine(FILE* borrowFile) {
+// borrow 파일 한 줄 읽기
+borrowNode* readBorrowFileLine(FILE* borrowFile) {
     borrowNode* node = (borrowNode *) calloc(1, sizeof(borrowNode));
     fscanf(borrowFile, "%d||%d||%ld||%ld\n", &(node -> borrow.studentId), &(node -> borrow.bookId), &(node -> borrow.borrowDateSec), &(node -> borrow.returnDateSec));
-    return *node;
+    return node;
 }
 
-// client파일 한 줄 읽고 버리기
+// client 파일 한 줄 읽고 버리기
 void popClientFileLine(FILE* clientFile) {
     fscanf(clientFile, "%*d||%*[^|]||%*[^|]||%*[^|]||%*s\n");
 }
 
-// book파일 한 줄 읽고 버리기
+// book 파일 한 줄 읽고 버리기
 void popBookFileLine(FILE* bookFile) {
     fscanf(bookFile, "%*d||%*[^|]||%*[^|]||%*[^|]||%*ld||%*[^|]||%*c\n");
 }
 
-// borrow파일 한 줄 읽고 버리기
+// borrow 파일 한 줄 읽고 버리기
 void popBorrowFileLine(FILE* borrowFile) {
     fscanf(borrowFile, "%*d||%*d||%*ld||%*ld\n");
 }
 
 
 // 회원 추가
-void insertClientToFile(client newClient, int lineNum) {
-    FILE *clientFile = fopen(CLIENT_FILE_PATH, "r+");
-    int i;
-    for (i = 0; i < lineNum; i++) {
-        popClientFileLine(clientFile);
+void rewriteClientFile(clientNode node) {
+    FILE *clientFile = fopen(CLIENT_FILE_PATH, "w");
+    if (clientFile == NULL) {
+        printf("파일 열기 실패\n");
+        return;
     }
-    
-    while (!feof(clientFile)) {
-        clientNode tmpClient = readClientFileLine(clientFile);
-        if (isEmptyClient(tmpClient.client)) {
-            break;
-        }
+
+    while (!isEmptyClient(node.client)) {
         fprintf(clientFile, "%d||%s||%s||%s||%s\n",
-                newClient.studentId,                        // 학번
-                newClient.password,                       // 비밀번호
-                newClient.name,                           // 이름
-                newClient.address,                   // 첫 주소
-                newClient.phone                     // 전화번호 1 ex) 3367-7355의 3367
-                );
-        newClient = tmpClient.client;
+                                    node.client.studentId,                        // 학번
+                                    node.client.password,                       // 비밀번호
+                                    node.client.name,                           // 이름
+                                    node.client.address,                   // 첫 주소
+                                    node.client.phone                     // 전화번호 1 ex) 3367-7355의 3367
+        );
+
+        node = *(node.next);
     }
-    
-    fprintf(clientFile, "%d||%s||%s||%s||%s\n",
-            newClient.studentId,                        // 학번
-            newClient.password,                       // 비밀번호
-            newClient.name,                           // 이름
-            newClient.address,                   // 첫 주소
-            newClient.phone                     // 전화번호 1 ex) 3367-7355의 3367
-            );
+    fclose(clientFile);
+}
+
+void printClient(client c) {
+    printf("%d\n", c.studentId);
+    printf("%s\n", c.name);
+    printf("%s\n", c.address);
+    printf("%s\n", c.phone);
+    printf("%s\n", c.password);
 }
 
 
