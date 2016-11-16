@@ -67,7 +67,7 @@ void loadFile(clientNode *clients, bookNode *books, borrowNode *borrows) {
 // client파일 한 줄 읽기
 clientNode readClientFileLine(FILE* clientFile) {
     clientNode* node = (clientNode *) calloc(1, sizeof(clientNode));
-    fscanf(clientFile, "%d||%[^|]||%[^|]||%[^|]||%s\n", &(node -> client.studentId), node -> client.password, node -> client.name, node -> client.address, node -> client.phone);
+    fscanf(clientFile, "%d||%[^|]||%[^|]||%[^|]||%[^\n]", &(node -> client.studentId), node -> client.password, node -> client.name, node -> client.address, node -> client.phone);
     return *node;
 }
 
@@ -85,11 +85,52 @@ borrowNode readBorrowFileLine(FILE* borrowFile) {
     return *node;
 }
 
+// client파일 한 줄 읽고 버리기
+void popClientFileLine(FILE* clientFile) {
+    fscanf(clientFile, "%*d||%*[^|]||%*[^|]||%*[^|]||%*s\n");
+}
+
+// book파일 한 줄 읽고 버리기
+void popBookFileLine(FILE* bookFile) {
+    fscanf(bookFile, "%*d||%*[^|]||%*[^|]||%*[^|]||%*ld||%*[^|]||%*c\n");
+}
+
+// borrow파일 한 줄 읽고 버리기
+void popBorrowFileLine(FILE* borrowFile) {
+    fscanf(borrowFile, "%*d||%*d||%*ld||%*ld\n");
+}
+
 
 // 회원 추가
-void insertClientToFile(client insertedClient) {
-    FILE *fp = fopen(CLIENT_FILE_PATH, "r+");
+void insertClientToFile(client newClient, int lineNum) {
+    FILE *clientFile = fopen(CLIENT_FILE_PATH, "r+");
+    int i;
+    for (i = 0; i < lineNum; i++) {
+        popClientFileLine(clientFile);
+    }
     
+    while (!feof(clientFile)) {
+        clientNode tmpClient = readClientFileLine(clientFile);
+        if (isEmptyClient(tmpClient.client)) {
+            break;
+        }
+        fprintf(clientFile, "%d||%s||%s||%s||%s\n",
+                newClient.studentId,                        // 학번
+                newClient.password,                       // 비밀번호
+                newClient.name,                           // 이름
+                newClient.address,                   // 첫 주소
+                newClient.phone                     // 전화번호 1 ex) 3367-7355의 3367
+                );
+        newClient = tmpClient.client;
+    }
+    
+    fprintf(clientFile, "%d||%s||%s||%s||%s\n",
+            newClient.studentId,                        // 학번
+            newClient.password,                       // 비밀번호
+            newClient.name,                           // 이름
+            newClient.address,                   // 첫 주소
+            newClient.phone                     // 전화번호 1 ex) 3367-7355의 3367
+            );
 }
 
 

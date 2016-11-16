@@ -53,7 +53,7 @@ void signUp() {
     scanf("%[^\n]", newClient.phone);
     getchar();
     
-    
+    insertClientToFile(newClient, 0);
 }
 
 // 로그인
