@@ -1,5 +1,6 @@
 #include "member.h"
 #include "admin.h"
+#include "file.h"
 #include <stdlib.h>
 
 // 메뉴
@@ -16,17 +17,19 @@ borrowNode borrowList;
 int main(void) {
     loadFile(&clientList, &bookList, &borrowList);
 
-    switch (selectLibraryMenu()) {
-        case 1: // 회원가입
-            signUp();
-            break;
-            
-        case 2: // 로그인
-            signIn();
-            break;
-            
-        case 3: // 프로그램 종료
-            return 0;
+    while (1) {
+        switch (selectLibraryMenu()) {
+            case 1: // 회원가입
+                signUp();
+                break;
+
+            case 2: // 로그인
+                signIn();
+                break;
+
+            case 3: // 프로그램 종료
+                return 0;
+        }
     }
     
     return 0;
@@ -39,6 +42,20 @@ void signUp() {
     printf("학번 : ");
     scanf("%d", &(newClient.studentId));
     getchar();
+
+    clientNode list = clientList;
+
+    // studentId 중복 검사
+    while (!isEmptyClient(list.client)) {
+        if (list.client.studentId == newClient.studentId) {
+            printf("studentId는 중복될 수 없습니다.\n");
+            return;
+        } else if (list.client.studentId > newClient.studentId)
+            break;
+
+        list = *(list.next);
+    }
+
     printf("비밀번호 : ");
     scanf("%[^\n]", newClient.password);
     getchar();
@@ -69,7 +86,7 @@ void signIn() {
 int selectLibraryMenu() {
     int menu;
     printf(">> 도서관 서비스 <<\n");
-    printf("1. 회원가입\n2.로그인\n3.프로그램 종료\n");
+    printf("1.회원가입\n2.로그인\n3.프로그램 종료\n");
     scanf("%d", &menu);
     return menu;
 }
