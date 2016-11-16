@@ -6,6 +6,7 @@
 // 메뉴
 int selectLibraryMenu();
 int selectMemberMenu();
+int selectAdminMenu();
 
 void signUp();
 void signIn();
@@ -70,7 +71,36 @@ void signUp() {
 
 // 로그인
 void signIn() {
-    
+    char id[20], password[50];
+    int idInt;
+
+    printf("로그인 명 : ");
+    scanf("%[^\n]", id);
+    getchar();
+
+    // 관리자 모드
+    if (!strcmp(id, "admin")) {
+        selectAdminMenu();
+    }
+
+    idInt = atoi(id);
+    printf("비밀번호 : ");
+    scanf("%[^\n]", password);
+    getchar();
+
+    clientNode list = clientList;
+    while (!isEmptyClient(list.client)) {
+        // 아이디와 비밀번호가 일치하는 회원이 있다면
+        if (list.client.studentId == idInt && !strcmp(list.client.password, password)) {
+            selectMemberMenu();
+            return;
+        } else if (list.client.studentId < idInt)
+            break;
+        list = *(list.next);
+    }
+
+    // 유저정보가 없음
+    printf("아이디와 비밀번호가 일치하는 회원정보가 존재하지 않습니다\n");
 }
 
 
@@ -81,6 +111,7 @@ int selectLibraryMenu() {
     printf(">> 도서관 서비스 <<\n");
     printf("1.회원가입\n2.로그인\n3.프로그램 종료\n");
     scanf("%d", &menu);
+    getchar();
     return menu;
 }
 
@@ -90,6 +121,7 @@ int selectMemberMenu() {
     printf(">> 도서관 서비스 <<\n");
     printf("1. 도서 검색\n2.내 대여 목록\n3.개인정보 수정\n4.회원 탈퇴\n5.로그아웃\n6.프로그램 종료\n");
     scanf("%d", &menu);
+    getchar();
     return menu;
 }
 
@@ -108,5 +140,6 @@ int selectAdminMenu() {
     printf(">> 관리자 메뉴 <<\n");
     printf("1. 도서 등록\n2.도서 삭제\n3.도서 대여\n4.도서 반납\n5.도서 검색\n6.회원 목록\n7.로그아웃\n8.프로그램 종료\n");
     scanf("%d", &menu);
+    getchar();
     return menu;
 }
