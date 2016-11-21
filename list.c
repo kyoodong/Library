@@ -458,6 +458,54 @@ bookNode* findBookNodeByBookName(bookNode* bookList, char* bookName) {
 }
 
 
+// 출판사로 BookNode 찾기
+bookNode* findBookNodeByPublisherName(bookNode* bookList, char* publisherName) {
+    bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
+
+    while (!isEmptyBook(bookList->book)) {
+        // ISBN 발견 시 return
+        if (!strcmp(bookList->book.publisherName, publisherName)) {
+            bookNode *newBook = calloc(1, sizeof(bookNode));
+            newBook -> book = bookList->book;
+            addBook(hasIsbnBookList, newBook);
+        }
+        if (bookList->next == NULL) {
+            break;
+        }
+        bookList = bookList->next;
+    }
+
+    if (isEmptyBook(hasIsbnBookList -> book))
+        return NULL;
+
+    return hasIsbnBookList;
+}
+
+
+// 저자명으로 BookNode 찾기
+bookNode* findBookNodeByAuthorName(bookNode* bookList, char* authorName) {
+    bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
+
+    while (!isEmptyBook(bookList->book)) {
+        // ISBN 발견 시 return
+        if (!strcmp(bookList->book.authorName, authorName)) {
+            bookNode *newBook = calloc(1, sizeof(bookNode));
+            newBook -> book = bookList->book;
+            addBook(hasIsbnBookList, newBook);
+        }
+        if (bookList->next == NULL) {
+            break;
+        }
+        bookList = bookList->next;
+    }
+
+    if (isEmptyBook(hasIsbnBookList -> book))
+        return NULL;
+
+    return hasIsbnBookList;
+}
+
+
 int isEqualBook(book leftBook, book rightBook) {
     return leftBook.bookId == rightBook.bookId &&
             leftBook.isBorrowable == rightBook.isBorrowable &&

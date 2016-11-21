@@ -29,26 +29,26 @@ void leaveMember() {
 }
 
 // 책 제목으로 검색
-void selectBookByTitle() {
+void findBookByTitle() {
     
 }
 
 // 출판사로 검색
-void selectBookByPublisher() {
+void findBookByPublisher() {
     
 }
 
 // ISBN으로 검색
-void selectBookByISBN() {
+void findBookByISBN() {
     
 }
 
 // 저자명으로 검색
-void selectBookByWriter() {
+void findBookByWriter() {
     
 }
 
 // 전체 색
-void selectBook() {
+void findAllBook() {
     
 }

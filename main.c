@@ -30,7 +30,7 @@ int main(void) {
                 break;
 
             case 3: // 프로그램 종료
-                return 0;
+                exit(0);
         }
     }
     
@@ -60,7 +60,7 @@ void signUp() {
     printf("주소 : ");
     scanf("%[^\n]", newClient.address);
     getchar();
-    printf("전화번호 : ");
+    printf("전화번호(반드시 010-xxxx-xxxx 형식으로 입력하세요) : ");
     scanf("%[^\n]", newClient.phone);
     getchar();
 
@@ -75,7 +75,7 @@ void signIn() {
     char id[20], password[50];
     int idInt;
 
-    printf("로그인 명 : ");
+    printf("학번 : ");
     scanf("%[^\n]", id);
     getchar();
 
@@ -96,7 +96,8 @@ void signIn() {
     while (!isEmptyClient(list.client)) {
         // 아이디와 비밀번호가 일치하는 회원이 있다면
         if (list.client.studentId == idInt && !strcmp(list.client.password, password)) {
-            selectMemberMenu();
+            while (1)
+                selectMemberMenu();
             return;
         } else if (list.client.studentId < idInt)
             break;
@@ -123,26 +124,86 @@ int selectLibraryMenu() {
 void selectMemberMenu() {
     int menu;
     printf(">> 도서관 서비스 <<\n");
-    printf("1. 도서 검색\n2.내 대여 목록\n3.개인정보 수정\n4.회원 탈퇴\n5.로그아웃\n6.프로그램 종료\n");
+    printf("1.도서 검색\n2.내 대여 목록\n3.개인정보 수정\n4.회원 탈퇴\n5.로그아웃\n6.프로그램 종료\n");
     scanf("%d", &menu);
     getchar();
 
-    switch (menu) {
-        case 1:
-            selectSearchBookMenu();
-            break;
+    while (1) {
+        switch (menu) {
+            case 1:
+                selectSearchBookMenu();
+                return;
+        }
     }
 }
 
 // 도서 검색 메뉴
 void selectSearchBookMenu() {
     int menu;
-    printf(">> 도서 검색 <<\n");
-    printf("1.도서명 검색\n2.출판사 검색\n3.ISBN 검색\n4.저자명 검색\n5.전체 검색\n6.이전 메뉴\n");
-    scanf("%d", &menu);
-    getchar();
+    unsigned long isbn;
+    char keyword[20];
+    bookNode *findBookResults;
 
+    while (1) {
+        printf(">> 도서 검색 <<\n");
+        printf("1.도서명 검색\n2.출판사 검색\n3.ISBN 검색\n4.저자명 검색\n5.전체 검색\n6.이전 메뉴\n");
+        scanf("%d", &menu);
+        getchar();
 
+        switch (menu) {
+            case 1:
+                printf("도서명: ");
+                scanf("%s", keyword);
+                getchar();
+                findBookResults = findBookNodeByBookName(&bookList, keyword);
+                if (findBookResults == NULL)
+                    printf("제목이 '%s'인 도서가 존재하지 않습니다.\n", keyword);
+                else
+                    printBookList(*findBookResults);
+                break;
+
+            case 2:
+                printf("출판사: ");
+                scanf("%s", keyword);
+                getchar();
+                findBookResults = findBookNodeByPublisherName(&bookList, keyword);
+                if (findBookResults == NULL)
+                    printf("ISBN이 '%lu'인 도서가 존재하지 않습니다.\n", isbn);
+                else
+                    printBookList(*findBookResults);
+                break;
+
+            case 3:
+                printf("ISBN: ");
+                scanf("%lu", &isbn);
+                getchar();
+                findBookResults = findBookNodeByISBN(&bookList, isbn);
+                if (findBookResults == NULL)
+                    printf("출판사가 '%s'인 도서가 존재하지 않습니다.\n", keyword);
+                else
+                    printBookList(*findBookResults);
+                break;
+
+            case 4:
+                printf("저자명: ");
+                scanf("%s", keyword);
+                getchar();
+                findBookResults = findBookNodeByAuthorName(&bookList, keyword);
+                if (findBookResults == NULL)
+                    printf("저자명이 '%s'인 도서가 존재하지 않습니다.\n", keyword);
+                else
+                    printBookList(*findBookResults);
+                break;
+
+            case 5:
+                printBookList(bookList);
+                break;
+
+            case 6:
+                selectMemberMenu();
+                return;
+        }
+    }
 }
 
 // 관리자 메뉴

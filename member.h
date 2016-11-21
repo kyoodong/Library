@@ -18,11 +18,11 @@ void seachBook();
 void loadMyBorrowList();
 void modifyPersonalInfo();
 void leaveMember();
-void selectBookByTitle();
-void selectBookByPublisher();
-void selectBookByISBN();
-void selectBookByWriter();
-void selectBook();
+void findBookByTitle();
+void findBookByPublisher();
+void findBookByISBN();
+void findBookByWriter();
+void findAllBook();
 
 
 #endif /* member_h */

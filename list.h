@@ -42,6 +42,8 @@ void clearBook(bookNode *);
 bookNode* findBookNodeByISBN(bookNode* bookList, unsigned long isbn);
 bookNode* findBookNodeByBookId(bookNode* bookList, int bookId);
 bookNode* findBookNodeByBookName(bookNode* bookList, char* bookName);
+bookNode* findBookNodeByPublisherName(bookNode* bookList, char* publisherName);
+bookNode* findBookNodeByAuthorName(bookNode* bookList, char* authorName);
 int indexOfBookNode(bookNode* bookList, bookNode foundBookNode);
 
 
