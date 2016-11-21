@@ -58,6 +58,10 @@ void removeBorrow(borrowNode *, int);
 void clearBorrow(borrowNode *);
 
 clientNode* findClientNodeById(clientNode* list, int id);
+borrowNode* findBorrowNodeByStudentId(borrowNode* borrowList, int studentId);
+borrowNode* findBorrowNodeByBookId(borrowNode* borrowList, int bookId);
+int indexOfBorrowNode(borrowNode* borrowList, borrowNode foundBorrowNode);
+int isEqualBorrow(borrow leftBorrow, borrow rightBorrow);
 
 
 

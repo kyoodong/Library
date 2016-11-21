@@ -392,7 +392,7 @@ bookNode* getBookNode(bookNode* bookList, int at) {
 }
 
 
-// ISBN 으로 BookNode 사기
+// ISBN 으로 BookNode 찾기
 bookNode* findBookNodeByISBN(bookNode* bookList, unsigned long isbn) {
     bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
 
@@ -416,7 +416,7 @@ bookNode* findBookNodeByISBN(bookNode* bookList, unsigned long isbn) {
 }
 
 
-// 도서명으로 BookNode 사기
+// 도서명으로 BookNode 찾기
 bookNode* findBookNodeByBookName(bookNode* bookList, char* bookName) {
     bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
 
@@ -466,7 +466,7 @@ int indexOfBookNode(bookNode* bookList, bookNode foundBookNode) {
 }
 
 
-// bookId 으로 BookNode 사기
+// bookId 으로 BookNode 찾기
 bookNode* findBookNodeByBookId(bookNode* bookList, int bookId) {
     while (!isEmptyBook(bookList->book)) {
         // ISBN 발견 시 return
@@ -734,6 +734,67 @@ borrow initBorrow() {
     borrow.borrowDateSec = t;
     borrow.returnDateSec = ct;
     return borrow;
+}
+
+
+// studentId 으로 BorrowNode 찾기
+borrowNode* findBorrowNodeByStudentId(borrowNode* borrowList, int studentId) {
+    borrowNode *rtnBorrowList = calloc(1, sizeof(borrowNode));
+    while (!isEmptyBorrow(borrowList->borrow)) {
+        if (borrowList->borrow.studentId == studentId) {
+            borrowNode *tmpBorrow = calloc(1, sizeof(borrowNode));
+            tmpBorrow->borrow = borrowList->borrow;
+            addBorrow(rtnBorrowList, tmpBorrow);
+        }
+        if (borrowList->next == NULL) {
+            break;
+        }
+        borrowList = borrowList->next;
+    }
+
+    if (isEmptyBorrow(rtnBorrowList->borrow))
+        return NULL;
+    return rtnBorrowList;
+}
+
+
+// bookId 로 BorrowNode 찾기
+borrowNode* findBorrowNodeByBookId(borrowNode* borrowList, int bookId) {
+    while (!isEmptyBorrow(borrowList->borrow)) {
+        if (borrowList->borrow.bookId == bookId) {
+            return borrowList;
+        }
+        if (borrowList->next == NULL) {
+            break;
+        }
+        borrowList = borrowList->next;
+    }
+
+    if (borrowList->borrow.bookId == bookId)
+        return borrowList;
+    return NULL;
+}
+
+
+int isEqualBorrow(borrow leftBorrow, borrow rightBorrow) {
+    return leftBorrow.bookId == rightBorrow.bookId &&
+           leftBorrow.studentId == rightBorrow.studentId &&
+           leftBorrow.borrowDateSec == rightBorrow.borrowDateSec &&
+           leftBorrow.returnDateSec == rightBorrow.returnDateSec;
+}
+
+
+// borrowNode index 번호 찾기
+int indexOfBorrowNode(borrowNode* borrowList, borrowNode foundBorrowNode) {
+    int count = 0;
+    while (!isEmptyBorrow(borrowList->borrow)) {
+        if (isEqualBorrow(borrowList->borrow, foundBorrowNode.borrow)) {
+            return count;
+        }
+        borrowList = borrowList->next;
+        count++;
+    }
+    return -1;
 }
 
 

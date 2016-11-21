@@ -83,4 +83,7 @@ void printBookList(bookNode printingBook);
 void overwriteBorrowFile(borrowNode node);
 void appendBorrowFile(borrow newBorrow);
 
+void printBorrow(borrow b);
+void printBorrowList(borrowNode printingBorrow);
+
 #endif /* file_h */

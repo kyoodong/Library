@@ -207,11 +207,11 @@ void appendBorrowFile(borrow newBorrow) {
 
 
 void printClient(client c) {
-    printf("%d\n", c.studentId);
-    printf("%s\n", c.name);
-    printf("%s\n", c.address);
-    printf("%s\n", c.phone);
-    printf("%s\n", c.password);
+    printf("학번: %d\n", c.studentId);
+    printf("이름: %s\n", c.name);
+    printf("주소: %s\n", c.address);
+    printf("전화번호: %s\n", c.phone);
+    printf("비밀번호: %s\n", c.password);
 }
 
 void printBook(book b) {
@@ -235,39 +235,19 @@ void printBookList(bookNode printingBook) {
 }
 
 
+void printBorrow(borrow b) {
+    printf("도서번호: %d\n", b.bookId);
+    printf("학번: %d\n", b.studentId);
+    printf("대여일자: %ld\n", b.borrowDateSec);
+    printf("반납일자: %ld\n", b.returnDateSec);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void printBorrowList(borrowNode printingBorrow) {
+    while (!isEmptyBorrow(printingBorrow.borrow)) {
+        printBorrow(printingBorrow.borrow);
+        if (printingBorrow.next == NULL)
+            break;
+        printingBorrow = *printingBorrow.next;
+        printf("\n");
+    }
+}

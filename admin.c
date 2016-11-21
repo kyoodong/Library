@@ -134,8 +134,39 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
 }
 
 // 도서 반납
-void returnedBook() {
-    
+void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowList) {
+    int studentId, bookId;
+    printf("학번: ");
+    scanf("%d", &studentId);
+    getchar();
+
+    clientNode *findClientResult = findClientNodeById(clientList, studentId);
+    if (findClientResult == NULL) {
+        printf("해당 학번을 가진 학생이 존재하지 않습니다.\n");
+        return;
+    }
+
+    borrowNode *findBorrowResults = findBorrowNodeByStudentId(borrowList, studentId);
+    printBorrowList(*findBorrowResults);
+
+    printf("도서 번호: ");
+    scanf("%d", &bookId);
+    getchar();
+
+    borrowNode *findBorrowByBookIdResult = findBorrowNodeByBookId(findBorrowResults, bookId);
+    bookNode *findBookByBookIdResult = findBookNodeByBookId(bookList, bookId);
+    if (findBorrowByBookIdResult == NULL || findBookByBookIdResult == NULL) {
+        printf("해당 도서번호를 가진 책이 존재하지 않습니다.\n");
+        return;
+    }
+
+    // borrow 파일 수정
+    removeBorrow(borrowList, indexOfBorrowNode(borrowList, *findBorrowByBookIdResult));
+    overwriteBorrowFile(*borrowList);
+
+    // book 파일 수정
+    findBookByBookIdResult->book.isBorrowable = 'Y';
+    overwriteBookFile(*bookList);
 }
 
 // 도서 검색

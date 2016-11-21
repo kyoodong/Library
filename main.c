@@ -163,5 +163,9 @@ void selectAdminMenu() {
         case 3:
             lendBook(&bookList, &borrowList, &clientList);
             break;
+
+        case 4:
+            returnBook(&clientList, &bookList, &borrowList);
+            break;
     }
 }
