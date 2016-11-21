@@ -190,12 +190,30 @@ int clientLength(clientNode clientList) {
 }
 
 
+// name 으로 client 찾기
+clientNode* findClientNodeByName(clientNode* list, char* name) {
+    while (!isEmptyClient(list->client)) {
+        if (!strcmp(list->client.name, name)) {
+            return list;
+        }
+
+        if (list->next == NULL)
+            break;
+        list = list->next;
+    }
+    return NULL;
+}
+
+
 // studentId 로 client 찾기
 clientNode* findClientNodeById(clientNode* list, int id) {
     while (!isEmptyClient(list->client)) {
         if (list->client.studentId == id) {
             return list;
         }
+
+        if (list->next == NULL)
+            break;
         list = list->next;
     }
     return NULL;
@@ -383,7 +401,7 @@ bookNode* getBookNode(bookNode* bookList, int at) {
         bookList = bookList -> next;
     }
 
-    if (at == index++) {
+    if (at == index) {
         return bookList;
     }
 
@@ -478,9 +496,6 @@ bookNode* findBookNodeByBookId(bookNode* bookList, int bookId) {
         }
         bookList = bookList->next;
     }
-
-    if (bookList->book.bookId == bookId)
-        return bookList;
 
     return NULL;
 }

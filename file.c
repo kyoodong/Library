@@ -211,7 +211,17 @@ void printClient(client c) {
     printf("이름: %s\n", c.name);
     printf("주소: %s\n", c.address);
     printf("전화번호: %s\n", c.phone);
-    printf("비밀번호: %s\n", c.password);
+//    printf("비밀번호: %s\n", c.password);
+}
+
+void printClientList(clientNode printingClient) {
+    while (!isEmptyClient(printingClient.client)) {
+        printClient(printingClient.client);
+        if (printingClient.next == NULL)
+            break;
+        printingClient = *printingClient.next;
+        printf("\n");
+    }
 }
 
 void printBook(book b) {

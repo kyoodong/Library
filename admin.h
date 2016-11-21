@@ -20,7 +20,7 @@ void deleteBook(bookNode *bookList);
 void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList);
 void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowList);
 void searchBook();
-void loadMemberList();
+void loadMemberList(clientNode *clientList);
 
 
 #endif /* admin_h */

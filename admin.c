@@ -180,6 +180,49 @@ void searchBook() {
 }
 
 // 회원 목록
-void loadMemberList() {
-    
+void loadMemberList(clientNode *clientList) {
+    int menu, studentId;
+    char name[20];
+    clientNode *findResult;
+
+    printf("1.이름 검색\n");
+    printf("2.학번 검색\n");
+    printf("3.전체 검색\n");
+    printf("4.이전 메뉴\n");
+
+    scanf("%d", &menu);
+    getchar();
+
+    switch (menu) {
+        // 이름
+        case 1:
+            printf("이름: ");
+            scanf("%s", name);
+            getchar();
+            findResult = findClientNodeByName(clientList, name);
+            if (findResult == NULL)
+                printf("해당되는 사용자가 존재하지 않습니다.\n");
+            else
+                printClient(findResult->client);
+            break;
+
+        // 학번
+        case 2:
+            printf("학번: ");
+            scanf("%d", &studentId);
+            getchar();
+            findResult = findClientNodeById(clientList, studentId);
+            if (findResult == NULL)
+                printf("해당되는 사용자가 존재하지 않습니다.\n");
+            else
+                printClient(findResult->client);
+            break;
+
+        case 3:
+            printClientList(*clientList);
+            break;
+
+        case 4:
+            break;
+    }
 }

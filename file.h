@@ -71,6 +71,7 @@ void popBorrowFileLine(FILE*);
 
 //client
 void overwriteClientFile(clientNode);
+void printClientList(clientNode printingClient);
 void printClient(client);
 
 // book

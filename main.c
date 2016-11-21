@@ -81,7 +81,9 @@ void signIn() {
 
     // 관리자 모드
     if (!strcmp(id, "admin")) {
-        selectAdminMenu();
+        while (1) {
+            selectAdminMenu();
+        }
         return;
     }
 
@@ -151,21 +153,27 @@ void selectAdminMenu() {
     scanf("%d", &menu);
     getchar();
 
-    switch (menu) {
-        case 1:
-            registerNewBook(&bookList);
-            break;
+    while (1) {
+        switch (menu) {
+            case 1:
+                registerNewBook(&bookList);
+                break;
 
-        case 2:
-            deleteBook(&bookList);
-            break;
+            case 2:
+                deleteBook(&bookList);
+                break;
 
-        case 3:
-            lendBook(&bookList, &borrowList, &clientList);
-            break;
+            case 3:
+                lendBook(&bookList, &borrowList, &clientList);
+                break;
 
-        case 4:
-            returnBook(&clientList, &bookList, &borrowList);
-            break;
+            case 4:
+                returnBook(&clientList, &bookList, &borrowList);
+                break;
+
+            case 6:
+                loadMemberList(&clientList);
+                break;
+        }
     }
 }
