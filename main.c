@@ -6,7 +6,7 @@
 // 메뉴
 int selectLibraryMenu();
 void selectMemberMenu();
-int selectAdminMenu();
+void selectAdminMenu();
 void selectSearchBookMenu();
 
 void signUp();
@@ -67,7 +67,7 @@ void signUp() {
     clientNode node;
     node.client = newClient;
     insertClient(&clientList, &node, 0);
-    rewriteClientFile(clientList);
+    overwriteClientFile(clientList);
 }
 
 // 로그인
@@ -144,11 +144,16 @@ void selectSearchBookMenu() {
 }
 
 // 관리자 메뉴
-int selectAdminMenu() {
+void selectAdminMenu() {
     int menu;
     printf(">> 관리자 메뉴 <<\n");
-    printf("1. 도서 등록\n2.도서 삭제\n3.도서 대여\n4.도서 반납\n5.도서 검색\n6.회원 목록\n7.로그아웃\n8.프로그램 종료\n");
+    printf("1.도서 등록\n2.도서 삭제\n3.도서 대여\n4.도서 반납\n5.도서 검색\n6.회원 목록\n7.로그아웃\n8.프로그램 종료\n");
     scanf("%d", &menu);
     getchar();
-    return menu;
+
+    switch (menu) {
+        case 1:
+            registBook(&bookList);
+            break;
+    }
 }

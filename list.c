@@ -235,7 +235,7 @@ int isEmptyClient(client c) {
 ///////////////////////////// 책 ////////////////////////////////////
 
 int isEmptyBook(book checkingBook) {
-    return checkingBook.bookId == 0 && checkingBook.isBorrowable == 0 && checkingBook.ISBN == 0 && !strcmp(checkingBook.authorName, "") && !strcmp(checkingBook.holdingInstitudtion, "") && !strcmp(checkingBook.name, "") && !strcmp(checkingBook.publisherName, "");
+    return checkingBook.bookId == 0 && checkingBook.isBorrowable == 0 && checkingBook.ISBN == 0 && !strcmp(checkingBook.authorName, "") && !strcmp(checkingBook.holdingInstitution, "") && !strcmp(checkingBook.name, "") && !strcmp(checkingBook.publisherName, "");
 }
 
 
@@ -424,7 +424,7 @@ book initBook() {
     book.bookId = 0;
     strcpy(book.name, "");
     strcpy(book.authorName, "");
-    strcpy(book.holdingInstitudtion, "");
+    strcpy(book.holdingInstitution, "");
     strcpy(book.publisherName, "");
     book.ISBN = 0;
     book.isBorrowable = 0;

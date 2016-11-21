@@ -69,7 +69,7 @@ clientNode* readClientFileLine(FILE* clientFile) {
 // book 파일 한 줄 읽기
 bookNode* readBookFileLine(FILE* bookFile) {
     bookNode* node = (bookNode *) calloc(1, sizeof(bookNode));
-    fscanf(bookFile, "%d||%[^|]||%[^|]||%[^|]||%ld||%[^|]||%c\n", &(node -> book.bookId), node -> book.name, node -> book.publisherName, node -> book.authorName, &(node -> book.ISBN), node -> book.holdingInstitudtion, &(node -> book.isBorrowable));
+    fscanf(bookFile, "%d||%[^|]||%[^|]||%[^|]||%ld||%[^|]||%c\n", &(node -> book.bookId), node -> book.name, node -> book.publisherName, node -> book.authorName, &(node -> book.ISBN), node -> book.holdingInstitution, &(node -> book.isBorrowable));
     return node;
 }
 
@@ -97,7 +97,7 @@ void popBorrowFileLine(FILE* borrowFile) {
 
 
 // 회원 추가
-void rewriteClientFile(clientNode node) {
+void overwriteClientFile(clientNode node) {
     FILE *clientFile = fopen(CLIENT_FILE_PATH, "w");
     if (clientFile == NULL) {
         printf("파일 열기 실패\n");
@@ -120,7 +120,7 @@ void rewriteClientFile(clientNode node) {
 
 
 // 책 추가
-void rewriteBookFile(bookNode node) {
+void overwriteBookFile(bookNode node) {
     FILE *bookFile = fopen(BOOK_FILE_PATH, "w");
     if (bookFile == NULL) {
         printf("파일 열기 실패\n");
@@ -130,15 +130,34 @@ void rewriteBookFile(bookNode node) {
     while (!isEmptyBook(node.book)) {
         fprintf(bookFile, "%d||%s||%s||%s||%lld||%s||Y\n",
                 node.book.bookId++,                       // 도서 번호
-                node.book.bookName,                       // 책 이름
+                node.book.name,                           // 책 이름
                 node.book.publisherName,                  // 출판사 이름
                 node.book.authorName,                     // 저자 이름
                 node.book.ISBN++,                         // ISBN
-                node.book.holdingLocation                 // 소장처
+                node.book.holdingInstitution              // 소장처
         );
 
         node = *(node.next);
     }
+    fclose(bookFile);
+}
+
+
+void appendBookFile(book newBook) {
+    FILE *bookFile = fopen(BOOK_FILE_PATH, "a");
+    if (bookFile == NULL) {
+        printf("파일 열기 실패\n");
+        return;
+    }
+
+    fprintf(bookFile, "%d||%s||%s||%s||%lld||%s||Y\n",
+            newBook.bookId++,                       // 도서 번호
+            newBook.name,                           // 책 이름
+            newBook.publisherName,                  // 출판사 이름
+            newBook.authorName,                     // 저자 이름
+            newBook.ISBN++,                         // ISBN
+            newBook.holdingInstitution              // 소장처
+    );
     fclose(bookFile);
 }
 

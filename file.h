@@ -30,7 +30,7 @@ typedef struct {
     char publisherName[20];             // 책 출판사
     char authorName[20];                // 책 지은이
     unsigned long ISBN;                 // ISBN
-    char holdingInstitudtion[50];       // 소장처
+    char holdingInstitution[50];       // 소장처
     char isBorrowable;                  // 대여 가능 여부
 } book;
 
@@ -69,9 +69,10 @@ void popBookFileLine(FILE*);
 void popBorrowFileLine(FILE*);
 
 
-void rewriteClientFile(clientNode);
+void overwriteClientFile(clientNode);
 void printClient(client);
 
-void rewriteBookFile(bookNode);
+void overwriteBookFile(bookNode);
+void appendBookFile(book);
 
 #endif /* file_h */

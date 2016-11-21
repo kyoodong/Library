@@ -20,22 +20,27 @@ void registBook(bookNode* bookList) {
 
     printf("도서명 : ");
     scanf("%[^\n]", newBookNode -> book.name);
+    getchar();
 
     printf("출판사 : ");
     scanf("%[^\n]", newBookNode -> book.publisherName);
+    getchar();
 
     printf("저자명 : ");
     scanf("%[^\n]", newBookNode -> book.authorName);
+    getchar();
 
     printf("ISBN : ");
     scanf("%lu", &(newBookNode -> book.ISBN));
+    getchar();
 
     printf("소장처 : ");
-    scanf("%[^\n]", newBookNode -> book.holdingInstitudtion);
+    scanf("%[^\n]", newBookNode -> book.holdingInstitution);
+    getchar();
 
     lastBookNode -> next = newBookNode;
 
-    rewrite
+    appendBookFile(newBookNode -> book);
 }
 
 // 도서 삭제
