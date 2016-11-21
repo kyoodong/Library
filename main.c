@@ -153,9 +153,7 @@ void selectAdminMenu() {
 
     switch (menu) {
         case 1:
-            appendBook(&bookList);
+            registerNewBook(&bookList);
             break;
     }
-
-    printBook(getBookNode(&bookList, bookLength(bookList)) -> book);
 }

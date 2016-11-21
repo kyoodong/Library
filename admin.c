@@ -7,13 +7,11 @@
 //
 
 #include "admin.h"
-#include "file.h"
-#include <stdlib.h>
 
 
 // 도서 등록
-void appendBook(bookNode *bookList) {
-    bookNode *newBookNode = calloc(1, sizeof(bookNode));
+void registerNewBook(bookNode *bookList) {
+    bookNode *newBookNode = (bookNode *) calloc(1, sizeof(bookNode));
     newBookNode->book = initBook();
     int length = bookLength(*bookList);
     bookNode *lastBookNode = getBookNode(bookList, length - 1);
@@ -37,8 +35,8 @@ void appendBook(bookNode *bookList) {
     printf("소장처 : ");
     scanf("%[^\n]", newBookNode -> book.holdingInstitution);
     getchar();
-
     lastBookNode -> next = newBookNode;
+
     newBookNode -> book.bookId = lastBookNode -> book.bookId + 1;
 
     appendBookFile(newBookNode -> book);
@@ -46,7 +44,7 @@ void appendBook(bookNode *bookList) {
 
 // 도서 삭제
 void deleteBook() {
-    
+    printf("deleteBook\n");
 }
 
 // 도서 대여

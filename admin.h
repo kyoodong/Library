@@ -12,9 +12,10 @@
 #include <stdio.h>
 #include "list.h"
 #include "file.h"
+#include <stdlib.h>
 
 
-void appendBook(bookNode *);
+void registerNewBook(bookNode *);
 void deleteBook();
 void lendBook();
 void returnedBook();

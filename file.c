@@ -128,12 +128,12 @@ void overwriteBookFile(bookNode node) {
     }
 
     while (!isEmptyBook(node.book)) {
-        fprintf(bookFile, "%d||%s||%s||%s||%lld||%s||Y\n",
-                node.book.bookId++,                       // 도서 번호
+        fprintf(bookFile, "%d||%s||%s||%s||%lu||%s||Y\n",
+                node.book.bookId,                       // 도서 번호
                 node.book.name,                           // 책 이름
                 node.book.publisherName,                  // 출판사 이름
                 node.book.authorName,                     // 저자 이름
-                node.book.ISBN++,                         // ISBN
+                node.book.ISBN,                         // ISBN
                 node.book.holdingInstitution              // 소장처
         );
 
@@ -150,12 +150,12 @@ void appendBookFile(book newBook) {
         return;
     }
 
-    fprintf(bookFile, "%d||%s||%s||%s||%lld||%s||Y\n",
+    fprintf(bookFile, "%d||%s||%s||%s||%lu||%s||Y\n",
             newBook.bookId,                       // 도서 번호
             newBook.name,                           // 책 이름
             newBook.publisherName,                  // 출판사 이름
             newBook.authorName,                     // 저자 이름
-            newBook.ISBN++,                         // ISBN
+            newBook.ISBN,                         // ISBN
             newBook.holdingInstitution              // 소장처
     );
     fclose(bookFile);

@@ -107,7 +107,7 @@ void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
         if (isEmptyClient(clientList -> client)) {
             *clientList = *addedClient;
         } else {
-            clientNode* tmpClientNode = calloc(1, sizeof(clientNode));
+            clientNode* tmpClientNode = (clientNode*) calloc(1, sizeof(clientNode));
             *tmpClientNode = *clientList;
             addedClient -> next = tmpClientNode;
             *clientList = *addedClient;
