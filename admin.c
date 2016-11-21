@@ -113,12 +113,17 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
     scanf("%d", &bookId);
     getchar();
 
-    if (findBookNodeByBookId(bookList, bookId) == NULL) {
+    bookNode *lentBook = findBookNodeByBookId(bookList, bookId);
+    if (lentBook == NULL) {
         printf("일치하는 id를 가진 책이 없습니다.\n");
         return;
     }
 
-    bookNode *lentBook = findBookNodeByBookId(bookList, bookId);
+    if (lentBook->book.isBorrowable == 'N') {
+        printf("이미 대여된 책입니다.\n");
+        return;
+    }
+
     lentBook -> book.isBorrowable = 'N';
     borrowNode *newBorrow = calloc(1, sizeof(borrowNode));
 
