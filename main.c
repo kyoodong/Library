@@ -143,6 +143,10 @@ void selectMemberMenu() {
                     printBorrow(findBorrowResult->borrow);
                 break;
 
+            case 3:
+                modifyPersonalInfo(&clientList, myStudentId);
+                break;
+
             case 6:
                 exit(0);
         }

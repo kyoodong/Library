@@ -19,8 +19,26 @@ void loadMyBorrowList() {
 }
 
 // 개인정보 수정
-void modifyPersonalInfo() {
-    
+void modifyPersonalInfo(clientNode *clientList, int studentId) {
+    char password[20], address[20], phone[20];
+    printf("비밀번호: ");
+    scanf("%[^\n]", password);
+    getchar();
+
+    printf("주소: ");
+    scanf("%[^\n]", address);
+    getchar();
+
+    printf("전화번호: ");
+    scanf("%[^\n]", phone);
+    getchar();
+
+    clientNode *myInfo = findClientNodeById(clientList, studentId);
+    strcpy(myInfo->client.password, password);
+    strcpy(myInfo->client.address, address);
+    strcpy(myInfo->client.phone, phone);
+
+    overwriteClientFile(*clientList);
 }
 
 // 회원 탈퇴

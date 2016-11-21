@@ -16,7 +16,7 @@
 
 void seachBook();
 void loadMyBorrowList();
-void modifyPersonalInfo();
+void modifyPersonalInfo(clientNode *clientList, int studentId);
 void leaveMember();
 void findBookByTitle();
 void findBookByPublisher();
