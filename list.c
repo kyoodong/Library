@@ -839,6 +839,7 @@ borrowNode* findBorrowNodeByBookId(borrowNode* borrowList, int bookId) {
 }
 
 
+
 int isEqualBorrow(borrow leftBorrow, borrow rightBorrow) {
     return leftBorrow.bookId == rightBorrow.bookId &&
            leftBorrow.studentId == rightBorrow.studentId &&

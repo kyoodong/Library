@@ -90,6 +90,8 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
     bookNode *findBookResults = findBookNodeByBookName(bookList, searchKeyword);
     if (isbn) {
         bookNode *findBookByISBNResults = findBookNodeByISBN(bookList, isbn);
+        if (findBookResults == NULL)
+            findBookResults = calloc(1, sizeof(bookNode));
         addBook(findBookResults, findBookByISBNResults);
     }
 

@@ -15,6 +15,7 @@ void signIn();
 clientNode clientList;
 bookNode bookList;
 borrowNode borrowList;
+int myStudentId;
 
 int main(void) {
     loadFile(&clientList, &bookList, &borrowList);
@@ -73,7 +74,6 @@ void signUp() {
 // 로그인
 void signIn() {
     char id[20], password[50];
-    int idInt;
 
     printf("학번 : ");
     scanf("%[^\n]", id);
@@ -87,7 +87,7 @@ void signIn() {
         return;
     }
 
-    idInt = atoi(id);
+    myStudentId = atoi(id);
     printf("비밀번호 : ");
     scanf("%[^\n]", password);
     getchar();
@@ -95,11 +95,11 @@ void signIn() {
     clientNode list = clientList;
     while (!isEmptyClient(list.client)) {
         // 아이디와 비밀번호가 일치하는 회원이 있다면
-        if (list.client.studentId == idInt && !strcmp(list.client.password, password)) {
+        if (list.client.studentId == myStudentId && !strcmp(list.client.password, password)) {
             while (1)
                 selectMemberMenu();
             return;
-        } else if (list.client.studentId < idInt)
+        } else if (list.client.studentId < myStudentId)
             break;
         list = *(list.next);
     }
@@ -123,16 +123,28 @@ int selectLibraryMenu() {
 // 회원 메뉴
 void selectMemberMenu() {
     int menu;
-    printf(">> 도서관 서비스 <<\n");
-    printf("1.도서 검색\n2.내 대여 목록\n3.개인정보 수정\n4.회원 탈퇴\n5.로그아웃\n6.프로그램 종료\n");
-    scanf("%d", &menu);
-    getchar();
-
+    borrowNode* findBorrowResult;
     while (1) {
+        printf(">> 도서관 서비스 <<\n");
+        printf("1.도서 검색\n2.내 대여 목록\n3.개인정보 수정\n4.회원 탈퇴\n5.로그아웃\n6.프로그램 종료\n");
+        scanf("%d", &menu);
+        getchar();
+
         switch (menu) {
             case 1:
                 selectSearchBookMenu();
                 return;
+
+            case 2:
+                findBorrowResult = findBorrowNodeByStudentId(&borrowList, myStudentId);
+                if (findBorrowResult == NULL)
+                    printf("대여목록이 없습니다.\n");
+                else
+                    printBorrow(findBorrowResult->borrow);
+                break;
+
+            case 6:
+                exit(0);
         }
     }
 }
@@ -209,12 +221,13 @@ void selectSearchBookMenu() {
 // 관리자 메뉴
 void selectAdminMenu() {
     int menu;
-    printf(">> 관리자 메뉴 <<\n");
-    printf("1.도서 등록\n2.도서 삭제\n3.도서 대여\n4.도서 반납\n5.도서 검색\n6.회원 목록\n7.로그아웃\n8.프로그램 종료\n");
-    scanf("%d", &menu);
-    getchar();
-
     while (1) {
+        printf(">> 관리자 메뉴 <<\n");
+        printf("1.도서 등록\n2.도서 삭제\n3.도서 대여\n4.도서 반납\n5.도서 검색\n6.회원 목록\n7.로그아웃\n8.프로그램 종료\n");
+        scanf("%d", &menu);
+        getchar();
+
+
         switch (menu) {
             case 1:
                 registerNewBook(&bookList);
