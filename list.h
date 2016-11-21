@@ -23,7 +23,7 @@ void addClient(clientNode *clientList, clientNode *addedClient);
 void insertClient(clientNode *clientList, clientNode *addedClient, int index);
 clientNode* getClientNode(clientNode* clientList, int at);
 int clientLength(clientNode clientList);
-int isEmptyClient(client client);
+int isEmptyClient(client c);
 void removeClient(clientNode *clientList, int at);
 void clearClient(clientNode *);
 
@@ -52,6 +52,8 @@ int borrowLength(borrowNode borrowList);
 int isEmptyBorrow(borrow borrow);
 void removeBorrow(borrowNode *borrowList, int at);
 void clearBorrow(borrowNode *);
+
+clientNode findClientById(clientNode list, int id);
 
 
 
