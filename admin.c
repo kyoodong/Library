@@ -29,11 +29,6 @@ void returnedBook() {
     
 }
 
-// 도서 검색
-void searchBook() {
-    
-}
-
 // 회원 목록
 void loadMemberList() {
     

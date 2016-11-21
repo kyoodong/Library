@@ -14,7 +14,7 @@
 #include "list.h"
 
 
-void seachBook();
+void searchBook();
 void loadMyBorrowList();
 void modifyPersonalInfo();
 void leaveMember();

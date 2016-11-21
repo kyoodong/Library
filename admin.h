@@ -18,7 +18,6 @@ void registBook();
 void deleteBook();
 void lendBook();
 void returnedBook();
-void searchBook();
 void loadMemberList();
 
 

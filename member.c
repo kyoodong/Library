@@ -9,7 +9,7 @@
 #include "member.h"
 
 // 책 검색
-void seachBook() {
+void searchBook() {
     
 }
 
