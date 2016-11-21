@@ -14,7 +14,7 @@
 #include "file.h"
 
 
-void registBook();
+void registBook(bookNode*);
 void deleteBook();
 void lendBook();
 void returnedBook();
