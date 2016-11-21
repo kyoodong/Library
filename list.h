@@ -41,7 +41,8 @@ void removeBook(bookNode *, int);
 void clearBook(bookNode *);
 bookNode* findBookNodeByISBN(bookNode* bookList, unsigned long isbn);
 bookNode* findBookNodeByBookId(bookNode* bookList, int bookId);
-int indexOfBookNode(bookNode *bookList, bookNode foundBookNode);
+bookNode* findBookNodeByBookName(bookNode* bookList, char* bookName);
+int indexOfBookNode(bookNode* bookList, bookNode foundBookNode);
 
 
 borrow initBorrow();

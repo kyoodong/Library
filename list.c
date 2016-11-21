@@ -396,22 +396,41 @@ bookNode* getBookNode(bookNode* bookList, int at) {
 bookNode* findBookNodeByISBN(bookNode* bookList, unsigned long isbn) {
     bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
 
-    if (bookList == NULL) {
-        printf("bookList는 NULL 일 수 없습니다.\n");
-        return NULL;
-    }
-
-    while (!isEmptyBook(bookList -> book)) {
+    while (!isEmptyBook(bookList->book)) {
         // ISBN 발견 시 return
-        if (bookList -> book.ISBN == isbn) {
+        if (bookList->book.ISBN == isbn) {
             bookNode *newBook = calloc(1, sizeof(bookNode));
-            newBook -> book = bookList -> book;
+            newBook -> book = bookList->book;
             addBook(hasIsbnBookList, newBook);
         }
-        if (bookList -> next == NULL) {
+        if (bookList->next == NULL) {
             break;
         }
-        bookList = bookList -> next;
+        bookList = bookList->next;
+    }
+
+    if (isEmptyBook(hasIsbnBookList -> book))
+        return NULL;
+
+    return hasIsbnBookList;
+}
+
+
+// 도서명으로 BookNode 사기
+bookNode* findBookNodeByBookName(bookNode* bookList, char* bookName) {
+    bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
+
+    while (!isEmptyBook(bookList->book)) {
+        // ISBN 발견 시 return
+        if (!strcmp(bookList->book.name, bookName)) {
+            bookNode *newBook = calloc(1, sizeof(bookNode));
+            newBook -> book = bookList->book;
+            addBook(hasIsbnBookList, newBook);
+        }
+        if (bookList->next == NULL) {
+            break;
+        }
+        bookList = bookList->next;
     }
 
     if (isEmptyBook(hasIsbnBookList -> book))
@@ -434,13 +453,13 @@ int isEqualBook(book leftBook, book rightBook) {
 
 
 // bookNode index 번호 찾기
-int indexOfBookNode(bookNode *bookList, bookNode foundBookNode) {
+int indexOfBookNode(bookNode* bookList, bookNode foundBookNode) {
     int count = 0;
-    while (!isEmptyBook(bookList -> book)) {
-        if (isEqualBook(bookList -> book, foundBookNode.book)) {
+    while (!isEmptyBook(bookList->book)) {
+        if (isEqualBook(bookList->book, foundBookNode.book)) {
             return count;
         }
-        bookList = bookList -> next;
+        bookList = bookList->next;
         count++;
     }
     return -1;
@@ -449,23 +468,18 @@ int indexOfBookNode(bookNode *bookList, bookNode foundBookNode) {
 
 // bookId 으로 BookNode 사기
 bookNode* findBookNodeByBookId(bookNode* bookList, int bookId) {
-    if (bookList == NULL) {
-        printf("bookList는 NULL 일 수 없습니다.\n");
-        return NULL;
-    }
-
-    while (!isEmptyBook(bookList -> book)) {
+    while (!isEmptyBook(bookList->book)) {
         // ISBN 발견 시 return
-        if (bookList -> book.bookId == bookId) {
+        if (bookList->book.bookId == bookId) {
             return bookList;
         }
-        if (bookList -> next == NULL) {
+        if (bookList->next == NULL) {
             break;
         }
-        bookList = bookList -> next;
+        bookList = bookList->next;
     }
 
-    if (bookList -> book.bookId == bookId)
+    if (bookList->book.bookId == bookId)
         return bookList;
 
     return NULL;
@@ -707,8 +721,18 @@ borrow initBorrow() {
     borrow borrow;
     borrow.studentId = 0;
     borrow.studentId = 0;
-    borrow.borrowDateSec = 0;
-    borrow.returnDateSec = 0;
+
+    time_t t = time(NULL);
+    time_t ct = t + 60 * 60 * 24 * 30;
+    struct tm *timer = localtime(&ct);
+
+    // 일요일
+    if (timer -> tm_wday == 0) {
+        ct += 60 * 60 * 24;
+    }
+
+    borrow.borrowDateSec = t;
+    borrow.returnDateSec = ct;
     return borrow;
 }
 

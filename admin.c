@@ -77,8 +77,60 @@ void deleteBook(bookNode *bookList) {
 }
 
 // 도서 대여
-void lendBook() {
-    
+void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode clientList) {
+    char searchKeyword[20];
+    unsigned long isbn;
+    int studentId, bookId;
+
+    printf("도서명 또는 ISBN 입력하세요 : ");
+    scanf("%[^\n]", searchKeyword);
+    getchar();
+    isbn = atoll(searchKeyword);
+
+    bookNode *findBookResults = findBookNodeByBookName(bookList, searchKeyword);
+    if (isbn) {
+        bookNode *findBookByISBNResults = findBookNodeByISBN(bookList, isbn);
+        addBook(findBookResults, findBookByISBNResults);
+    }
+
+    if (findBookResults == NULL) {
+        printf("해당 책이 없습니다.\n");
+        return;
+    }
+
+    printBookList(*findBookResults);
+
+    printf("\n학번: ");
+    scanf("%d", &studentId);
+    getchar();
+
+    if (isEmptyClient(findClientNodeById(clientList, studentId).client)) {
+        printf("일치하는 학번을 가진 학생이 없습니다.\n");
+        return;
+    }
+
+    printf("책 번호: ");
+    scanf("%d", &bookId);
+    getchar();
+
+    if (findBookNodeByBookId(bookList, bookId) == NULL) {
+        printf("일치하는 id를 가진 책이 없습니다.\n");
+        return;
+    }
+
+    bookNode *lentBook = findBookNodeByBookId(bookList, bookId);
+    lentBook -> book.isBorrowable = 'N';
+    borrowNode *newBorrow = calloc(1, sizeof(borrowNode));
+
+    // 대여일자, 반납일자 생성
+    newBorrow->borrow = initBorrow();
+
+    newBorrow->borrow.studentId = studentId;
+    newBorrow->borrow.bookId = bookId;
+    addBorrow(borrowList, newBorrow);
+
+    overwriteBookFile(*bookList);
+    overwriteBorrowFile(*borrowList);
 }
 
 // 도서 반납

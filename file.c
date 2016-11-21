@@ -23,12 +23,12 @@ void loadFile(clientNode *clients, bookNode *books, borrowNode *borrows) {
         printf("client 파일이 없습니다.\n");
         return;
     }
-    
+
     if (bookFile == NULL) {
         printf("book 파일이 없습니다.\n");
         return;
     }
-    
+
     if (borrowFile == NULL) {
         printf("borrow 파일이 없습니다.\n");
         return;
@@ -45,13 +45,13 @@ void loadFile(clientNode *clients, bookNode *books, borrowNode *borrows) {
         bookNode* node = readBookFileLine(bookFile);
         addBook(books, node);
     }
-    
+
     // borrow 파일 데이터 추출
     while (!feof(borrowFile)) {
         borrowNode* node = readBorrowFileLine(borrowFile);
         addBorrow(borrows, node);
     }
-    
+
     fclose(clientFile);
     fclose(bookFile);
     fclose(borrowFile);
@@ -128,13 +128,14 @@ void overwriteBookFile(bookNode node) {
     }
 
     while (!isEmptyBook(node.book)) {
-        fprintf(bookFile, "%d||%s||%s||%s||%lu||%s||Y\n",
+        fprintf(bookFile, "%d||%s||%s||%s||%lu||%s||%c\n",
                 node.book.bookId,                         // 도서 번호
                 node.book.name,                           // 책 이름
                 node.book.publisherName,                  // 출판사 이름
                 node.book.authorName,                     // 저자 이름
                 node.book.ISBN,                           // ISBN
-                node.book.holdingInstitution              // 소장처
+                node.book.holdingInstitution,             // 소장처
+                node.book.isBorrowable                    // 대여 가능 여부
         );
         if (node.next == NULL)
             break;
@@ -142,6 +143,30 @@ void overwriteBookFile(bookNode node) {
         node = *(node.next);
     }
     fclose(bookFile);
+}
+
+
+// 대여목록 추가
+void overwriteBorrowFile(borrowNode node) {
+    FILE *borrowFile = fopen(BORROW_FILE_PATH, "w");
+    if (borrowFile == NULL) {
+        printf("파일 열기 실패\n");
+        return;
+    }
+
+    while (!isEmptyBorrow(node.borrow)) {
+        fprintf(borrowFile, "%d||%d||%d||%d\n",
+                    node.borrow.studentId,              // 학번
+                    node.borrow.bookId,                 // 책 번호
+                    (int) node.borrow.borrowDateSec,    // 대여 일자
+                    (int) node.borrow.returnDateSec     // 반납 일자
+        );
+        if (node.next == NULL)
+            break;
+
+        node = *(node.next);
+    }
+    fclose(borrowFile);
 }
 
 
@@ -161,6 +186,23 @@ void appendBookFile(book newBook) {
             newBook.holdingInstitution              // 소장처
     );
     fclose(bookFile);
+}
+
+
+void appendBorrowFile(borrow newBorrow) {
+    FILE *borrowFile = fopen(BORROW_FILE_PATH, "a");
+    if (borrowFile == NULL) {
+        printf("파일 열기 실패\n");
+        return;
+    }
+
+    fprintf(borrowFile, "%d||%d||%d||%d\n",
+            newBorrow.studentId,              // 학번
+            newBorrow.bookId,                 // 책 번호
+            (int) newBorrow.borrowDateSec,          // 대여 일자
+            (int) newBorrow.returnDateSec           // 반납 일자
+    );
+    fclose(borrowFile);
 }
 
 
