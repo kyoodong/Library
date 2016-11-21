@@ -82,6 +82,7 @@ void signIn() {
     // 관리자 모드
     if (!strcmp(id, "admin")) {
         selectAdminMenu();
+        return;
     }
 
     idInt = atoi(id);
