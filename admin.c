@@ -180,7 +180,7 @@ void searchBook() {
 }
 
 // 회원 목록
-void loadMemberList(clientNode *clientList) {
+int loadMemberList(clientNode *clientList) {
     int menu, studentId;
     char name[20];
     clientNode *findResult;
@@ -223,6 +223,7 @@ void loadMemberList(clientNode *clientList) {
             break;
 
         case 4:
-            break;
+            return 1;
     }
+    return 0;
 }

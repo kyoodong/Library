@@ -172,8 +172,14 @@ void selectAdminMenu() {
                 break;
 
             case 6:
-                loadMemberList(&clientList);
+                if (loadMemberList(&clientList)) {
+                    selectAdminMenu();
+                    return;
+                }
                 break;
+
+            case 8:
+                exit(0);
         }
     }
 }
