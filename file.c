@@ -118,6 +118,31 @@ void rewriteClientFile(clientNode node) {
     fclose(clientFile);
 }
 
+
+// 책 추가
+void rewriteBookFile(bookNode node) {
+    FILE *bookFile = fopen(BOOK_FILE_PATH, "w");
+    if (bookFile == NULL) {
+        printf("파일 열기 실패\n");
+        return;
+    }
+
+    while (!isEmptyBook(node.book)) {
+        fprintf(bookFile, "%d||%s||%s||%s||%lld||%s||Y\n",
+                node.book.bookId++,                       // 도서 번호
+                node.book.bookName,                       // 책 이름
+                node.book.publisherName,                  // 출판사 이름
+                node.book.authorName,                     // 저자 이름
+                node.book.ISBN++,                         // ISBN
+                node.book.holdingLocation                 // 소장처
+        );
+
+        node = *(node.next);
+    }
+    fclose(bookFile);
+}
+
+
 void printClient(client c) {
     printf("%d\n", c.studentId);
     printf("%s\n", c.name);

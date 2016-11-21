@@ -139,6 +139,8 @@ void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
     }
 }
 
+
+// at 번째 clientNode 추출
 clientNode* getClientNode(clientNode* clientList, int at) {
     if (clientList == NULL) {
         printf("clientList는 NULL 일 수 없습니다.\n");
@@ -199,6 +201,7 @@ clientNode findClientById(clientNode list, int id) {
 }
 
 
+// ClientNode 생성
 clientNode initClientNode() {
     clientNode node;
     node.client = initClient();
@@ -231,8 +234,8 @@ int isEmptyClient(client c) {
 
 ///////////////////////////// 책 ////////////////////////////////////
 
-int isEmptyBook(book book) {
-    return book.bookId == 0 && book.isBorrowable == 0 && book.ISBN == 0 && !strcmp(book.authorName, "") && !strcmp(book.holdingInstitudtion, "") && !strcmp(book.name, "") && !strcmp(book.publisherName, "");
+int isEmptyBook(book checkingBook) {
+    return checkingBook.bookId == 0 && checkingBook.isBorrowable == 0 && checkingBook.ISBN == 0 && !strcmp(checkingBook.authorName, "") && !strcmp(checkingBook.holdingInstitudtion, "") && !strcmp(checkingBook.name, "") && !strcmp(checkingBook.publisherName, "");
 }
 
 

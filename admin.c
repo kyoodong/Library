@@ -13,23 +13,29 @@
 
 // 도서 등록
 void registBook(bookNode* bookList) {
-    book *newBook = calloc(1, sizeof(book));
+    bookNode *newBookNode = calloc(1, sizeof(bookNode));
+    newBookNode->book = initBook();
+    int length = bookLength(*bookList);
+    bookNode *lastBookNode = getBookNode(bookList, length - 1);
+
     printf("도서명 : ");
-    scanf("%[^\n]", newBook -> name);
+    scanf("%[^\n]", newBookNode -> book.name);
 
     printf("출판사 : ");
-    scanf("%[^\n]", newBook -> publisherName);
+    scanf("%[^\n]", newBookNode -> book.publisherName);
 
     printf("저자명 : ");
-    scanf("%[^\n]", newBook -> authorName);
+    scanf("%[^\n]", newBookNode -> book.authorName);
 
     printf("ISBN : ");
-    scanf("%lu", &(newBook -> ISBN));
+    scanf("%lu", &(newBookNode -> book.ISBN));
 
     printf("소장처 : ");
-    scanf("%[^\n]", newBook -> holdingInstitudtion);
+    scanf("%[^\n]", newBookNode -> book.holdingInstitudtion);
 
-    
+    lastBookNode -> next = newBookNode;
+
+
 }
 
 // 도서 삭제

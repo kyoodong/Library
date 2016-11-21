@@ -36,7 +36,7 @@ void addBook(bookNode *bookList, bookNode *addedbook);
 void insertBook(bookNode *bookList, bookNode *addedbook, int index);
 bookNode* getBookNode(bookNode* bookList, int at);
 int bookLength(bookNode bookList);
-int isEmptyBook(book book);
+int isEmptyBook(book checkingBook);
 void removeBook(bookNode *bookList, int at);
 void clearBook(bookNode *);
 
