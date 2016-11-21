@@ -23,7 +23,7 @@ void addClient(clientNode *clientList, clientNode *addedClient);
 void insertClient(clientNode *clientList, clientNode *addedClient, int index);
 clientNode* getClientNode(clientNode* clientList, int at);
 int clientLength(clientNode clientList);
-int isEmptyClient(client client);
+int isEmptyClient(client c);
 void removeClient(clientNode *clientList, int at);
 void clearClient(clientNode *);
 

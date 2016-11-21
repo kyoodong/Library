@@ -96,44 +96,57 @@ int main() {
     bookId = 1000000;
     
     // borrow file
-    for (i = 0; i < 100; i++) {
-        char bookName[10], publisherName[7], authorName[8], secondAddress[4], holdingLocation[8];
-        
-        for (j = 0; j < 9; j++)
-            bookName[j] = alphabet[rand() % alphabetLength];
-        bookName[j] = '\0';
-        
-        for (j = 0; j < 6; j++)
-            publisherName[j] = alphabet[rand() % alphabetLength];
-        publisherName[j] = '\0';
-        
-        for (j = 0; j < 7; j++)
-            authorName[j] = alphabet[rand() % alphabetLength];
-        authorName[j] = '\0';
-        
-        for (j = 0; j < 7; j++)
-            holdingLocation[j] = alphabet[rand() % alphabetLength];
-        holdingLocation[j] = '\0';
-        
-        int a = rand();
-        time_t t;
-        time(&t);
-        
-        if (i < 100) {
-            fprintf(borrowFile, "%d||%d||%d||%d\n",
-                    stdId++,                       // 학번
-                    bookId++,                       // 책 번호
-                    rand(),                        // 대여 일자
-                    a                         // 반납 일자
-                    );
-        } else {
-            fprintf(borrowFile, "%d||%d||%d||%ld\n",
-                    stdId++,                       // 학번
-                    bookId++,                      // 책 번호
-                    rand(),                        // 대여 일자
-                    t + rand()                     // 반납 일자
-                    );
-        }
-    }
+//    for (i = 0; i < 100; i++) {
+//        char bookName[10], publisherName[7], authorName[8], secondAddress[4], holdingLocation[8];
+//        
+//        for (j = 0; j < 9; j++)
+//            bookName[j] = alphabet[rand() % alphabetLength];
+//        bookName[j] = '\0';
+//        
+//        for (j = 0; j < 6; j++)
+//            publisherName[j] = alphabet[rand() % alphabetLength];
+//        publisherName[j] = '\0';
+//        
+//        for (j = 0; j < 7; j++)
+//            authorName[j] = alphabet[rand() % alphabetLength];
+//        authorName[j] = '\0';
+//        
+//        for (j = 0; j < 7; j++)
+//            holdingLocation[j] = alphabet[rand() % alphabetLength];
+//        holdingLocation[j] = '\0';
+//        
+//        int a = rand();
+//        time_t t;
+//        t = time(NULL);
+//        
+//        if (i < 100) {
+//            int b = a + 60 * 60 * 24 * 30;
+//            fprintf(borrowFile, "%d||%d||%d||%d\n",
+//                    stdId++,                       // 학번
+//                    bookId++,                       // 책 번호
+//                    a,                        // 대여 일자
+//                    b                               // 반납 일자
+//                    );
+//        } else {
+//            time_t ct = t + 60 * 60 * 24 * 30;
+//            struct tm *timer = localtime(&ct);
+//            
+//            // 일요일
+//            if (timer -> tm_wday == 0) {
+//                ct += 60 * 60 * 24;
+//            }
+//            fprintf(borrowFile, "%d||%d||%ld||%ld\n",
+//                    stdId++,                    // 학번
+//                    bookId++,                   // 책 번호
+//                    t,                          // 대여 일자
+//                    ct                          // 반납 일자
+//                    );
+//            
+//            printf("현재 년: %d\n",   timer->tm_year + 1900);
+//            printf("현재 월: %d\n",   timer->tm_mon + 1);
+//            printf("현재 일: %d\n\n", timer->tm_mday);
+//        }
+//    }
+    
 	return 0;
 }
