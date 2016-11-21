@@ -140,6 +140,28 @@ void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
     }
 }
 
+int isEqualClient(client leftClient, client rightClient) {
+    return leftClient.studentId == rightClient.studentId &&
+           !strcmp(leftClient.address, rightClient.address) &&
+           !strcmp(leftClient.password, rightClient.password) &&
+           !strcmp(leftClient.name, rightClient.name) &&
+           !strcmp(leftClient.phone, rightClient.phone);
+}
+
+
+// clientNode index 번호 찾기
+int indexOfClientNode(clientNode* clientList, clientNode foundClientNode) {
+    int count = 0;
+    while (!isEmptyClient(clientList->client)) {
+        if (isEqualClient(clientList->client, foundClientNode.client)) {
+            return count;
+        }
+        clientList = clientList->next;
+        count++;
+    }
+    return -1;
+}
+
 
 // at 번째 clientNode 추출
 clientNode* getClientNode(clientNode* clientList, int at) {

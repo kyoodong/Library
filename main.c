@@ -136,15 +136,19 @@ void selectMemberMenu() {
                 return;
 
             case 2:
-                findBorrowResult = findBorrowNodeByStudentId(&borrowList, myStudentId);
-                if (findBorrowResult == NULL)
-                    printf("대여목록이 없습니다.\n");
-                else
-                    printBorrow(findBorrowResult->borrow);
+                loadMyBorrowList(&borrowList, myStudentId);
                 break;
 
             case 3:
                 modifyPersonalInfo(&clientList, myStudentId);
+                break;
+
+            case 4:
+                // 탈퇴 성공 시
+                if (leaveMember(&clientList, &borrowList, myStudentId)) {
+                    main();
+                    return;
+                }
                 break;
 
             case 6:

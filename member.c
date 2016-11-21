@@ -14,8 +14,13 @@ void seachBook() {
 }
 
 // 내 대여 목록
-void loadMyBorrowList() {
-    
+void loadMyBorrowList(borrowNode *borrowList, int studentId) {
+    borrowNode *findBorrowResult = findBorrowNodeByStudentId(borrowList, studentId);
+    if (findBorrowResult == NULL) {
+        printf("대여목록이 없습니다.\n");
+        return;
+    }
+    printBorrow(findBorrowResult->borrow);
 }
 
 // 개인정보 수정
@@ -42,8 +47,19 @@ void modifyPersonalInfo(clientNode *clientList, int studentId) {
 }
 
 // 회원 탈퇴
-void leaveMember() {
-    
+int leaveMember(clientNode *clientList, borrowNode *borrowList, int studentId) {
+    clientNode *myInfo = findClientNodeById(clientList, studentId);
+    borrowNode *findBorrowResults = findBorrowNodeByStudentId(borrowList, studentId);
+
+    // 대여 목록이 있을 때
+    if (findBorrowResults != NULL) {
+        printf("대여목록이 있으므로 회원탈퇴가 불가능합니다.\n");
+        printBorrowList(*findBorrowResults);
+        return 0;
+    }
+    removeClient(clientList, indexOfClientNode(clientList, *myInfo));
+    overwriteClientFile(*clientList);
+    return 1;
 }
 
 // 책 제목으로 검색
