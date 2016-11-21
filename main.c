@@ -46,7 +46,7 @@ void signUp() {
     getchar();
 
     // studentId 중복검사
-    if (!isEmptyClient(findClientById(clientList, newClient.studentId).client)) {
+    if (!isEmptyClient(findClientNodeById(clientList, newClient.studentId).client)) {
         printf("studentId는 중복될 수 없습니다.\n");
         return;
     }
@@ -154,6 +154,10 @@ void selectAdminMenu() {
     switch (menu) {
         case 1:
             registerNewBook(&bookList);
+            break;
+
+        case 2:
+            deleteBook(&bookList);
             break;
     }
 }

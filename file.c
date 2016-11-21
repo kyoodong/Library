@@ -129,13 +129,15 @@ void overwriteBookFile(bookNode node) {
 
     while (!isEmptyBook(node.book)) {
         fprintf(bookFile, "%d||%s||%s||%s||%lu||%s||Y\n",
-                node.book.bookId,                       // 도서 번호
+                node.book.bookId,                         // 도서 번호
                 node.book.name,                           // 책 이름
                 node.book.publisherName,                  // 출판사 이름
                 node.book.authorName,                     // 저자 이름
-                node.book.ISBN,                         // ISBN
+                node.book.ISBN,                           // ISBN
                 node.book.holdingInstitution              // 소장처
         );
+        if (node.next == NULL)
+            break;
 
         node = *(node.next);
     }
@@ -171,12 +173,23 @@ void printClient(client c) {
 }
 
 void printBook(book b) {
-    printf("%d\n", b.bookId);
-    printf("%s\n", b.name);
-    printf("%s\n", b.publisherName);
-    printf("%s\n", b.authorName);
-    printf("%s\n", b.holdingInstitution);
-    printf("%lu\n", b.ISBN);
+    printf("도서번호: %d\n", b.bookId);
+    printf("도서명: %s\n", b.name);
+    printf("출판사: %s\n", b.publisherName);
+    printf("저자명: %s\n", b.authorName);
+    printf("ISBN: %lu\n", b.ISBN);
+    printf("소장처: %s\n", b.holdingInstitution);
+    printf("삭제 가능 여부: %c\n", b.isBorrowable);
+}
+
+void printBookList(bookNode printingBook) {
+    while (!isEmptyBook(printingBook.book)) {
+        printBook(printingBook.book);
+        if (printingBook.next == NULL)
+            break;
+        printingBook = *printingBook.next;
+        printf("\n");
+    }
 }
 
 

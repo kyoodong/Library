@@ -43,8 +43,37 @@ void registerNewBook(bookNode *bookList) {
 }
 
 // 도서 삭제
-void deleteBook() {
-    printf("deleteBook\n");
+void deleteBook(bookNode *bookList) {
+    unsigned long isbn;
+    int bookId;
+    printf("ISBN : ");
+    scanf("%lu", &isbn);
+    getchar();
+
+    bookNode *hasSameISBNBookList = findBookNodeByISBN(bookList, isbn);
+    printBookList(*hasSameISBNBookList);
+
+    printf("도서번호: ");
+    scanf("%d", &bookId);
+    getchar();
+
+    bookNode *foundBookNode = findBookNodeByBookId(hasSameISBNBookList, bookId);
+
+    // 삭제 가능
+    if (foundBookNode -> book.isBorrowable == 'Y') {
+        int index = indexOfBookNode(hasSameISBNBookList, *foundBookNode);
+        if (index == -1) {
+            printf("도서가 없습니다.\n");
+        } else {
+            removeBook(bookList, index);
+            overwriteBookFile(*bookList);
+        }
+    }
+
+    // 삭제 불가능
+    else {
+        printf("누군가가 대여 중입니다. 삭제할 수 없습니다.\n");
+    }
 }
 
 // 도서 대여

@@ -16,7 +16,7 @@
 
 
 void registerNewBook(bookNode *);
-void deleteBook();
+void deleteBook(bookNode *bookList);
 void lendBook();
 void returnedBook();
 void searchBook();

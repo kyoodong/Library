@@ -39,6 +39,9 @@ int bookLength(bookNode);
 int isEmptyBook(book);
 void removeBook(bookNode *, int);
 void clearBook(bookNode *);
+bookNode* findBookNodeByISBN(bookNode* bookList, unsigned long isbn);
+bookNode* findBookNodeByBookId(bookNode* bookList, int bookId);
+int indexOfBookNode(bookNode *bookList, bookNode foundBookNode);
 
 
 borrow initBorrow();
@@ -53,7 +56,7 @@ int isEmptyBorrow(borrow);
 void removeBorrow(borrowNode *, int);
 void clearBorrow(borrowNode *);
 
-clientNode findClientById(clientNode, int);
+clientNode findClientNodeById(clientNode, int);
 
 
 
