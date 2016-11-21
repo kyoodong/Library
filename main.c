@@ -41,56 +41,61 @@ int main(void) {
 // 회원가입
 void signUp() {
     client newClient;
-    
+
+    printf(">> 회원가입 <<\n");
+    printf("학번, 비밀번호, 이름, 주소, 전화번호를 입력하세요.\n\n");
     printf("학번 : ");
     scanf("%d", &(newClient.studentId));
     getchar();
 
     // studentId 중복검사
     if (findClientNodeById(&clientList, newClient.studentId) != NULL) {
-        printf("studentId는 중복될 수 없습니다.\n");
+        printf("\nstudentId는 중복될 수 없습니다.\n\n");
         return;
     }
 
-    printf("비밀번호 : ");
+    printf("비밀번호: ");
     scanf("%[^\n]", newClient.password);
     getchar();
-    printf("이름 : ");
+    printf("이름: ");
     scanf("%[^\n]", newClient.name);
     getchar();
-    printf("주소 : ");
+    printf("주소: ");
     scanf("%[^\n]", newClient.address);
     getchar();
-    printf("전화번호(반드시 010-xxxx-xxxx 형식으로 입력하세요) : ");
+    printf("전화번호: ");
     scanf("%[^\n]", newClient.phone);
-    getchar();
+    putchar(getchar());
 
     clientNode node;
     node.client = newClient;
     insertClient(&clientList, &node, 0);
     overwriteClientFile(clientList);
+
+    printf("회원가입이 되셨습니다.\n\n");
 }
 
 // 로그인
 void signIn() {
     char id[20], password[50];
 
+    printf(">> 로그인 <<\n");
     printf("학번 : ");
     scanf("%[^\n]", id);
     getchar();
 
-    // 관리자 모드
-    if (!strcmp(id, "admin")) {
-        while (1) {
-            selectAdminMenu();
-        }
-        return;
-    }
-
     myStudentId = atoi(id);
     printf("비밀번호 : ");
     scanf("%[^\n]", password);
-    getchar();
+    putchar(getchar());
+
+    // 관리자 모드
+    if (!strcmp(id, "admin") && !strcmp(password, "lib_admin7")) {
+        printf("\n");
+        while (1) {
+            selectAdminMenu();
+        }
+    }
 
     clientNode list = clientList;
     while (!isEmptyClient(list.client)) {
@@ -98,14 +103,13 @@ void signIn() {
         if (list.client.studentId == myStudentId && !strcmp(list.client.password, password)) {
             while (1)
                 selectMemberMenu();
-            return;
         } else if (list.client.studentId < myStudentId)
             break;
         list = *(list.next);
     }
 
     // 유저정보가 없음
-    printf("아이디와 비밀번호가 일치하는 회원정보가 존재하지 않습니다\n");
+    printf("아이디와 비밀번호가 일치하는 회원정보가 존재하지 않습니다\n\n");
 }
 
 
@@ -114,21 +118,24 @@ void signIn() {
 int selectLibraryMenu() {
     int menu;
     printf(">> 도서관 서비스 <<\n");
-    printf("1.회원가입\n2.로그인\n3.프로그램 종료\n");
+    printf("1.회원가입\n2.로그인\n3.프로그램 종료\n\n");
+
+    printf("번호를 입력하세요: ");
     scanf("%d", &menu);
-    getchar();
+    putchar(getchar());
     return menu;
 }
 
 // 회원 메뉴
 void selectMemberMenu() {
     int menu;
-    borrowNode* findBorrowResult;
     while (1) {
-        printf(">> 도서관 서비스 <<\n");
-        printf("1.도서 검색\n2.내 대여 목록\n3.개인정보 수정\n4.회원 탈퇴\n5.로그아웃\n6.프로그램 종료\n");
+        printf(">> 회원 메뉴 <<\n");
+        printf("1.도서 검색\t\t\t2.내 대여 목록\n3.개인정보 수정\t\t\t4.회원 탈퇴\n5.로그아웃\t\t\t\t6.프로그램 종료\n");
+
+        printf("\n번호를 선택하세요: ");
         scanf("%d", &menu);
-        getchar();
+        putchar(getchar());
 
         switch (menu) {
             case 1:
@@ -151,6 +158,10 @@ void selectMemberMenu() {
                 }
                 break;
 
+            case 5:
+                main();
+                return;
+
             case 6:
                 exit(0);
         }
@@ -166,24 +177,29 @@ void selectSearchBookMenu() {
 
     while (1) {
         printf(">> 도서 검색 <<\n");
-        printf("1.도서명 검색\n2.출판사 검색\n3.ISBN 검색\n4.저자명 검색\n5.전체 검색\n6.이전 메뉴\n");
+        printf("1.도서명 검색\t\t\t2.출판사 검색\n3.ISBN 검색\t\t\t4.저자명 검색\n5.전체 검색\t\t\t6.이전 메뉴\n");
+
+        printf("\n번호를 입력하세요: ");
         scanf("%d", &menu);
-        getchar();
+        putchar(getchar());
 
         switch (menu) {
             case 1:
-                printf("도서명: ");
+                printf("도서명을 입력하세요: ");
                 scanf("%s", keyword);
-                getchar();
+                putchar(getchar());
                 findBookResults = findBookNodeByBookName(&bookList, keyword);
                 if (findBookResults == NULL)
                     printf("제목이 '%s'인 도서가 존재하지 않습니다.\n", keyword);
-                else
+                else {
+                    // TODO: 대여가능 여부: N(2/2)
+                    printf(">> 검색 결과 <<\n");
                     printBookList(*findBookResults);
+                }
                 break;
 
             case 2:
-                printf("출판사: ");
+                printf("출판사를 입력하세요: ");
                 scanf("%s", keyword);
                 getchar();
                 findBookResults = findBookNodeByPublisherName(&bookList, keyword);
@@ -194,7 +210,7 @@ void selectSearchBookMenu() {
                 break;
 
             case 3:
-                printf("ISBN: ");
+                printf("ISBN을 입력하세요: ");
                 scanf("%lu", &isbn);
                 getchar();
                 findBookResults = findBookNodeByISBN(&bookList, isbn);
@@ -205,7 +221,7 @@ void selectSearchBookMenu() {
                 break;
 
             case 4:
-                printf("저자명: ");
+                printf("저자명을 입력하세요: ");
                 scanf("%s", keyword);
                 getchar();
                 findBookResults = findBookNodeByAuthorName(&bookList, keyword);
@@ -231,9 +247,10 @@ void selectAdminMenu() {
     int menu;
     while (1) {
         printf(">> 관리자 메뉴 <<\n");
-        printf("1.도서 등록\n2.도서 삭제\n3.도서 대여\n4.도서 반납\n5.도서 검색\n6.회원 목록\n7.로그아웃\n8.프로그램 종료\n");
+        printf("1.도서 등록\t\t\t2.도서 삭제\n3.도서 대여\t\t\t4.도서 반납\n5.도서 검색\t\t\t6.회원 목록\n7.로그아웃\t\t\t\t8.프로그램 종료\n");
+        printf("\n번호를 입력하세요: ");
         scanf("%d", &menu);
-        getchar();
+        putchar(getchar());
 
 
         switch (menu) {
@@ -253,11 +270,20 @@ void selectAdminMenu() {
                 returnBook(&clientList, &bookList, &borrowList);
                 break;
 
+            case 5:
+                main();
+                return;
+
             case 6:
                 if (loadMemberList(&clientList)) {
                     selectAdminMenu();
                     return;
                 }
+                break;
+
+            case 7:
+                main();
+                return;
                 break;
 
             case 8:

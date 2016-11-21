@@ -16,52 +16,83 @@ void registerNewBook(bookNode *bookList) {
     int length = bookLength(*bookList);
     bookNode *lastBookNode = getBookNode(bookList, length - 1);
 
-    printf("도서명 : ");
+    printf(">> 도서 등록 <<\n");
+    printf("도서명: ");
     scanf("%[^\n]", newBookNode -> book.name);
     getchar();
 
-    printf("출판사 : ");
+    printf("출판사: ");
     scanf("%[^\n]", newBookNode -> book.publisherName);
     getchar();
 
-    printf("저자명 : ");
+    printf("저자명: ");
     scanf("%[^\n]", newBookNode -> book.authorName);
     getchar();
 
-    printf("ISBN : ");
+    printf("ISBN: ");
     scanf("%lu", &(newBookNode -> book.ISBN));
     getchar();
 
-    printf("소장처 : ");
+    printf("소장처: ");
     scanf("%[^\n]", newBookNode -> book.holdingInstitution);
-    getchar();
-    lastBookNode -> next = newBookNode;
+    putchar(getchar());
 
-    newBookNode -> book.bookId = lastBookNode -> book.bookId + 1;
+    printf("자동입력사항\n\n");
+    printf("대여가능 여부: Y\n");
+    printf("도서 번호: %d\n\n", lastBookNode -> book.bookId + 1);
+    printf("등록하시겠습니까? (Y or N)");
 
-    appendBookFile(newBookNode -> book);
+    char c = getchar();
+    if (c == 'Y' || c == 'y') {
+        lastBookNode -> next = newBookNode;
+        newBookNode -> book.bookId = lastBookNode -> book.bookId + 1;
+        appendBookFile(newBookNode -> book);
+    } else {
+        printf("취소되었습니다.\n\n");
+    }
 }
 
 // 도서 삭제
 void deleteBook(bookNode *bookList) {
     unsigned long isbn;
-    int bookId;
-    printf("ISBN : ");
-    scanf("%lu", &isbn);
-    getchar();
+    int bookId, menu;
+    char name[20];
+    bookNode *findBookResults;
 
-    bookNode *hasSameISBNBookList = findBookNodeByISBN(bookList, isbn);
-    printBookList(*hasSameISBNBookList);
+    printf(">> 도서 삭제 <<\n");
+    printf("1.도서명 검색\t\t\t2.ISBN 검색\n\n");
+    printf("검색 번호를 입력하세요: ");
+    scanf("%d", &menu);
+    putchar(getchar());
 
-    printf("도서번호: ");
+    // 도서명 검색
+    if (menu == 1) {
+        printf("도서명을 입력하세요: ");
+        scanf("%[^\n]", name);
+        putchar(getchar());
+        findBookResults = findBookNodeByBookName(bookList, name);
+    }
+
+    // ISBN 검색
+    else {
+        printf("ISBN : ");
+        scanf("%lu", &isbn);
+        putchar(getchar());
+        findBookResults = findBookNodeByISBN(bookList, isbn);
+    }
+    // TODO: 도서번호: 1468212(삭제 가능 여부 : N), 1455434(삭제 가능 여부 : Y)
+    printf(">> 검색 결과 <<\n");
+    printBookList(*findBookResults);
+
+    printf("삭제할 도서의 번호를 입력하세요: ");
     scanf("%d", &bookId);
     getchar();
 
-    bookNode *foundBookNode = findBookNodeByBookId(hasSameISBNBookList, bookId);
+    bookNode *foundBookNode = findBookNodeByBookId(findBookResults, bookId);
 
     // 삭제 가능
     if (foundBookNode -> book.isBorrowable == 'Y') {
-        int index = indexOfBookNode(hasSameISBNBookList, *foundBookNode);
+        int index = indexOfBookNode(findBookResults, *foundBookNode);
         if (index == -1) {
             printf("도서가 없습니다.\n");
         } else {
@@ -72,7 +103,7 @@ void deleteBook(bookNode *bookList) {
 
     // 삭제 불가능
     else {
-        printf("누군가가 대여 중입니다. 삭제할 수 없습니다.\n");
+        printf("이 도서는 삭제할 수 없습니다.\n");
     }
 }
 
@@ -80,29 +111,39 @@ void deleteBook(bookNode *bookList) {
 void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList) {
     char searchKeyword[20];
     unsigned long isbn;
-    int studentId, bookId;
+    int studentId, bookId, menu;
+    bookNode *findBookResults;
 
-    printf("도서명 또는 ISBN 입력하세요 : ");
-    scanf("%[^\n]", searchKeyword);
-    getchar();
-    isbn = atoll(searchKeyword);
+    printf(">>도서 대여<<\n");
+    printf("1.도서명 검색\t\t\t2.ISBN 검색\n");
+    printf("검색 번호를 입력하세요: ");
+    scanf("%d", &menu);
+    putchar(getchar());
 
-    bookNode *findBookResults = findBookNodeByBookName(bookList, searchKeyword);
-    if (isbn) {
-        bookNode *findBookByISBNResults = findBookNodeByISBN(bookList, isbn);
-        if (findBookResults == NULL)
-            findBookResults = calloc(1, sizeof(bookNode));
-        addBook(findBookResults, findBookByISBNResults);
+    // 도서명 검색
+    if (menu == 1) {
+        printf("도서명을 입력하세요: ");
+        scanf("%[^\n]", searchKeyword);
+        findBookResults = findBookNodeByBookName(bookList, searchKeyword);
     }
+
+    // ISBN 검색
+    else {
+        printf("ISBN을 입력하세요: ");
+        scanf("%lu", &isbn);
+        findBookResults = findBookNodeByISBN(bookList, isbn);
+    }
+    putchar(getchar());
 
     if (findBookResults == NULL) {
         printf("해당 책이 없습니다.\n");
         return;
     }
 
+    printf(">> 검색 결과 <<\n");
     printBookList(*findBookResults);
 
-    printf("\n학번: ");
+    printf("\n학번을 입력하세요: ");
     scanf("%d", &studentId);
     getchar();
 
@@ -111,9 +152,9 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
         return;
     }
 
-    printf("책 번호: ");
+    printf("도서번호를 입력하세요: ");
     scanf("%d", &bookId);
-    getchar();
+    putchar(getchar());
 
     bookNode *lentBook = findBookNodeByBookId(bookList, bookId);
     if (lentBook == NULL) {
@@ -122,30 +163,38 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
     }
 
     if (lentBook->book.isBorrowable == 'N') {
-        printf("이미 대여된 책입니다.\n");
+        printf("이 책은 대여할 수 없습니다.\n");
         return;
     }
 
-    lentBook -> book.isBorrowable = 'N';
-    borrowNode *newBorrow = calloc(1, sizeof(borrowNode));
+    printf("이 도서를 대여합니까? (Y or N)");
+    char c = getchar();
+    putchar(getchar());
+    if (c == 'Y' || c == 'y') {
+        lentBook -> book.isBorrowable = 'N';
+        borrowNode *newBorrow = calloc(1, sizeof(borrowNode));
 
-    // 대여일자, 반납일자 생성
-    newBorrow->borrow = initBorrow();
+        // 대여일자, 반납일자 생성
+        newBorrow->borrow = initBorrow();
 
-    newBorrow->borrow.studentId = studentId;
-    newBorrow->borrow.bookId = bookId;
-    addBorrow(borrowList, newBorrow);
+        newBorrow->borrow.studentId = studentId;
+        newBorrow->borrow.bookId = bookId;
+        addBorrow(borrowList, newBorrow);
 
-    overwriteBookFile(*bookList);
-    overwriteBorrowFile(*borrowList);
+        overwriteBookFile(*bookList);
+        overwriteBorrowFile(*borrowList);
+        printf("도서가 대여되었습니다.\n");
+    } else {
+        printf("도서 대여가 취소되었습니다.\n");
+    }
 }
 
 // 도서 반납
 void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowList) {
     int studentId, bookId;
-    printf("학번: ");
+    printf("학번을 입력하세요: ");
     scanf("%d", &studentId);
-    getchar();
+    putchar(getchar());
 
     clientNode *findClientResult = findClientNodeById(clientList, studentId);
     if (findClientResult == NULL) {
@@ -153,12 +202,13 @@ void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowLi
         return;
     }
 
+    printf(">> 회원의 대여목록 <<\n");
     borrowNode *findBorrowResults = findBorrowNodeByStudentId(borrowList, studentId);
     printBorrowList(*findBorrowResults);
 
-    printf("도서 번호: ");
+    printf("반납할 도서를 입력하세요: ");
     scanf("%d", &bookId);
-    getchar();
+    putchar(getchar());
 
     borrowNode *findBorrowByBookIdResult = findBorrowNodeByBookId(findBorrowResults, bookId);
     bookNode *findBookByBookIdResult = findBookNodeByBookId(bookList, bookId);
@@ -167,13 +217,21 @@ void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowLi
         return;
     }
 
-    // borrow 파일 수정
-    removeBorrow(borrowList, indexOfBorrowNode(borrowList, *findBorrowByBookIdResult));
-    overwriteBorrowFile(*borrowList);
+    printf("도서를 반납처리 할까요? (Y or N)");
+    char c = getchar();
+    putchar(getchar());
+    if (c == 'Y' || c == 'y') {
+        // borrow 파일 수정
+        removeBorrow(borrowList, indexOfBorrowNode(borrowList, *findBorrowByBookIdResult));
+        overwriteBorrowFile(*borrowList);
 
-    // book 파일 수정
-    findBookByBookIdResult->book.isBorrowable = 'Y';
-    overwriteBookFile(*bookList);
+        // book 파일 수정
+        findBookByBookIdResult->book.isBorrowable = 'Y';
+        overwriteBookFile(*bookList);
+        printf("도서가 반납되었습니다.\n");
+    } else {
+        printf("도서반납이 취소되었습니다.\n");
+    }
 }
 
 // 도서 검색
@@ -187,45 +245,47 @@ int loadMemberList(clientNode *clientList) {
     char name[20];
     clientNode *findResult;
 
-    printf("1.이름 검색\n");
-    printf("2.학번 검색\n");
-    printf("3.전체 검색\n");
-    printf("4.이전 메뉴\n");
+    while (1) {
+        printf("1.이름 검색\n");
+        printf("2.학번 검색\n");
+        printf("3.전체 검색\n");
+        printf("4.이전 메뉴\n");
 
-    scanf("%d", &menu);
-    getchar();
+        scanf("%d", &menu);
+        getchar();
 
-    switch (menu) {
-        // 이름
-        case 1:
-            printf("이름: ");
-            scanf("%s", name);
-            getchar();
-            findResult = findClientNodeByName(clientList, name);
-            if (findResult == NULL)
-                printf("해당되는 사용자가 존재하지 않습니다.\n");
-            else
-                printClient(findResult->client);
-            break;
+        switch (menu) {
+            // 이름
+            case 1:
+                printf("이름: ");
+                scanf("%s", name);
+                getchar();
+                findResult = findClientNodeByName(clientList, name);
+                if (findResult == NULL)
+                    printf("해당되는 사용자가 존재하지 않습니다.\n");
+                else
+                    printClient(findResult->client);
+                break;
 
-        // 학번
-        case 2:
-            printf("학번: ");
-            scanf("%d", &studentId);
-            getchar();
-            findResult = findClientNodeById(clientList, studentId);
-            if (findResult == NULL)
-                printf("해당되는 사용자가 존재하지 않습니다.\n");
-            else
-                printClient(findResult->client);
-            break;
+                // 학번
+            case 2:
+                printf("학번: ");
+                scanf("%d", &studentId);
+                getchar();
+                findResult = findClientNodeById(clientList, studentId);
+                if (findResult == NULL)
+                    printf("해당되는 사용자가 존재하지 않습니다.\n");
+                else
+                    printClient(findResult->client);
+                break;
 
-        case 3:
-            printClientList(*clientList);
-            break;
+            case 3:
+                printClientList(*clientList);
+                break;
 
-        case 4:
-            return 1;
+            case 4:
+                return 1;
+        }
     }
     return 0;
 }

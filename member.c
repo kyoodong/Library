@@ -17,9 +17,11 @@ void seachBook() {
 void loadMyBorrowList(borrowNode *borrowList, int studentId) {
     borrowNode *findBorrowResult = findBorrowNodeByStudentId(borrowList, studentId);
     if (findBorrowResult == NULL) {
-        printf("대여목록이 없습니다.\n");
+        printf("대여목록이 없습니다.\n\n");
         return;
     }
+
+    printf(">> 내 대여 목록 <<\n");
     printBorrow(findBorrowResult->borrow);
 }
 
@@ -36,7 +38,7 @@ void modifyPersonalInfo(clientNode *clientList, int studentId) {
 
     printf("전화번호: ");
     scanf("%[^\n]", phone);
-    getchar();
+    putchar(getchar());
 
     clientNode *myInfo = findClientNodeById(clientList, studentId);
     strcpy(myInfo->client.password, password);

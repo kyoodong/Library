@@ -106,13 +106,15 @@ void overwriteClientFile(clientNode node) {
 
     while (!isEmptyClient(node.client)) {
         fprintf(clientFile, "%d||%s||%s||%s||%s\n",
-                                    node.client.studentId,                        // 학번
-                                    node.client.password,                       // 비밀번호
-                                    node.client.name,                           // 이름
-                                    node.client.address,                   // 첫 주소
-                                    node.client.phone                     // 전화번호 1 ex) 3367-7355의 3367
+                node.client.studentId,                  // 학번
+                node.client.password,                   // 비밀번호
+                node.client.name,                       // 이름
+                node.client.address,                    // 첫 주소
+                node.client.phone                       // 전화번호 1 ex) 3367-7355의 3367
         );
 
+        if (node.next == NULL)
+            break;
         node = *(node.next);
     }
     fclose(clientFile);
@@ -210,7 +212,7 @@ void printClient(client c) {
     printf("학번: %d\n", c.studentId);
     printf("이름: %s\n", c.name);
     printf("주소: %s\n", c.address);
-    printf("전화번호: %s\n", c.phone);
+    printf("전화번호: %s\n\n", c.phone);
 //    printf("비밀번호: %s\n", c.password);
 }
 
@@ -231,7 +233,7 @@ void printBook(book b) {
     printf("저자명: %s\n", b.authorName);
     printf("ISBN: %lu\n", b.ISBN);
     printf("소장처: %s\n", b.holdingInstitution);
-    printf("삭제 가능 여부: %c\n", b.isBorrowable);
+    printf("삭제 가능 여부: %c\n\n", b.isBorrowable);
 }
 
 void printBookList(bookNode printingBook) {
@@ -249,7 +251,7 @@ void printBorrow(borrow b) {
     printf("도서번호: %d\n", b.bookId);
     printf("학번: %d\n", b.studentId);
     printf("대여일자: %ld\n", b.borrowDateSec);
-    printf("반납일자: %ld\n", b.returnDateSec);
+    printf("반납일자: %ld\n\n", b.returnDateSec);
 }
 
 void printBorrowList(borrowNode printingBorrow) {
