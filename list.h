@@ -57,7 +57,7 @@ int isEmptyBorrow(borrow);
 void removeBorrow(borrowNode *, int);
 void clearBorrow(borrowNode *);
 
-clientNode findClientNodeById(clientNode, int);
+clientNode* findClientNodeById(clientNode* list, int id);
 
 
 

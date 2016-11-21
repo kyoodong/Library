@@ -77,7 +77,7 @@ void deleteBook(bookNode *bookList) {
 }
 
 // 도서 대여
-void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode clientList) {
+void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList) {
     char searchKeyword[20];
     unsigned long isbn;
     int studentId, bookId;
@@ -104,7 +104,7 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode clientList)
     scanf("%d", &studentId);
     getchar();
 
-    if (isEmptyClient(findClientNodeById(clientList, studentId).client)) {
+    if (findClientNodeById(clientList, studentId) == NULL) {
         printf("일치하는 학번을 가진 학생이 없습니다.\n");
         return;
     }
