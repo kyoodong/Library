@@ -60,16 +60,18 @@ typedef struct borrowNode {
 
 void loadFile(clientNode*, bookNode*, borrowNode*);
 
-clientNode* readClientFileLine(FILE* clientFile);
-bookNode* readBookFileLine(FILE* bookFile);
-borrowNode* readBorrowFileLine(FILE* borrowFile);
+clientNode* readClientFileLine(FILE*);
+bookNode* readBookFileLine(FILE*);
+borrowNode* readBorrowFileLine(FILE*);
 
-void popClientFileLine(FILE* clientFile);
-void popBookFileLine(FILE* bookFile);
-void popBorrowFileLine(FILE* borrowFile);
+void popClientFileLine(FILE*);
+void popBookFileLine(FILE*);
+void popBorrowFileLine(FILE*);
 
 
-void rewriteClientFile(clientNode node);
-void printClient(client c);
+void rewriteClientFile(clientNode);
+void printClient(client);
+
+void rewriteBookFile(bookNode);
 
 #endif /* file_h */

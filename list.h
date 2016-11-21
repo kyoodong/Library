@@ -32,12 +32,12 @@ book initBook();
 bookNode initBookNode();
 
 
-void addBook(bookNode *bookList, bookNode *addedbook);
-void insertBook(bookNode *bookList, bookNode *addedbook, int index);
-bookNode* getBookNode(bookNode* bookList, int at);
-int bookLength(bookNode bookList);
-int isEmptyBook(book checkingBook);
-void removeBook(bookNode *bookList, int at);
+void addBook(bookNode *, bookNode *);
+void insertBook(bookNode *, bookNode *, int);
+bookNode* getBookNode(bookNode*, int);
+int bookLength(bookNode);
+int isEmptyBook(book);
+void removeBook(bookNode *, int);
 void clearBook(bookNode *);
 
 
@@ -45,15 +45,15 @@ borrow initBorrow();
 borrowNode initBorrowNode();
 
 
-void addBorrow(borrowNode *borrowList, borrowNode *addedBorrow);
-void insertBorrow(borrowNode *borrowList, borrowNode *addedBorrow, int index);
-borrowNode* getBorrowNode(borrowNode* borrowList, int at);
-int borrowLength(borrowNode borrowList);
-int isEmptyBorrow(borrow borrow);
-void removeBorrow(borrowNode *borrowList, int at);
+void addBorrow(borrowNode *, borrowNode *);
+void insertBorrow(borrowNode *, borrowNode *, int);
+borrowNode* getBorrowNode(borrowNode*, int);
+int borrowLength(borrowNode);
+int isEmptyBorrow(borrow);
+void removeBorrow(borrowNode *, int);
 void clearBorrow(borrowNode *);
 
-clientNode findClientById(clientNode list, int id);
+clientNode findClientById(clientNode, int);
 
 
 

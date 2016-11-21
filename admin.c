@@ -35,7 +35,7 @@ void registBook(bookNode* bookList) {
 
     lastBookNode -> next = newBookNode;
 
-
+    rewrite
 }
 
 // 도서 삭제
