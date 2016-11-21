@@ -5,8 +5,9 @@
 
 // 메뉴
 int selectLibraryMenu();
-int selectMemberMenu();
+void selectMemberMenu();
 int selectAdminMenu();
+void selectSearchBookMenu();
 
 void signUp();
 void signIn();
@@ -116,22 +117,29 @@ int selectLibraryMenu() {
 }
 
 // 회원 메뉴
-int selectMemberMenu() {
+void selectMemberMenu() {
     int menu;
     printf(">> 도서관 서비스 <<\n");
     printf("1. 도서 검색\n2.내 대여 목록\n3.개인정보 수정\n4.회원 탈퇴\n5.로그아웃\n6.프로그램 종료\n");
     scanf("%d", &menu);
     getchar();
-    return menu;
+
+    switch (menu) {
+        case 1:
+            selectSearchBookMenu();
+            break;
+    }
 }
 
 // 도서 검색 메뉴
-int selectSearchBookMenu() {
+void selectSearchBookMenu() {
     int menu;
     printf(">> 도서 검색 <<\n");
     printf("1. 도서명 검색\n2.출판사 검색\n3.ISBN 검색\n4.저자명 검색\n5.전체 검색\n6.이전 메뉴\n");
     scanf("%d", &menu);
-    return menu;
+    getchar();
+
+
 }
 
 // 관리자 메뉴

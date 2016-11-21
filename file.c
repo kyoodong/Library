@@ -18,7 +18,7 @@ void loadFile(clientNode *clients, bookNode *books, borrowNode *borrows) {
     FILE *clientFile = fopen(CLIENT_FILE_PATH, "r");
     FILE *bookFile = fopen(BOOK_FILE_PATH, "r");
     FILE *borrowFile = fopen(BORROW_FILE_PATH, "r");
-    
+
     if (clientFile == NULL) {
         printf("client 파일이 없습니다.\n");
         return;
