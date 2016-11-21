@@ -151,7 +151,7 @@ void appendBookFile(book newBook) {
     }
 
     fprintf(bookFile, "%d||%s||%s||%s||%lld||%s||Y\n",
-            newBook.bookId++,                       // 도서 번호
+            newBook.bookId,                       // 도서 번호
             newBook.name,                           // 책 이름
             newBook.publisherName,                  // 출판사 이름
             newBook.authorName,                     // 저자 이름
@@ -168,6 +168,15 @@ void printClient(client c) {
     printf("%s\n", c.address);
     printf("%s\n", c.phone);
     printf("%s\n", c.password);
+}
+
+void printBook(book b) {
+    printf("%d\n", b.bookId);
+    printf("%s\n", b.name);
+    printf("%s\n", b.publisherName);
+    printf("%s\n", b.authorName);
+    printf("%s\n", b.holdingInstitution);
+    printf("%lu\n", b.ISBN);
 }
 
 

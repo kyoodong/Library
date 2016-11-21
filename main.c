@@ -136,7 +136,7 @@ void selectMemberMenu() {
 void selectSearchBookMenu() {
     int menu;
     printf(">> 도서 검색 <<\n");
-    printf("1. 도서명 검색\n2.출판사 검색\n3.ISBN 검색\n4.저자명 검색\n5.전체 검색\n6.이전 메뉴\n");
+    printf("1.도서명 검색\n2.출판사 검색\n3.ISBN 검색\n4.저자명 검색\n5.전체 검색\n6.이전 메뉴\n");
     scanf("%d", &menu);
     getchar();
 
@@ -153,7 +153,9 @@ void selectAdminMenu() {
 
     switch (menu) {
         case 1:
-            registBook(&bookList);
+            appendBook(&bookList);
             break;
     }
+
+    printBook(getBookNode(&bookList, bookLength(bookList)) -> book);
 }

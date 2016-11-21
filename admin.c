@@ -12,7 +12,7 @@
 
 
 // 도서 등록
-void registBook(bookNode* bookList) {
+void appendBook(bookNode *bookList) {
     bookNode *newBookNode = calloc(1, sizeof(bookNode));
     newBookNode->book = initBook();
     int length = bookLength(*bookList);
@@ -39,6 +39,7 @@ void registBook(bookNode* bookList) {
     getchar();
 
     lastBookNode -> next = newBookNode;
+    newBookNode -> book.bookId = lastBookNode -> book.bookId + 1;
 
     appendBookFile(newBookNode -> book);
 }

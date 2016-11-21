@@ -74,5 +74,6 @@ void printClient(client);
 
 void overwriteBookFile(bookNode);
 void appendBookFile(book);
+void printBook(book);
 
 #endif /* file_h */
