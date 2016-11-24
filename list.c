@@ -119,6 +119,7 @@ void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
         int length = clientLength(*clientList);
         if (length < at) {
             printf("%d는 List크기(%d)보다 큽니다.\n", at, length);
+            return;
         }
         
         

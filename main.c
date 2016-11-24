@@ -40,36 +40,48 @@ int main(void) {
 
 // 회원가입
 void signUp() {
-    client newClient;
+    clientNode* node, tmpNode = clientList;
+    node = calloc(1, sizeof(clientNode));
+    int i;
 
     printf(">> 회원가입 <<\n");
     printf("학번, 비밀번호, 이름, 주소, 전화번호를 입력하세요.\n\n");
     printf("학번 : ");
-    scanf("%d", &(newClient.studentId));
+    scanf("%d", &(node->client.studentId));
     getchar();
 
+    printf("%d\n", node->client.studentId);
     // studentId 중복검사
-    if (findClientNodeById(&clientList, newClient.studentId) != NULL) {
+    if (findClientNodeById(&clientList, node->client.studentId) != NULL) {
+        printClient(findClientNodeById(&clientList, node->client.studentId)->client);
         printf("\nstudentId는 중복될 수 없습니다.\n\n");
         return;
     }
 
     printf("비밀번호: ");
-    scanf("%[^\n]", newClient.password);
+    scanf("%[^\n]", node->client.password);
     getchar();
     printf("이름: ");
-    scanf("%[^\n]", newClient.name);
+    scanf("%[^\n]", node->client.name);
     getchar();
     printf("주소: ");
-    scanf("%[^\n]", newClient.address);
+    scanf("%[^\n]", node->client.address);
     getchar();
     printf("전화번호: ");
-    scanf("%[^\n]", newClient.phone);
+    scanf("%[^\n]", node->client.phone);
     putchar(getchar());
 
-    clientNode node;
-    node.client = newClient;
-    insertClient(&clientList, &node, 0);
+    // 정렬하기 위해 저장할 위치 찾기
+    for (i = 0; !isEmptyClient(tmpNode.client); ++i) {
+        if (tmpNode.client.studentId > node->client.studentId) {
+            break;
+        }
+        if (tmpNode.next == NULL)
+            break;
+        tmpNode = *(tmpNode.next);
+    }
+
+    insertClient(&clientList, node, i);
     overwriteClientFile(clientList);
 
     printf("회원가입이 되셨습니다.\n\n");
@@ -284,7 +296,6 @@ void selectAdminMenu() {
             case 7:
                 main();
                 return;
-                break;
 
             case 8:
                 exit(0);
