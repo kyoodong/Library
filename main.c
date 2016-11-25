@@ -5,7 +5,7 @@
 int selectLibraryMenu();
 void selectMemberMenu();
 void selectAdminMenu();
-void selectSearchBookMenu();
+void selectSearchBookMenu(void (*beforeMenu)(void));
 
 void signUp();
 void signIn();
@@ -146,7 +146,7 @@ void selectMemberMenu() {
 
         switch (menu) {
             case 1:
-                selectSearchBookMenu();
+                selectSearchBookMenu(selectMemberMenu);
                 return;
 
             case 2:
@@ -177,7 +177,7 @@ void selectMemberMenu() {
 }
 
 // 도서 검색 메뉴
-void selectSearchBookMenu() {
+void selectSearchBookMenu(void (*beforeMenu)(void)) {
     int menu;
     unsigned long isbn;
     char keyword[20];
@@ -244,7 +244,7 @@ void selectSearchBookMenu() {
                 break;
 
             case 6:
-                selectMemberMenu();
+                beforeMenu();
                 return;
         }
     }
@@ -279,7 +279,7 @@ void selectAdminMenu() {
                 break;
 
             case 5:
-                selectSearchBookMenu();
+                selectSearchBookMenu(selectAdminMenu);
                 return;
 
             case 6:
