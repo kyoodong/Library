@@ -6,6 +6,7 @@ int selectLibraryMenu();
 void selectMemberMenu();
 void selectAdminMenu();
 void selectSearchBookMenu(void (*beforeMenu)(void));
+void mainMenu();
 
 void signUp();
 void signIn();
@@ -18,6 +19,10 @@ int myStudentId;
 int main(void) {
     loadFile(&clientList, &bookList, &borrowList);
 
+    mainMenu();
+}
+
+void mainMenu() {
     while (1) {
         switch (selectLibraryMenu()) {
             case 1: // 회원가입
@@ -34,6 +39,7 @@ int main(void) {
         }
     }
 }
+
 
 // 회원가입
 void signUp() {
@@ -160,13 +166,13 @@ void selectMemberMenu() {
             case 4:
                 // 탈퇴 성공 시
                 if (leaveMember(&clientList, &borrowList, myStudentId)) {
-                    main();
+                    mainMenu();
                     return;
                 }
                 break;
 
             case 5:
-                main();
+                mainMenu();
                 return;
 
             case 6:
@@ -290,7 +296,7 @@ void selectAdminMenu() {
                 break;
 
             case 7:
-                main();
+                mainMenu();
                 return;
 
             case 8:

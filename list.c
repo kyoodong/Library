@@ -461,6 +461,7 @@ bookNode* findBookNodeByISBN(bookNode* bookList, unsigned long isbn) {
 bookNode* findBookNodeByBookName(bookNode* bookList, char* bookName) {
     bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
 
+    printf("%d\n", bookLength(*bookList));
     while (!isEmptyBook(bookList->book)) {
         // ISBN 발견 시 return
         if (!strcmp(bookList->book.name, bookName)) {
@@ -682,8 +683,8 @@ void removeBorrow(borrowNode *borrowList, int at) {
         if (length == at + 1) {
             beforeBorrowNode -> next = NULL;
         } else {
-            borrowNode* nextborrowNode = getBorrowNode(beforeBorrowNode, 2);
-            beforeBorrowNode -> next = nextborrowNode;
+            borrowNode* nextBorrowNode = getBorrowNode(beforeBorrowNode, 2);
+            beforeBorrowNode -> next = nextBorrowNode;
         }
     }
 }

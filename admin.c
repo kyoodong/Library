@@ -232,6 +232,7 @@ void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowLi
     if (c == 'Y' || c == 'y') {
         // borrow 파일 수정
         removeBorrow(borrowList, indexOfBorrowNode(borrowList, *findBorrowByBookIdResult));
+        printBorrowList(*borrowList);
         overwriteBorrowFile(*borrowList);
 
         // book 파일 수정
