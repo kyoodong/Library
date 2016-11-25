@@ -283,7 +283,7 @@ void selectAdminMenu() {
                 break;
 
             case 5:
-                main();
+                selectSearchBookMenu();
                 return;
 
             case 6:

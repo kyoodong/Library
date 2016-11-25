@@ -277,7 +277,7 @@ int isEmptyClient(client c) {
 ///////////////////////////// 책 ////////////////////////////////////
 
 int isEmptyBook(book checkingBook) {
-    return checkingBook.bookId == 0 && checkingBook.isBorrowable == 0 && checkingBook.ISBN == 0 && !strcmp(checkingBook.authorName, "") && !strcmp(checkingBook.holdingInstitution, "") && !strcmp(checkingBook.name, "") && !strcmp(checkingBook.publisherName, "");
+    return checkingBook.bookId == 0 && checkingBook.isBorrowable == 'Y' && checkingBook.ISBN == 0 && !strcmp(checkingBook.authorName, "") && !strcmp(checkingBook.holdingInstitution, "") && !strcmp(checkingBook.name, "") && !strcmp(checkingBook.publisherName, "");
 }
 
 
@@ -387,19 +387,19 @@ void insertBook(bookNode *bookList, bookNode *addedBook, int at) {
         
         
         // next값이 바뀔 bookNode
-        bookNode* changedbookNode;
+        bookNode* willChangeBookNode;
         
         // 밀려날 bookNode
-        bookNode* pushedbookNode;
+        bookNode* willPushBookNode;
         
-        changedbookNode = getBookNode(bookList, at - 1);
-        pushedbookNode = getBookNode(changedbookNode, 1);
+        willChangeBookNode = getBookNode(bookList, at - 1);
+        willPushBookNode = getBookNode(willChangeBookNode, 1);
         
-        changedbookNode -> next = addedBook;
+        willChangeBookNode -> next = addedBook;
         
         // at번째 노드가 마지막 노드가 아니라면
-        if (pushedbookNode != NULL) {
-            addedBook -> next = pushedbookNode;
+        if (willPushBookNode != NULL) {
+            addedBook -> next = willPushBookNode;
         }
     }
 }
@@ -609,7 +609,7 @@ book initBook() {
     strcpy(book.holdingInstitution, "");
     strcpy(book.publisherName, "");
     book.ISBN = 0;
-    book.isBorrowable = 0;
+    book.isBorrowable = 'Y';
     return book;
 }
 
@@ -621,8 +621,8 @@ book initBook() {
 
 ///////////////////////////// Borrow ////////////////////////////////////
 
-int isEmptyBorrow(borrow borrow) {
-    return borrow.studentId == 0 && borrow.studentId == 0 && borrow.borrowDateSec == 0 && borrow.returnDateSec == 0;
+int isEmptyBorrow(borrow b) {
+    return b.studentId == 0 && b.studentId == 0 && b.borrowDateSec == 0 && b.returnDateSec == 0;
 }
 
 

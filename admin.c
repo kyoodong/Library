@@ -11,10 +11,9 @@
 
 // 도서 등록
 void registerNewBook(bookNode *bookList) {
-    bookNode *newBookNode = (bookNode *) calloc(1, sizeof(bookNode));
+    bookNode *newBookNode = (bookNode *) calloc(1, sizeof(bookNode)), *tmpBookNode = bookList;
     newBookNode->book = initBook();
-    int length = bookLength(*bookList);
-    bookNode *lastBookNode = getBookNode(bookList, length - 1);
+    int i = 0, maxBookId;
 
     printf(">> 도서 등록 <<\n");
     printf("도서명: ");
@@ -37,16 +36,26 @@ void registerNewBook(bookNode *bookList) {
     scanf("%[^\n]", newBookNode -> book.holdingInstitution);
     putchar(getchar());
 
+    while (!isEmptyBook(tmpBookNode->book)) {
+        if (tmpBookNode->book.ISBN <= newBookNode->book.ISBN)
+            i++;
+        if (tmpBookNode->book.bookId > maxBookId)
+            maxBookId = tmpBookNode->book.bookId;
+        if (tmpBookNode->next == NULL)
+            break;
+        tmpBookNode = tmpBookNode->next;
+    }
+
     printf("자동입력사항\n\n");
     printf("대여가능 여부: Y\n");
-    printf("도서 번호: %d\n\n", lastBookNode -> book.bookId + 1);
+    printf("도서 번호: %d\n\n", maxBookId + 1);
     printf("등록하시겠습니까? (Y or N)");
 
     char c = getchar();
     if (c == 'Y' || c == 'y') {
-        lastBookNode -> next = newBookNode;
-        newBookNode -> book.bookId = lastBookNode -> book.bookId + 1;
-        appendBookFile(newBookNode -> book);
+        newBookNode -> book.bookId = maxBookId + 1;
+        insertBook(bookList, newBookNode, i);
+        overwriteBookFile(*bookList);
     } else {
         printf("취소되었습니다.\n\n");
     }
