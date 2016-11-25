@@ -12,12 +12,16 @@
 #include "list.h"
 
 
+FILE *clientFile;
+FILE *bookFile;
+FILE *borrowFile;
+
 // 파일 불러오기
 void loadFile(clientNode *clients, bookNode *books, borrowNode *borrows) {
     // 파일 읽기 모드로 열기
-    FILE *clientFile = fopen(CLIENT_FILE_PATH, "r");
-    FILE *bookFile = fopen(BOOK_FILE_PATH, "r");
-    FILE *borrowFile = fopen(BORROW_FILE_PATH, "r");
+    clientFile = fopen(CLIENT_FILE_PATH, "r+");
+    bookFile = fopen(BOOK_FILE_PATH, "r+");
+    borrowFile = fopen(BORROW_FILE_PATH, "r+");
 
     if (clientFile == NULL) {
         printf("client 파일이 없습니다.\n");
@@ -52,9 +56,9 @@ void loadFile(clientNode *clients, bookNode *books, borrowNode *borrows) {
         addBorrow(borrows, node);
     }
 
-    fclose(clientFile);
-    fclose(bookFile);
-    fclose(borrowFile);
+    fflush(clientFile);
+    fflush(bookFile);
+    fflush(borrowFile);
 }
 
 
@@ -80,29 +84,9 @@ borrowNode* readBorrowFileLine(FILE* borrowFile) {
     return node;
 }
 
-// client 파일 한 줄 읽고 버리기
-void popClientFileLine(FILE* clientFile) {
-    fscanf(clientFile, "%*d||%*[^|]||%*[^|]||%*[^|]||%*s\n");
-}
-
-// book 파일 한 줄 읽고 버리기
-void popBookFileLine(FILE* bookFile) {
-    fscanf(bookFile, "%*d||%*[^|]||%*[^|]||%*[^|]||%*ld||%*[^|]||%*c\n");
-}
-
-// borrow 파일 한 줄 읽고 버리기
-void popBorrowFileLine(FILE* borrowFile) {
-    fscanf(borrowFile, "%*d||%*d||%*ld||%*ld\n");
-}
-
-
 // 회원 추가
 void overwriteClientFile(clientNode node) {
-    FILE *clientFile = fopen(CLIENT_FILE_PATH, "w");
-    if (clientFile == NULL) {
-        printf("파일 열기 실패\n");
-        return;
-    }
+    rewind(clientFile);
 
     while (!isEmptyClient(node.client)) {
         fprintf(clientFile, "%d||%s||%s||%s||%s\n",
@@ -117,17 +101,13 @@ void overwriteClientFile(clientNode node) {
             break;
         node = *(node.next);
     }
-    fclose(clientFile);
+    fflush(clientFile);
 }
 
 
 // 책 추가
 void overwriteBookFile(bookNode node) {
-    FILE *bookFile = fopen(BOOK_FILE_PATH, "w");
-    if (bookFile == NULL) {
-        printf("파일 열기 실패\n");
-        return;
-    }
+    rewind(bookFile);
 
     while (!isEmptyBook(node.book)) {
         fprintf(bookFile, "%d||%s||%s||%s||%lu||%s||%c\n",
@@ -144,17 +124,13 @@ void overwriteBookFile(bookNode node) {
 
         node = *(node.next);
     }
-    fclose(bookFile);
+    fflush(clientFile);
 }
 
 
 // 대여목록 추가
 void overwriteBorrowFile(borrowNode node) {
-    FILE *borrowFile = fopen(BORROW_FILE_PATH, "w");
-    if (borrowFile == NULL) {
-        printf("파일 열기 실패\n");
-        return;
-    }
+    rewind(borrowFile);
 
     while (!isEmptyBorrow(node.borrow)) {
         fprintf(borrowFile, "%d||%d||%d||%d\n",
@@ -168,43 +144,7 @@ void overwriteBorrowFile(borrowNode node) {
 
         node = *(node.next);
     }
-    fclose(borrowFile);
-}
-
-
-void appendBookFile(book newBook) {
-    FILE *bookFile = fopen(BOOK_FILE_PATH, "a");
-    if (bookFile == NULL) {
-        printf("파일 열기 실패\n");
-        return;
-    }
-
-    fprintf(bookFile, "%d||%s||%s||%s||%lu||%s||Y\n",
-            newBook.bookId,                       // 도서 번호
-            newBook.name,                           // 책 이름
-            newBook.publisherName,                  // 출판사 이름
-            newBook.authorName,                     // 저자 이름
-            newBook.ISBN,                         // ISBN
-            newBook.holdingInstitution              // 소장처
-    );
-    fclose(bookFile);
-}
-
-
-void appendBorrowFile(borrow newBorrow) {
-    FILE *borrowFile = fopen(BORROW_FILE_PATH, "a");
-    if (borrowFile == NULL) {
-        printf("파일 열기 실패\n");
-        return;
-    }
-
-    fprintf(borrowFile, "%d||%d||%d||%d\n",
-            newBorrow.studentId,              // 학번
-            newBorrow.bookId,                 // 책 번호
-            (int) newBorrow.borrowDateSec,          // 대여 일자
-            (int) newBorrow.returnDateSec           // 반납 일자
-    );
-    fclose(borrowFile);
+    fflush(borrowFile);
 }
 
 
@@ -262,4 +202,11 @@ void printBorrowList(borrowNode printingBorrow) {
         printingBorrow = *printingBorrow.next;
         printf("\n");
     }
+}
+
+
+void closeFile() {
+    fclose(clientFile);
+    fclose(bookFile);
+    fclose(borrowFile);
 }

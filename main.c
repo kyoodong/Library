@@ -1,7 +1,5 @@
 #include "member.h"
 #include "admin.h"
-#include "file.h"
-#include <stdlib.h>
 
 // 메뉴
 int selectLibraryMenu();
@@ -31,11 +29,10 @@ int main(void) {
                 break;
 
             case 3: // 프로그램 종료
+                closeFile();
                 exit(0);
         }
     }
-    
-    return 0;
 }
 
 // 회원가입
@@ -50,10 +47,8 @@ void signUp() {
     scanf("%d", &(node->client.studentId));
     getchar();
 
-    printf("%d\n", node->client.studentId);
     // studentId 중복검사
     if (findClientNodeById(&clientList, node->client.studentId) != NULL) {
-        printClient(findClientNodeById(&clientList, node->client.studentId)->client);
         printf("\nstudentId는 중복될 수 없습니다.\n\n");
         return;
     }
@@ -115,7 +110,7 @@ void signIn() {
         if (list.client.studentId == myStudentId && !strcmp(list.client.password, password)) {
             while (1)
                 selectMemberMenu();
-        } else if (list.client.studentId < myStudentId)
+        } else if (list.client.studentId > myStudentId)
             break;
         list = *(list.next);
     }
@@ -175,6 +170,7 @@ void selectMemberMenu() {
                 return;
 
             case 6:
+                closeFile();
                 exit(0);
         }
     }
@@ -298,6 +294,7 @@ void selectAdminMenu() {
                 return;
 
             case 8:
+                closeFile();
                 exit(0);
         }
     }

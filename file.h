@@ -64,11 +64,6 @@ clientNode* readClientFileLine(FILE*);
 bookNode* readBookFileLine(FILE*);
 borrowNode* readBorrowFileLine(FILE*);
 
-void popClientFileLine(FILE*);
-void popBookFileLine(FILE*);
-void popBorrowFileLine(FILE*);
-
-
 //client
 void overwriteClientFile(clientNode);
 void printClientList(clientNode printingClient);
@@ -76,15 +71,15 @@ void printClient(client);
 
 // book
 void overwriteBookFile(bookNode);
-void appendBookFile(book);
 void printBook(book);
 void printBookList(bookNode printingBook);
 
 // borrow
 void overwriteBorrowFile(borrowNode node);
-void appendBorrowFile(borrow newBorrow);
 
 void printBorrow(borrow b);
 void printBorrowList(borrowNode printingBorrow);
+
+void closeFile();
 
 #endif /* file_h */
