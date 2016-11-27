@@ -75,7 +75,7 @@ void printClient(client);
 
 // book
 void overwriteBookFile(bookNode);
-void printBook(book b, int bookNum, int borrowableBookNum, int mode);
+void printBook(bookNode b, int bookNum, int borrowableBookNum, int mode);
 void printBookList(bookNode printingBook, int mode);
 
 // borrow

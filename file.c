@@ -124,7 +124,7 @@ void overwriteBookFile(bookNode node) {
 
         node = *(node.next);
     }
-    fflush(clientFile);
+    fflush(bookFile);
 }
 
 
@@ -166,14 +166,22 @@ void printClientList(clientNode printingClient) {
     }
 }
 
-void printBook(book b, int bookNum, int borrowableBookNum, int mode) {
+void printBook(bookNode b, int bookNum, int borrowableBookNum, int mode) {
+    int i;
     char isBorrowable;
-    printf("도서번호: %d\n", b.bookId);
-    printf("도서명: %s\n", b.name);
-    printf("출판사: %s\n", b.publisherName);
-    printf("저자명: %s\n", b.authorName);
-    printf("ISBN: %lu\n", b.ISBN);
-    printf("소장처: %s\n", b.holdingInstitution);
+    bookNode* tmpBook = &b;
+
+    printf("도서번호: ");
+    for (i = 0; i < bookNum; ++i) {
+        printf("%d(삭제 가능 여부: %c), ", tmpBook->book.bookId, tmpBook->book.isBorrowable);
+        tmpBook = getBookNode(tmpBook, 1);
+    }
+    printf("\b\b\n");
+    printf("도서명: %s\n", b.book.name);
+    printf("출판사: %s\n", b.book.publisherName);
+    printf("저자명: %s\n", b.book.authorName);
+    printf("ISBN: %lu\n", b.book.ISBN);
+    printf("소장처: %s\n", b.book.holdingInstitution);
     if (borrowableBookNum)
         isBorrowable = 'Y';
     else
@@ -188,6 +196,7 @@ void printBook(book b, int bookNum, int borrowableBookNum, int mode) {
 
 void printBookList(bookNode printingBook, int mode) {
     int bookNum = 0, borrowableBookNum = 0;
+    bookNode tmpBook;
 
     printf("\n\n>> 검색 결과 <<\n");
     while (!isEmptyBook(printingBook.book)) {
@@ -196,17 +205,20 @@ void printBookList(bookNode printingBook, int mode) {
             borrowableBookNum = 1;
         else borrowableBookNum = 0;
 
+        tmpBook = printingBook;
+
         // 같은 책은 묶어서 출력
-        while (printingBook.next != NULL) {
-            if (printingBook.next->book.ISBN == printingBook.book.ISBN) {
+        while (tmpBook.next != NULL) {
+            if (tmpBook.next->book.ISBN == tmpBook.book.ISBN) {
                 bookNum++;
-                if (printingBook.next->book.isBorrowable == 'Y')
+                if (tmpBook.next->book.isBorrowable == 'Y')
                     borrowableBookNum++;
-                printingBook = *printingBook.next;
+                tmpBook = *tmpBook.next;
             } else
                 break;
         }
-        printBook(printingBook.book, bookNum, borrowableBookNum, mode);
+        printBook(printingBook, bookNum, borrowableBookNum, mode);
+        printingBook = tmpBook;
         if (printingBook.next == NULL)
             break;
         printingBook = *printingBook.next;

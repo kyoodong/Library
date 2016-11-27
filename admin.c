@@ -162,13 +162,13 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
     scanf("%d", &bookId);
     putchar(getchar());
 
-    bookNode *lentBook = findBookNodeByBookId(bookList, bookId);
-    if (lentBook == NULL) {
+    bookNode *willLendBook = findBookNodeByBookId(bookList, bookId);
+    if (willLendBook == NULL) {
         printf("일치하는 id를 가진 책이 없습니다.\n");
         return;
     }
 
-    if (lentBook->book.isBorrowable == 'N') {
+    if (willLendBook->book.isBorrowable == 'N') {
         printf("이 책은 대여할 수 없습니다.\n");
         return;
     }
@@ -177,7 +177,7 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
     char c = getchar();
     putchar(getchar());
     if (c == 'Y' || c == 'y') {
-        lentBook -> book.isBorrowable = 'N';
+        willLendBook -> book.isBorrowable = 'N';
         borrowNode *newBorrow = calloc(1, sizeof(borrowNode));
 
         // 대여일자, 반납일자 생성
@@ -229,7 +229,6 @@ void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowLi
     if (c == 'Y' || c == 'y') {
         // borrow 파일 수정
         removeBorrow(borrowList, indexOfBorrowNode(borrowList, *findBorrowByBookIdResult));
-        printBorrowList(*borrowList);
         overwriteBorrowFile(*borrowList);
 
         // book 파일 수정
