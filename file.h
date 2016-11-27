@@ -16,6 +16,10 @@
 #define BOOK_FILE_PATH "./book.txt"
 #define BORROW_FILE_PATH "./borrow.txt"
 
+#define DELETE 0
+#define SEARCH 1
+#define NONE 2
+
 typedef struct {
     int studentId;             // 학번
     char password[20];  // 비밀번호
@@ -71,8 +75,8 @@ void printClient(client);
 
 // book
 void overwriteBookFile(bookNode);
-void printBook(book);
-void printBookList(bookNode printingBook);
+void printBook(book b, int bookNum, int borrowableBookNum, int mode);
+void printBookList(bookNode printingBook, int mode);
 
 // borrow
 void overwriteBorrowFile(borrowNode node);

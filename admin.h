@@ -19,7 +19,6 @@ void registerNewBook(bookNode *);
 void deleteBook(bookNode *bookList);
 void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList);
 void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowList);
-void searchBook();
 int loadMemberList(clientNode *clientList);
 
 

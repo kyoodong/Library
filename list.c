@@ -436,6 +436,7 @@ bookNode* getBookNode(bookNode* bookList, int at) {
 // ISBN 으로 BookNode 찾기
 bookNode* findBookNodeByISBN(bookNode* bookList, unsigned long isbn) {
     bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
+    hasIsbnBookList->book = initBook();
 
     while (!isEmptyBook(bookList->book)) {
         // ISBN 발견 시 return

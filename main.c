@@ -206,9 +206,7 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
                 if (findBookResults == NULL)
                     printf("제목이 '%s'인 도서가 존재하지 않습니다.\n", keyword);
                 else {
-                    // TODO: 대여가능 여부: N(2/2)
-                    printf(">> 검색 결과 <<\n");
-                    printBookList(*findBookResults);
+                    printBookList(*findBookResults, SEARCH);
                 }
                 break;
 
@@ -220,7 +218,7 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
                 if (findBookResults == NULL)
                     printf("ISBN이 '%lu'인 도서가 존재하지 않습니다.\n", isbn);
                 else
-                    printBookList(*findBookResults);
+                    printBookList(*findBookResults, SEARCH);
                 break;
 
             case 3:
@@ -231,7 +229,7 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
                 if (findBookResults == NULL)
                     printf("출판사가 '%s'인 도서가 존재하지 않습니다.\n", keyword);
                 else
-                    printBookList(*findBookResults);
+                    printBookList(*findBookResults, SEARCH);
                 break;
 
             case 4:
@@ -242,11 +240,11 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
                 if (findBookResults == NULL)
                     printf("저자명이 '%s'인 도서가 존재하지 않습니다.\n", keyword);
                 else
-                    printBookList(*findBookResults);
+                    printBookList(*findBookResults, SEARCH);
                 break;
 
             case 5:
-                printBookList(bookList);
+                printBookList(bookList, SEARCH);
                 break;
 
             case 6:

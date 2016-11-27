@@ -166,19 +166,47 @@ void printClientList(clientNode printingClient) {
     }
 }
 
-void printBook(book b) {
+void printBook(book b, int bookNum, int borrowableBookNum, int mode) {
+    char isBorrowable;
     printf("도서번호: %d\n", b.bookId);
     printf("도서명: %s\n", b.name);
     printf("출판사: %s\n", b.publisherName);
     printf("저자명: %s\n", b.authorName);
     printf("ISBN: %lu\n", b.ISBN);
     printf("소장처: %s\n", b.holdingInstitution);
-    printf("삭제 가능 여부: %c\n\n", b.isBorrowable);
+    if (borrowableBookNum)
+        isBorrowable = 'Y';
+    else
+        isBorrowable = 'N';
+    if (mode == DELETE)
+        printf("삭제 가능 여부: %c(%d/%d)\n", isBorrowable, borrowableBookNum, bookNum);
+    else
+        printf("대여 가능 여부: %c(%d/%d)\n", isBorrowable, borrowableBookNum, bookNum);
+    printf("** Y는 대여가능, N은 대여불가를 의미\n");
+    printf("** (x/y) : (대여된 총 권수 / 보유하고 있는 총 권수)\n\n");
 }
 
-void printBookList(bookNode printingBook) {
+void printBookList(bookNode printingBook, int mode) {
+    int bookNum = 0, borrowableBookNum = 0;
+
+    printf("\n\n>> 검색 결과 <<\n");
     while (!isEmptyBook(printingBook.book)) {
-        printBook(printingBook.book);
+        bookNum = 1;
+        if (printingBook.book.isBorrowable == 'Y')
+            borrowableBookNum = 1;
+        else borrowableBookNum = 0;
+
+        // 같은 책은 묶어서 출력
+        while (printingBook.next != NULL) {
+            if (printingBook.next->book.ISBN == printingBook.book.ISBN) {
+                bookNum++;
+                if (printingBook.next->book.isBorrowable == 'Y')
+                    borrowableBookNum++;
+                printingBook = *printingBook.next;
+            } else
+                break;
+        }
+        printBook(printingBook.book, bookNum, borrowableBookNum, mode);
         if (printingBook.next == NULL)
             break;
         printingBook = *printingBook.next;

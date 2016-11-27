@@ -89,9 +89,7 @@ void deleteBook(bookNode *bookList) {
         putchar(getchar());
         findBookResults = findBookNodeByISBN(bookList, isbn);
     }
-    // TODO: 도서번호: 1468212(삭제 가능 여부 : N), 1455434(삭제 가능 여부 : Y)
-    printf(">> 검색 결과 <<\n");
-    printBookList(*findBookResults);
+    printBookList(*findBookResults, DELETE);
 
     printf("삭제할 도서의 번호를 입력하세요: ");
     scanf("%d", &bookId);
@@ -149,8 +147,7 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
         return;
     }
 
-    printf(">> 검색 결과 <<\n");
-    printBookList(*findBookResults);
+    printBookList(*findBookResults, SEARCH);
 
     printf("\n학번을 입력하세요: ");
     scanf("%d", &studentId);
