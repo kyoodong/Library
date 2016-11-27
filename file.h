@@ -75,15 +75,16 @@ void printClient(client);
 
 // book
 void overwriteBookFile(bookNode);
-void printBook(bookNode b, int bookNum, int borrowableBookNum, int mode);
+void printBook(bookNode bookList, int bookNum, int borrowableBookNum, int mode);
 void printBookList(bookNode printingBook, int mode);
 
 // borrow
 void overwriteBorrowFile(borrowNode node);
+void printDate(time_t t);
 
 void printBorrow(borrow b);
 void printBorrowList(borrowNode printingBorrow);
 
-void closeFile();
+void closeAllFilePointer();
 
 #endif /* file_h */

@@ -1,11 +1,3 @@
-//
-//  admin.c
-//  Library
-//
-//  Created by 이동규 on 2016. 11. 14..
-//  Copyright © 2016년 이동규. All rights reserved.
-//
-
 #include "admin.h"
 
 
@@ -36,6 +28,9 @@ void registerNewBook(bookNode *bookList) {
     scanf("%[^\n]", newBookNode -> book.holdingInstitution);
     putchar(getchar());
 
+    // 책 전체를 훑습니다. 파일이 가진 bookId 의 최대값을 알아내기 위함입니다.
+    // 새로 추가될 책의 bookId 는 bookId 의 최대값 + 1 입니다. bookId 는 unique 한 값이기 때문입니다.
+    // 책을 ISBN 순으로 오름차순 정렬하기 위해 i값을 통해 적절한 위치를 찾아냅니다.
     while (!isEmptyBook(tmpBookNode->book)) {
         if (tmpBookNode->book.ISBN <= newBookNode->book.ISBN)
             i++;
@@ -74,7 +69,7 @@ void deleteBook(bookNode *bookList) {
     scanf("%d", &menu);
     putchar(getchar());
 
-    // 도서명 검색
+    // 도서명을 통해 삭제할 수 있는 책이 있는지 검색 합니다.
     if (menu == 1) {
         printf("도서명을 입력하세요: ");
         scanf("%[^\n]", name);
@@ -82,7 +77,7 @@ void deleteBook(bookNode *bookList) {
         findBookResults = findBookNodeByBookName(bookList, name);
     }
 
-    // ISBN 검색
+    // ISBN 을 통해 삭제할 수 있는 책이 있는지 검색 합니다.
     else {
         printf("ISBN : ");
         scanf("%lu", &isbn);
@@ -95,11 +90,12 @@ void deleteBook(bookNode *bookList) {
     scanf("%d", &bookId);
     getchar();
 
-    bookNode *foundBookNode = findBookNodeByBookId(findBookResults, bookId);
+    bookNode *hasBookIdResults = findBookNodeByBookId(findBookResults, bookId);
 
-    // 삭제 가능
-    if (foundBookNode -> book.isBorrowable == 'Y') {
-        int index = indexOfBookNode(findBookResults, *foundBookNode);
+    // 책을 빌린 사람이 없다면 대여 가능하고, 대여 가능한 책은 삭제도 가능합니다.
+    // 삭제 가능하다면 책을 삭제하고 결과를 파일에 반영합니다.
+    if (hasBookIdResults -> book.isBorrowable == 'Y') {
+        int index = indexOfBookNode(findBookResults, *hasBookIdResults);
         if (index == -1) {
             printf("도서가 없습니다.\n");
         } else {
@@ -127,14 +123,14 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
     scanf("%d", &menu);
     putchar(getchar());
 
-    // 도서명 검색
+    // 도서명을 통해 삭제할 수 있는 책이 있는지 검색 합니다.
     if (menu == 1) {
         printf("도서명을 입력하세요: ");
         scanf("%[^\n]", searchKeyword);
         findBookResults = findBookNodeByBookName(bookList, searchKeyword);
     }
 
-    // ISBN 검색
+    // ISBN 을 통해 삭제할 수 있는 책이 있는지 검색 합니다.
     else {
         printf("ISBN을 입력하세요: ");
         scanf("%lu", &isbn);
@@ -177,6 +173,8 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
     char c = getchar();
     putchar(getchar());
     if (c == 'Y' || c == 'y') {
+        // 책을 대여했다면 다른 사람은 그 책을 대여할 수 없습니다.
+        // 대여해준 뒤 대여 정보를 대여 목록에 추가하고, 그 결과를 파일에 반영합니다.
         willLendBook -> book.isBorrowable = 'N';
         borrowNode *newBorrow = calloc(1, sizeof(borrowNode));
 
@@ -227,22 +225,17 @@ void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowLi
     char c = getchar();
     putchar(getchar());
     if (c == 'Y' || c == 'y') {
-        // borrow 파일 수정
+        // 대여 목록에서 반납된 책을 삭제하고 그 결과를 borrow 파일에 반영합니다.
         removeBorrow(borrowList, indexOfBorrowNode(borrowList, *findBorrowByBookIdResult));
         overwriteBorrowFile(*borrowList);
 
-        // book 파일 수정
+        // 책 정보에서 대여 가능 정보를 대여가능으로 바꾸고 그 결과를 book 파일에 반영합니다.
         findBookByBookIdResult->book.isBorrowable = 'Y';
         overwriteBookFile(*bookList);
         printf("도서가 반납되었습니다.\n");
     } else {
         printf("도서반납이 취소되었습니다.\n");
     }
-}
-
-// 도서 검색
-void searchBook() {
-    
 }
 
 // 회원 목록
@@ -261,8 +254,7 @@ int loadMemberList(clientNode *clientList) {
         getchar();
 
         switch (menu) {
-            // 이름
-            case 1:
+            case 1: // 이름
                 printf("이름: ");
                 scanf("%s", name);
                 getchar();
@@ -273,8 +265,7 @@ int loadMemberList(clientNode *clientList) {
                     printClient(findResult->client);
                 break;
 
-                // 학번
-            case 2:
+            case 2: // 학번
                 printf("학번: ");
                 scanf("%d", &studentId);
                 getchar();
@@ -285,13 +276,12 @@ int loadMemberList(clientNode *clientList) {
                     printClient(findResult->client);
                 break;
 
-            case 3:
+            case 3: // 전체 검색
                 printClientList(*clientList);
                 break;
 
-            case 4:
+            case 4: // 이전 메뉴
                 return 1;
         }
     }
-    return 0;
 }

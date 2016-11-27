@@ -7,7 +7,6 @@
 //
 
 #include "list.h"
-#include "file.h"
 #include <stdlib.h>
 
 
@@ -15,7 +14,7 @@
 ///////////////////////////// 클라이언트 ////////////////////////////////////
 
 
-// client List의 맨 뒤에 client를 하나 추가하는 함수
+// client List의 맨 뒤에 client를 추가하는 함수
 void addClient(clientNode *clientList, clientNode *addedClient) {
     if (clientList == NULL) {
         printf("clientList는 NULL 일 수 없습니다.\n");
@@ -25,10 +24,11 @@ void addClient(clientNode *clientList, clientNode *addedClient) {
         return;
     }
     
-    // List의 첫 번째 요소라면
+    // List의 첫 번째 요소라면 clientList 본체에 직접 데이터를 넣습니다.
     if (isEmptyClient(clientList -> client)) {
         clientList -> client = addedClient -> client;
     } else {
+        // clientList 의 맨 마지막에 찾아가서 client를 추가합니다.
         while (clientList -> next != NULL) {
             clientList = clientList -> next;
         }
@@ -54,16 +54,22 @@ void removeClient(clientNode *clientList, int at) {
         printf("길이 %d인 리스트에서 %d번째 요소를 제거할 수 없습니다.\n", length, at);
         return;
     }
-    
+
+    // 0번째 요소를 지우는 것은 리스트의 헤더를 지우는 것과 같습니다.
     if (at == 0) {
-        // clientList에 값이 없거나 하나 뿐일 때
+        // 리스트 크기가 1보다 크다면 Header의 위치를 한 칸 옮겨줍니다. 리스트의 헤더가 NULL이 되면 안되기 때문입니다.
         if (length <= 1) {
             clientList -> client = initClient();
-        } else {
-            // Header를 다음 것으로 이동
+        }
+
+        // 리스트 크기가 1이하 라면 Header의 값 만을 초기화 시킵니다.
+        else {
             *clientList = *(clientList -> next);
         }
-    } else {
+    }
+
+    // 헤더가 아닌 요소를 제거한다면 이전 노드의 next를 삭제할 요소의 next로 바꿔줍니다.
+    else {
         clientNode* beforeClientNode = getClientNode(clientList, at - 1);
         
         // 맨 마지막 원소를 제거한다면
@@ -76,18 +82,8 @@ void removeClient(clientNode *clientList, int at) {
     }
 }
 
-// client List를 비워버리는 함수
-void clearClient(clientNode *clientList) {
-    if (clientList == NULL) {
-        printf("clientList는 NULL 일 수 없습니다.\n");
-        return;
-    }
-    
-    clientList -> client = initClient();
-    clientList -> next = NULL;
-}
 
-// client List의 index 번째에 client를 하나 추가하는 함수
+// client List의 at번째에 client를 하나 추가하는 함수
 void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
     if (clientList == NULL) {
         printf("clientList는 NULL 일 수 없습니다.\n");
@@ -102,31 +98,34 @@ void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
         return;
     }
     
-    // 0번째에 추가 일 때
+
+    // 0번째에 추가하는 것은 Header를 바꾸는 것과 동일합니다.
     if (at == 0) {
-        // 추가될 리스트에 아무 값도 없다면
+        // 리스트에 아무 값도 없다면 Header 자체에 값을 넣어줍니다.
         if (isEmptyClient(clientList -> client)) {
             *clientList = *addedClient;
-        } else {
+        }
+
+        // 리스트에 어떠한 값이라도 들어있다면 Header를 재정의 하고 next 값으로 이전 Header를 넣어줍니다.
+        // 헤더가 바뀌더라도 이전의 리스트는 유지되어야 하기 때문입니다.
+        else {
             clientNode* tmpClientNode = (clientNode*) calloc(1, sizeof(clientNode));
             *tmpClientNode = *clientList;
             addedClient -> next = tmpClientNode;
             *clientList = *addedClient;
         }
     }
-    
+
+    // 0번째가 아닌 원소에 추가하는 것이라면 at - 1번째 원소의 next를 추가될 원소를 가리키게 하고,
+    // 추가될 원소의 next는 at번째 원소를 카리킵니다.
     else {
         int length = clientLength(*clientList);
         if (length < at) {
             printf("%d는 List크기(%d)보다 큽니다.\n", at, length);
             return;
         }
-        
-        
-        // next값이 바뀔 clientNode
+
         clientNode* changedClientNode;
-        
-        // 밀려날 clientNode
         clientNode* pushedClientNode;
         
         changedClientNode = getClientNode(clientList, at - 1);
@@ -173,7 +172,7 @@ clientNode* getClientNode(clientNode* clientList, int at) {
     int index = 0;
     
     while (clientList -> next != NULL) {
-        // 원하는 index에 도달하면 1을 리턴하고 retClient에 client정보 assign
+        // at 번째 원소에 도달하면 리턴
         if (at == index++) {
             return clientList;
         }
