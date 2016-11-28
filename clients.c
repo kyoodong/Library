@@ -1,6 +1,4 @@
-//
-// Created by 이동규 on 2016. 11. 29..
-//
+// 주로 client List와 client File을 관리하는 파일입니다.
 
 #include "clients.h"
 
@@ -65,7 +63,7 @@ void addClient(clientNode *clientList, clientNode *addedClient) {
         return;
     }
 
-    // List의 첫 번째 요소라면 clientList 본체에 직접 데이터를 넣습니다.
+    // List의 첫 번째 요소라면 clientList 헤더에 직접 데이터를 넣습니다.
     if (isEmptyClient(clientList -> client)) {
         clientList -> client = addedClient -> client;
     } else {
@@ -98,12 +96,12 @@ void removeClient(clientNode *clientList, int at) {
 
     // 0번째 요소를 지우는 것은 리스트의 헤더를 지우는 것과 같습니다.
     if (at == 0) {
-        // 리스트 크기가 1보다 크다면 Header의 위치를 한 칸 옮겨줍니다. 리스트의 헤더가 NULL이 되면 안되기 때문입니다.
+        // 리스트 크기가 1이하 라면 Header의 값 만을 초기화 시킵니다.
         if (length <= 1) {
             clientList -> client = initClient();
         }
 
-        // 리스트 크기가 1이하 라면 Header의 값 만을 초기화 시킵니다.
+        // 리스트 크기가 1보다 크다면 Header의 위치를 한 칸 옮겨줍니다. 리스트의 헤더가 NULL이 되면 안되기 때문입니다.
         else {
             clientNode *header = clientList;
             *clientList = *(clientList -> next);
@@ -111,7 +109,7 @@ void removeClient(clientNode *clientList, int at) {
         }
     }
 
-        // 헤더가 아닌 요소를 제거한다면 이전 노드의 next를 삭제할 요소의 next로 바꿔줍니다.
+    // 헤더가 아닌 요소를 제거한다면 이전 노드의 next를 삭제할 요소의 next로 바꿔줍니다.
     else {
         clientNode* beforeClientNode = getClientNode(clientList, at - 1);
 
@@ -152,8 +150,8 @@ void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
             *clientList = *addedClient;
         }
 
-            // 리스트에 어떠한 값이라도 들어있다면 Header를 재정의 하고 next 값으로 이전 Header를 넣어줍니다.
-            // 헤더가 바뀌더라도 이전의 리스트는 유지되어야 하기 때문입니다.
+        // 리스트에 어떠한 값이라도 들어있다면 Header를 재정의 하고 next 값으로 이전 Header를 넣어줍니다.
+        // 헤더가 바뀌더라도 이전의 리스트는 유지되어야 하기 때문입니다.
         else {
             clientNode* tmpClientNode = (clientNode*) calloc(1, sizeof(clientNode));
             *tmpClientNode = *clientList;
@@ -176,10 +174,8 @@ void insertClient(clientNode *clientList, clientNode *addedClient, int at) {
 
         changedClientNode = getClientNode(clientList, at - 1);
         pushedClientNode = getClientNode(changedClientNode, 1);
-
         changedClientNode -> next = addedClient;
 
-        // at번째 노드가 마지막 노드가 아니라면
         if (pushedClientNode != NULL) {
             addedClient -> next = pushedClientNode;
         }

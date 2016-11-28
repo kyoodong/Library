@@ -1,6 +1,4 @@
-//
-// Created by 이동규 on 2016. 11. 29..
-//
+// 주로 book List와 book File을 관리하는 파일입니다.
 
 #include "books.h"
 
@@ -72,10 +70,11 @@ void addBook(bookNode *bookList, bookNode *addedBook) {
         return;
     }
 
-    // List의 첫 번째 요소라면
+    // List의 첫 번째 요소라면 bookList 헤더에 직접 데이터를 넣습니다.
     if (bookList -> book.bookId == 0) {
         bookList -> book = addedBook -> book;
     } else {
+        // bookList 의 맨 마지막에 찾아가서 book을 추가합니다
         while (bookList -> next != NULL) {
             bookList = bookList -> next;
         }
@@ -102,18 +101,23 @@ void removeBook(bookNode *bookList, int at) {
         return;
     }
 
+    // 0번째 요소를 지우는 것은 리스트의 헤더를 지우는 것과 같습니다.
     if (at == 0) {
-        // bookList에 값이 없거나 하나 뿐일 때
+        // 리스트 크기가 1이하 라면 Header의 값 만을 초기화 시킵니다.
         if (length <= 1) {
-            bookList -> book = initBook();
-        } else {
-            bookNode *header = bookList;
+            bookList->book = initBook();
+        }
 
-            // Header를 다음 것으로 이동
+        // 리스트 크기가 1보다 크다면 Header의 위치를 한 칸 옮겨줍니다. 리스트의 헤더가 NULL이 되면 안되기 때문입니다.
+        else {
+            bookNode *header = bookList;
             *bookList = *(bookList -> next);
             free(header);
         }
-    } else {
+    }
+
+    // 헤더가 아닌 요소를 제거한다면 이전 노드의 next를 삭제할 요소의 next로 바꿔줍니다.
+    else {
         bookNode* beforeBookNode = getBookNode(bookList, at - 1);
 
         // 맨 마지막 원소를 제거한다면
@@ -123,7 +127,6 @@ void removeBook(bookNode *bookList, int at) {
         } else {
             bookNode* willRemoveBookNode = getBookNode(beforeBookNode, 1);
             free(willRemoveBookNode);
-
             bookNode* nextBookNode = getBookNode(beforeBookNode, 2);
             beforeBookNode -> next = nextBookNode;
         }
@@ -145,16 +148,22 @@ void insertBook(bookNode *bookList, bookNode *addedBook, int at) {
         return;
     }
 
-    // 0번째에 추가 일 때
+    // 0번째에 추가하는 것은 Header를 바꾸는 것과 동일합니다.
     if (at == 0) {
-        // 추가될 리스트에 아무 값도 없다면
+        // 리스트에 아무 값도 없다면 Header 자체에 값을 넣어줍니다.
         if (isEmptyBook(bookList -> book)) {
             *bookList = *addedBook;
-        } else {
+        }
+
+        // 리스트에 어떠한 값이라도 들어있다면 Header를 재정의 하고 next 값으로 이전 Header를 넣어줍니다.
+        // 헤더가 바뀌더라도 이전의 리스트는 유지되어야 하기 때문입니다.
+        else {
             addedBook -> next = bookList;
         }
     }
 
+        // 0번째가 아닌 원소에 추가하는 것이라면 at - 1번째 원소의 next를 추가될 원소를 가리키게 하고,
+        // 추가될 원소의 next는 at번째 원소를 카리킵니다.
     else {
         int length = bookLength(*bookList);
         if (length < at) {
@@ -162,18 +171,13 @@ void insertBook(bookNode *bookList, bookNode *addedBook, int at) {
         }
 
 
-        // next값이 바뀔 bookNode
         bookNode* willChangeBookNode;
-
-        // 밀려날 bookNode
         bookNode* willPushBookNode;
 
         willChangeBookNode = getBookNode(bookList, at - 1);
         willPushBookNode = getBookNode(willChangeBookNode, 1);
-
         willChangeBookNode -> next = addedBook;
 
-        // at번째 노드가 마지막 노드가 아니라면
         if (willPushBookNode != NULL) {
             addedBook -> next = willPushBookNode;
         }

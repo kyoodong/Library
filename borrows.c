@@ -1,10 +1,6 @@
-//
-// Created by 이동규 on 2016. 11. 29..
-//
+// 주로 borrow List와 borrow File을 관리하는 파일입니다.
 
 #include "borrows.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 FILE *borrowFile;
 const char wdayList[][4] = {"일", "월", "화", "수", "목", "금", "토"};
@@ -73,10 +69,11 @@ void addBorrow(borrowNode *borrowList, borrowNode *addedBorrow) {
         return;
     }
 
-    // List의 첫 번째 요소라면
+    // List의 첫 번째 요소라면 borrowList 헤더에 직접 데이터를 넣습니다.
     if (borrowList -> borrow.studentId == 0) {
         borrowList -> borrow = addedBorrow -> borrow;
     } else {
+        // borrowList 의 맨 마지막에 찾아가서 borrow를 추가합니다.
         while (borrowList -> next != NULL) {
             borrowList = borrowList -> next;
         }
@@ -98,23 +95,29 @@ void removeBorrow(borrowNode *borrowList, int at) {
     }
 
     int length = borrowLength(*borrowList);
+
     if (length <= at) {
         printf("길이 %d인 리스트에서 %d번째 요소를 제거할 수 없습니다.\n", length, at);
         return;
     }
 
+    // 0번째 요소를 지우는 것은 리스트의 헤더를 지우는 것과 같습니다.
     if (at == 0) {
-        // borrowList에 값이 없거나 하나 뿐일 때
+        // 리스트 크기가 1이하 라면 Header의 값 만을 초기화 시킵니다.
         if (length <= 1) {
             borrowList -> borrow = initBorrow();
-        } else {
-            borrowNode* header = borrowList;
+        }
 
-            // Header를 다음 것으로 이동
+            // 리스트 크기가 1보다 크다면 Header의 위치를 한 칸 옮겨줍니다. 리스트의 헤더가 NULL이 되면 안되기 때문입니다.
+        else {
+            borrowNode* header = borrowList;
             *borrowList = *(borrowList -> next);
             free(header);
         }
-    } else {
+    }
+
+        // 헤더가 아닌 요소를 제거한다면 이전 노드의 next를 삭제할 요소의 next로 바꿔줍니다.
+    else {
         borrowNode* beforeBorrowNode = getBorrowNode(borrowList, at - 1);
 
         // 맨 마지막 원소를 제거한다면
@@ -150,7 +153,7 @@ borrowNode* getBorrowNode(borrowNode* borrowList, int at) {
         borrowList = borrowList -> next;
     }
 
-    if (at == index++) {
+    if (at == index) {
         return borrowList;
     }
 
