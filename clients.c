@@ -103,9 +103,11 @@ void removeClient(clientNode *clientList, int at) {
             clientList -> client = initClient();
         }
 
-            // 리스트 크기가 1이하 라면 Header의 값 만을 초기화 시킵니다.
+        // 리스트 크기가 1이하 라면 Header의 값 만을 초기화 시킵니다.
         else {
+            clientNode *header = clientList;
             *clientList = *(clientList -> next);
+            free(header);
         }
     }
 
@@ -115,8 +117,11 @@ void removeClient(clientNode *clientList, int at) {
 
         // 맨 마지막 원소를 제거한다면
         if (length == at + 1) {
+            free(beforeClientNode -> next);
             beforeClientNode -> next = NULL;
         } else {
+            clientNode* willRemoveClientNode = getClientNode(beforeClientNode, 1);
+            free(willRemoveClientNode);
             clientNode* nextClientNode = getClientNode(beforeClientNode, 2);
             beforeClientNode -> next = nextClientNode;
         }
@@ -280,15 +285,6 @@ clientNode* findClientNodeById(clientNode* list, int id) {
         list = list->next;
     }
     return NULL;
-}
-
-
-// ClientNode 생성
-clientNode initClientNode() {
-    clientNode node;
-    node.client = initClient();
-    node.next = NULL;
-    return node;
 }
 
 

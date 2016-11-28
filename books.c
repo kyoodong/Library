@@ -76,7 +76,6 @@ void addBook(bookNode *bookList, bookNode *addedBook) {
     if (bookList -> book.bookId == 0) {
         bookList -> book = addedBook -> book;
     } else {
-        // TODO - 맨뒤에 추가하는거로 수정해야함
         while (bookList -> next != NULL) {
             bookList = bookList -> next;
         }
@@ -108,31 +107,27 @@ void removeBook(bookNode *bookList, int at) {
         if (length <= 1) {
             bookList -> book = initBook();
         } else {
+            bookNode *header = bookList;
+
             // Header를 다음 것으로 이동
             *bookList = *(bookList -> next);
+            free(header);
         }
     } else {
         bookNode* beforeBookNode = getBookNode(bookList, at - 1);
 
         // 맨 마지막 원소를 제거한다면
         if (length == at + 1) {
+            free(beforeBookNode->next);
             beforeBookNode -> next = NULL;
         } else {
+            bookNode* willRemoveBookNode = getBookNode(beforeBookNode, 1);
+            free(willRemoveBookNode);
+
             bookNode* nextBookNode = getBookNode(beforeBookNode, 2);
             beforeBookNode -> next = nextBookNode;
         }
     }
-}
-
-// book List를 비워버리는 함수
-void clearBook(bookNode *bookList) {
-    if (bookList == NULL) {
-        printf("bookList는 NULL 일 수 없습니다.\n");
-        return;
-    }
-
-    bookList -> book = initBook();
-    bookList -> next = NULL;
 }
 
 // book List의 index 번째에 book를 하나 추가하는 함수
@@ -373,14 +368,6 @@ int bookLength(bookNode bookList) {
     }
 
     return count;
-}
-
-
-bookNode initBookNode() {
-    bookNode node;
-    node.book = initBook();
-    node.next = NULL;
-    return node;
 }
 
 

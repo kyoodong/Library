@@ -77,7 +77,6 @@ void addBorrow(borrowNode *borrowList, borrowNode *addedBorrow) {
     if (borrowList -> borrow.studentId == 0) {
         borrowList -> borrow = addedBorrow -> borrow;
     } else {
-        // TODO - 맨뒤에 추가하는거로 수정해야함
         while (borrowList -> next != NULL) {
             borrowList = borrowList -> next;
         }
@@ -109,76 +108,24 @@ void removeBorrow(borrowNode *borrowList, int at) {
         if (length <= 1) {
             borrowList -> borrow = initBorrow();
         } else {
+            borrowNode* header = borrowList;
+
             // Header를 다음 것으로 이동
             *borrowList = *(borrowList -> next);
+            free(header);
         }
     } else {
         borrowNode* beforeBorrowNode = getBorrowNode(borrowList, at - 1);
 
         // 맨 마지막 원소를 제거한다면
         if (length == at + 1) {
+            free(beforeBorrowNode->next);
             beforeBorrowNode -> next = NULL;
         } else {
+            borrowNode* willRemoveBorrowNode = getBorrowNode(beforeBorrowNode, 1);
+            free(willRemoveBorrowNode);
             borrowNode* nextBorrowNode = getBorrowNode(beforeBorrowNode, 2);
             beforeBorrowNode -> next = nextBorrowNode;
-        }
-    }
-}
-
-// borrow List를 비워버리는 함수
-void clearBorrow(borrowNode *borrowList) {
-    if (borrowList == NULL) {
-        printf("borrowList는 NULL 일 수 없습니다.\n");
-        return;
-    }
-
-    borrowList -> borrow = initBorrow();
-    borrowList -> next = NULL;
-}
-
-// borrow List의 index 번째에 borrow를 하나 추가하는 함수
-void insertBorrow(borrowNode *borrowList, borrowNode *addedBorrow, int at) {
-    if (borrowList == NULL) {
-        printf("borrowList는 NULL 일 수 없습니다.\n");
-        return;
-    }
-
-    if (at < 0) {
-        printf("음수는 불가합니다.\n");
-        return;
-    }
-
-    // 0번째에 추가 일 때
-    if (at == 0) {
-        // 추가될 리스트에 아무 값도 없다면
-        if (isEmptyBorrow(borrowList -> borrow)) {
-            *borrowList = *addedBorrow;
-        } else {
-            addedBorrow -> next = borrowList;
-        }
-    }
-
-    else {
-        int length = borrowLength(*borrowList);
-        if (length < at) {
-            printf("%d는 List크기(%d)보다 큽니다.\n", at, length);
-        }
-
-
-        // next값이 바뀔 borrowNode
-        borrowNode* changedBorrowNode;
-
-        // 밀려날 borrowNode
-        borrowNode* pushedBorrowNode;
-
-        changedBorrowNode = getBorrowNode(borrowList, at - 1);
-        pushedBorrowNode = getBorrowNode(changedBorrowNode, 1);
-
-        changedBorrowNode -> next = addedBorrow;
-
-        // at번째 노드가 마지막 노드가 아니라면
-        if (pushedBorrowNode != NULL) {
-            addedBorrow -> next = pushedBorrowNode;
         }
     }
 }
@@ -229,14 +176,6 @@ int borrowLength(borrowNode borrowList) {
     }
 
     return count;
-}
-
-
-borrowNode initBorrowNode() {
-    borrowNode node;
-    node.borrow = initBorrow();
-    node.next = NULL;
-    return node;
 }
 
 

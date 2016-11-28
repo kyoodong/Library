@@ -33,7 +33,6 @@ clientNode* getClientNode(clientNode* clientList, int at);
 int clientLength(clientNode clientList);
 clientNode* findClientNodeByName(clientNode* list, char* name);
 clientNode* findClientNodeById(clientNode* list, int id);
-clientNode initClientNode();
 client initClient();
 int isEmptyClient(client c);
 void printClient(client c);

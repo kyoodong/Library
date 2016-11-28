@@ -351,5 +351,5 @@ void selectAdminMenu() {
 void closeAllFile() {
     closeClientFile();
     closeBookFile();
-    closeBookFile();
+    closeBorrowFile();
 }
