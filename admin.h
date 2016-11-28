@@ -10,8 +10,9 @@
 #define admin_h
 
 #include <stdio.h>
-#include "list.h"
-#include "file.h"
+#include "clients.h"
+#include "books.h"
+#include "borrows.h"
 #include <stdlib.h>
 
 

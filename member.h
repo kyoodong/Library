@@ -10,19 +10,14 @@
 #define member_h
 
 #include <stdio.h>
-#include "file.h"
-#include "list.h"
+#include "clients.h"
+#include "books.h"
+#include "borrows.h"
 
 
-void seachBook();
 void loadMyBorrowList(borrowNode *borrowList, int studentId);
 void modifyPersonalInfo(clientNode *clientList, int studentId);
 int leaveMember(clientNode *clientList, borrowNode *borrowList, int studentId);
-void findBookByTitle();
-void findBookByPublisher();
-void findBookByISBN();
-void findBookByWriter();
-void findAllBook();
 
 
 #endif /* member_h */

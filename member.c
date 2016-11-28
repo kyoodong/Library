@@ -63,28 +63,3 @@ int leaveMember(clientNode *clientList, borrowNode *borrowList, int studentId) {
     overwriteClientFile(*clientList);
     return 1;
 }
-
-// 책 제목으로 검색
-void findBookByTitle() {
-    
-}
-
-// 출판사로 검색
-void findBookByPublisher() {
-    
-}
-
-// ISBN으로 검색
-void findBookByISBN() {
-    
-}
-
-// 저자명으로 검색
-void findBookByWriter() {
-    
-}
-
-// 전체 색
-void findAllBook() {
-    
-}

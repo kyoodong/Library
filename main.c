@@ -13,6 +13,7 @@ void mainMenu();
 
 void signUp();
 void signIn();
+void closeAllFile();
 
 clientNode clientList;
 bookNode bookList;
@@ -21,7 +22,9 @@ int myStudentId;
 
 
 int main(void) {
-    loadFile(&clientList, &bookList, &borrowList);
+    loadClientFile(&clientList);
+    loadBookFile(&bookList);
+    loadBorrowFile(&borrowList);
 
     mainMenu();
 }
@@ -42,7 +45,7 @@ void mainMenu() {
                 break;
 
             case 3: // 프로그램 종료
-                closeAllFilePointer();
+                closeAllFile();
                 exit(0);
         }
     }
@@ -192,7 +195,7 @@ void selectMemberMenu() {
                 return;
 
             case 6: // 프로그램 종료
-                closeAllFilePointer();
+                closeAllFile();
                 exit(0);
         }
     }
@@ -338,8 +341,15 @@ void selectAdminMenu() {
                 return;
 
             case 8: // 프로그램 종료
-                closeAllFilePointer();
+                closeAllFile();
                 exit(0);
         }
     }
+}
+
+
+void closeAllFile() {
+    closeClientFile();
+    closeBookFile();
+    closeBookFile();
 }
