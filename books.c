@@ -158,7 +158,10 @@ void insertBook(bookNode *bookList, bookNode *addedBook, int at) {
         // 리스트에 어떠한 값이라도 들어있다면 Header를 재정의 하고 next 값으로 이전 Header를 넣어줍니다.
         // 헤더가 바뀌더라도 이전의 리스트는 유지되어야 하기 때문입니다.
         else {
-            addedBook -> next = bookList;
+            bookNode *originalBookList = calloc(1, sizeof(bookNode));
+            *originalBookList = *bookList;
+            addedBook -> next = originalBookList;
+            *bookList = *addedBook;
         }
     }
 

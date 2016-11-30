@@ -248,7 +248,6 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
                 if (findResults == NULL)
                     printf("출판사가 '%lu'인 도서가 존재하지 않습니다.\n", isbn);
 
-                // 출판사가 일치하는 도서를 찾았다면 찾아낸 모든 책의 정보를 모두 출력합니다.
                 else
                     printBookList(*findResults, SEARCH);
                 break;
@@ -257,13 +256,13 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
                 printf("ISBN을 입력하세요: ");
                 scanf("%lu", &isbn);
                 getchar();
-                // ISBN이 일치하는 도서를 찾아냅니다.
+                // ISBN 이 일치하는 도서를 찾아냅니다.
                 findResults = findBookNodeByISBN(&bookList, isbn);
 
                 // ISBN 이 일치하는 도서를 찾지 못했다면 에러메세지를 띄워줍니다.
                 if (findResults == NULL)
                     printf("ISBN이 '%s'인 도서가 존재하지 않습니다.\n", keyword);
-                // ISBN이 일치하는 도서를 찾았다면 찾아낸 모든 책의 정보를 모두 출력합니다.
+
                 else
                     printBookList(*findResults, SEARCH);
                 break;
