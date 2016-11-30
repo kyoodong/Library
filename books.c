@@ -241,8 +241,8 @@ bookNode* findBookNodeByISBN(bookNode* bookList, unsigned long isbn) {
 // 도서명으로 BookNode 찾기
 bookNode* findBookNodeByBookName(bookNode* bookList, char* bookName) {
     bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
+    hasIsbnBookList->book = initBook();
 
-    printf("%d\n", bookLength(*bookList));
     while (!isEmptyBook(bookList->book)) {
         // ISBN 발견 시 return
         if (!strcmp(bookList->book.name, bookName)) {
@@ -266,6 +266,7 @@ bookNode* findBookNodeByBookName(bookNode* bookList, char* bookName) {
 // 출판사로 BookNode 찾기
 bookNode* findBookNodeByPublisherName(bookNode* bookList, char* publisherName) {
     bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
+    hasIsbnBookList->book = initBook();
 
     while (!isEmptyBook(bookList->book)) {
         // ISBN 발견 시 return
@@ -290,6 +291,7 @@ bookNode* findBookNodeByPublisherName(bookNode* bookList, char* publisherName) {
 // 저자명으로 BookNode 찾기
 bookNode* findBookNodeByAuthorName(bookNode* bookList, char* authorName) {
     bookNode *hasIsbnBookList = calloc(1, sizeof(bookNode));
+    hasIsbnBookList->book = initBook();
 
     while (!isEmptyBook(bookList->book)) {
         // ISBN 발견 시 return
