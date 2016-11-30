@@ -35,6 +35,7 @@ clientNode* readClientFileLine(FILE* clientFile) {
 void overwriteClientFile(clientNode clientList) {
     rewind(clientFile);
 
+	printClient(clientList.client);
     while (!isEmptyClient(clientList.client)) {
         fprintf(clientFile, "%d||%s||%s||%s||%s\n",
                 clientList.client.studentId,                  // 학번
