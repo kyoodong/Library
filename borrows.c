@@ -31,7 +31,7 @@ void overwriteBorrowFile(borrowNode node) {
     rewind(borrowFile);
 
     while (!isEmptyBorrow(node.borrow)) {
-        fprintf(borrowFile, "%d||%d||%d||%d\n",
+        fprintf(borrowFile, "%d | %d | %d | %d\n",
                 node.borrow.studentId,              // 학번
                 node.borrow.bookId,                 // 책 번호
                 (int) node.borrow.borrowDateSec,    // 대여 일자
@@ -49,7 +49,7 @@ void overwriteBorrowFile(borrowNode node) {
 // borrow 파일을 한 줄 읽습니다.
 borrowNode* readBorrowFileLine(FILE* borrowFile) {
     borrowNode* node = (borrowNode *) calloc(1, sizeof(borrowNode));
-    fscanf(borrowFile, "%d||%d||%ld||%ld\n", &(node -> borrow.studentId), &(node -> borrow.bookId), &(node -> borrow.borrowDateSec), &(node -> borrow.returnDateSec));
+    fscanf(borrowFile, "%d | %d | %ld | %ld\n", &(node -> borrow.studentId), &(node -> borrow.bookId), &(node -> borrow.borrowDateSec), &(node -> borrow.returnDateSec));
     return node;
 }
 

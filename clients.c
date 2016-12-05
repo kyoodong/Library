@@ -26,7 +26,7 @@ void loadClientFile(clientNode *clients) {
 // client 파일을 한 줄 읽습니다.
 clientNode* readClientFileLine(FILE* clientFile) {
     clientNode* node = (clientNode *) calloc(1, sizeof(clientNode));
-    fscanf(clientFile, "%d||%[^|]||%[^|]||%[^|]||%[^\n]", &(node -> client.studentId), node -> client.password, node -> client.name, node -> client.address, node -> client.phone);
+    fscanf(clientFile, "%d | %[^|] | %[^|] | %[^|] | %[^\n]", &(node -> client.studentId), node -> client.password, node -> client.name, node -> client.address, node -> client.phone);
     return node;
 }
 
@@ -36,7 +36,7 @@ void overwriteClientFile(clientNode clientList) {
     rewind(clientFile);
 
     while (!isEmptyClient(clientList.client)) {
-        fprintf(clientFile, "%d||%s||%s||%s||%s\n",
+        fprintf(clientFile, "%d | %s | %s | %s | %s\n",
                 clientList.client.studentId,                  // 학번
                 clientList.client.password,                   // 비밀번호
                 clientList.client.name,                       // 이름
