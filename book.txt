@@ -13,3 +13,8 @@
 1000120 | The Moon is Down | John Steinbeck | 9876543210012 | Soongsil central library | Y
 1000130 | The Pearl | John Steinbeck | 9876543210013 | Soongsil central library | Y
 1000140 | Travels With Charley | John Steinbeck | 9876543210014 | Soongsil central library | Y
+1000150 | Ulysses | James Joyce | 9876543210015 | Soongsil central library | Y
+1000160 | The Great GATSBY | F. Scott Fitzgerald | 9876543210016 | Soongsil central library | Y
+1000170 | A Portrait of the Artist as A Young Man | James Joyce | 9876543210017 | Soongsil central library | Y
+1000180 | Lolita | Vladimir Nabokov | 9876543210018 | Soongsil central library | Y
+1000190 | Brave New World | Aldous Huxley | 9876543210019 | Soongsil central library | Y
