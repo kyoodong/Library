@@ -31,7 +31,7 @@ void overwriteBorrowFile(borrowNode node) {
     rewind(borrowFile);
 
     while (!isEmptyBorrow(node.borrow)) {
-        fprintf(borrowFile, "%d | %d | %d | %d\n",
+        fprintf(borrowFile, "%d|%d|%d|%d\n",
                 node.borrow.studentId,              // 학번
                 node.borrow.bookId,                 // 책 번호
                 (int) node.borrow.borrowDateSec,    // 대여 일자

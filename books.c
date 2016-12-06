@@ -26,7 +26,7 @@ void loadBookFile(bookNode *books) {
 // book 파일을 한 줄 읽습니다.
 bookNode* readBookFileLine(FILE* bookFile) {
     bookNode* node = (bookNode *) calloc(1, sizeof(bookNode));
-    fscanf(bookFile, "%d | %[^|] | %[^|] | %[^|] | %ld | %[^|] | %c\n", &(node -> book.bookId), node -> book.name, node -> book.publisherName, node -> book.authorName, &(node -> book.ISBN), node -> book.holdingInstitution, &(node -> book.isBorrowable));
+    fscanf(bookFile, "%d|%[^|]|%[^|]|%[^|]|%ld|%[^|]|%c\n", &(node -> book.bookId), node -> book.name, node -> book.publisherName, node -> book.authorName, &(node -> book.ISBN), node -> book.holdingInstitution, &(node -> book.isBorrowable));
     return node;
 }
 
@@ -37,7 +37,7 @@ void overwriteBookFile(bookNode bookList) {
     rewind(bookFile);
 
     while (!isEmptyBook(bookList.book)) {
-        fprintf(bookFile, "%d | %s | %s | %s | %lu | %s | %c\n",
+        fprintf(bookFile, "%d|%s|%s|%s|%lu|%s|%c\n",
                 bookList.book.bookId,                         // 도서 번호
                 bookList.book.name,                           // 책 이름
                 bookList.book.publisherName,                  // 출판사 이름
