@@ -22,7 +22,7 @@ void loadMyBorrowList(borrowNode *borrowList, int studentId) {
     }
 
     printf(">> 내 대여 목록 <<\n");
-    printBorrow(findBorrowResult->borrow);
+    printBorrowList(*findBorrowResult);
 }
 
 // 개인정보 수정
