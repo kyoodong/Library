@@ -13,6 +13,7 @@
 #include "clients.h"
 #include "books.h"
 #include "borrows.h"
+#include <string.h>
 #include <stdlib.h>
 
 

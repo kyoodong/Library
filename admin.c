@@ -24,9 +24,37 @@ void registerNewBook(bookNode *bookList) {
     scanf("%lu", &(newBookNode -> book.ISBN));
     getchar();
 
+    if (newBookNode->book.ISBN < 1000000000000) {
+        printf("ISBN은 13자리 이상이여야합니다.\n");
+        return;
+    }
+
     printf("소장처: ");
     scanf("%[^\n]", newBookNode -> book.holdingInstitution);
     putchar(getchar());
+
+    bookNode* hasSameISBNBook = findBookNodeByISBN(bookList, newBookNode->book.ISBN);
+    if (hasSameISBNBook != NULL) {
+        if (strcmp(hasSameISBNBook->book.name, newBookNode -> book.name)) {
+            printf("ISBN %lu 의 기존의 책(%s)과 책 이름이 다릅니다.\n", newBookNode -> book.ISBN, hasSameISBNBook->book.name);
+            return;
+        }
+
+        if (strcmp(hasSameISBNBook->book.publisherName, newBookNode -> book.publisherName)) {
+            printf("ISBN %lu 의 기존의 책(%s)과 출판사 명이 다릅니다.\n", newBookNode -> book.ISBN, hasSameISBNBook->book.name);
+            return;
+        }
+
+        if (strcmp(hasSameISBNBook->book.authorName, newBookNode -> book.authorName)) {
+            printf("ISBN %lu 의 기존의 책(%s)과 저자명이 다릅니다.\n", newBookNode -> book.ISBN, hasSameISBNBook->book.name);
+            return;
+        }
+
+        if (strcmp(hasSameISBNBook->book.holdingInstitution, newBookNode -> book.holdingInstitution)) {
+            printf("ISBN %lu 의 기존의 책(%s)과 소장처가 다릅니다.\n", newBookNode -> book.ISBN, hasSameISBNBook->book.name);
+            return;
+        }
+    }
 
     // 책 전체를 훑습니다. 파일이 가진 bookId 의 최대값을 알아내기 위함입니다.
     // 새로 추가될 책의 bookId 는 bookId 의 최대값 + 1 입니다. bookId 는 unique 한 값이기 때문입니다.
