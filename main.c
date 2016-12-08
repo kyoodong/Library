@@ -246,7 +246,7 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
 
                 // 출판사가 일치하는 도서를 찾지 못했다면 에러메세지를 띄워줍니다.
                 if (findResults == NULL)
-                    printf("출판사가 '%lu'인 도서가 존재하지 않습니다.\n", isbn);
+                    printf("출판사가 '%s'인 도서가 존재하지 않습니다.\n", keyword);
 
                 else
                     printBookList(*findResults, SEARCH);
@@ -261,7 +261,7 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
 
                 // ISBN 이 일치하는 도서를 찾지 못했다면 에러메세지를 띄워줍니다.
                 if (findResults == NULL)
-                    printf("ISBN이 '%s'인 도서가 존재하지 않습니다.\n", keyword);
+                    printf("ISBN이 '%lu'인 도서가 존재하지 않습니다.\n", isbn);
 
                 else
                     printBookList(*findResults, SEARCH);
