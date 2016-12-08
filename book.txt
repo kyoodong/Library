@@ -1,3 +1,5 @@
+1000101|b|b|b|100000000001|b|Y
+1000102|a|a|a|100000000001|a|Y
 1000000|The Good Earth|Pearl s.Buck|Harper Collins|9876543210000|Soongsil central library 3 floor|Y
 1000001|The Living Reed|Pearl s.Buck|Harper Collins|9876543210001|Soongsil central library 4 floor|Y
 1000002|The Stories of John Cheever|John Cheever|Harper Collins|9876543210002|Soongsil central 2 floor library|N

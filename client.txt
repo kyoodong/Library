@@ -51,6 +51,7 @@
 20161722|tltkdtlr|Oscar|gwanak-gu seoul|010-3220-3717
 20162175|skate55|Kate|yeonsu-gu incheon|010-2333-6542
 20162489|rbrb24|lee|home|01033677355
+20162490|rbrb24|kim|myHome|010 3367 7355
 20163122|queen22|Elizabeth|namdong-gu incheon|010-6213-5131
 20163647|potter|Harry|gangnam-gu seoul|010-2031-1743
 20165951|lauren51|Olivia|dongjak-gu seoul|010-4865-5638

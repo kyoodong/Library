@@ -163,7 +163,7 @@ void selectMemberMenu() {
     int menu;
     while (1) {
         printf(">> 회원 메뉴 <<\n");
-        printf("1.도서 검색\t\t\t2.내 대여 목록\n3.개인정보 수정\t\t\t4.회원 탈퇴\n5.로그아웃\t\t\t\t6.프로그램 종료\n");
+        printf("1.도서 검색\t\t\t2.내 대여 목록\n3.개인정보 수정\t\t\t4.회원 탈퇴\n5.로그아웃\t\t\t6.프로그램 종료\n");
 
         printf("\n번호를 선택하세요: ");
         scanf("%d", &menu);
@@ -301,7 +301,7 @@ void selectAdminMenu() {
     int menu;
     while (1) {
         printf(">> 관리자 메뉴 <<\n");
-        printf("1.도서 등록\t\t\t2.도서 삭제\n3.도서 대여\t\t\t4.도서 반납\n5.도서 검색\t\t\t6.회원 목록\n7.로그아웃\t\t\t\t8.프로그램 종료\n");
+        printf("1.도서 등록\t\t\t2.도서 삭제\n3.도서 대여\t\t\t4.도서 반납\n5.도서 검색\t\t\t6.회원 목록\n7.로그아웃\t\t\t8.프로그램 종료\n");
         printf("\n번호를 입력하세요: ");
         scanf("%d", &menu);
         putchar(getchar());

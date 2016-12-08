@@ -5,7 +5,7 @@
 void registerNewBook(bookNode *bookList) {
     bookNode *newBookNode = (bookNode *) calloc(1, sizeof(bookNode)), *tmpBookNode = bookList;
     newBookNode->book = initBook();
-    int i = 0, maxBookId;
+    int i = 0, maxBookId = 0;
 
     printf(">> 도서 등록 <<\n");
     printf("도서명: ");
@@ -242,7 +242,7 @@ void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowLi
 
     printBorrowList(*findBorrowResults);
 
-    printf("반납할 도서를 입력하세요: ");
+    printf("반납할 도서의 도서번호를 입력하세요: ");
     scanf("%d", &bookId);
     putchar(getchar());
 
