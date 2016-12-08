@@ -318,7 +318,7 @@ int loadMemberList(clientNode *clientList) {
         switch (menu) {
             case 1: // 이름
                 printf("이름: ");
-                scanf("[^\n]", name);
+                scanf("%[^\n]", name);
                 getchar();
                 findResult = findClientNodeByName(clientList, name);
                 if (findResult == NULL)

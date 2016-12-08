@@ -1,103 +1,103 @@
 1000101|b|b|b|1000000000001|b|Y
 1000102|a|a|a|100000000001|a|Y
 1000103|b|b|b|1000000000001|c|Y
-1000000|The Good Earth|Harper Collins|Pearl s.Buck|9876543210000|Soongsil central library 3 floor|Y
-1000001|The Living Reed|Harper Collins|Pearl s.Buck|9876543210001|Soongsil central library 4 floor|Y
-1000002|The Stories of John Cheever|Harper Collins|John Cheever|9876543210002|Soongsil central 2 floor library|N
-1000003|My Days of Anger|Harper Collins|James T. Farrell|9876543210003|Soongsil central library 4 floor|N
-1000004|The Power and the Glory|Harper Collins|Graham Greene|9876543210004|Soongsil central library 3 floor|Y
-1000005|Roots|Pearson|Alex Haley|9876543210005|Soongsil central library 4 floor|Y
-1000006|Airport|Pearson|Arthur Hailey|9876543210006|Soongsil central library 3 floor|Y
-1000007|The Old Man and the Sea|Pearson|Ernest Hemingway|9876543210007|Soongsil central library 2 floor|Y
-1000008|Gone With the Wind|Pearson|Margaret Michell|9876543210008|Soongsil central library 2 floor|Y
-1000009|Assembly|Pearson|John O'Hara|9876543210009|Soongsil central library 4 floor|Y
-1000010|The Little Prince|Pearson|Antoine de st-Exupery|9876543210010|Soongsil central library 3 floor|Y
-1000012|The Moon is Down|Pearson|John Steinbeck|9876543210012|Soongsil central library 4 floor|Y
-1000013|The Pearl|Pearson|John Steinbeck|9876543210013|Soongsil central library 2 floor|Y
-1000014|Travels With Charley|Harper Collins|John Steinbeck|9876543210014|Soongsil central library 4 floor|Y
-1000015|Ulysses|Pearson|James Joyce|9876543210015|Soongsil central library 2 floor|Y
-1000016|The Great GATSBY|Pearson|F. Scott Fitzgerald|9876543210016|Soongsil central library 3 floor|Y
-1000017|A Portrait of the Artist as A Young Man|Pearson|James Joyce|9876543210017|Soongsil central library 3 floor|Y
-1000018|Lolita |Pearson| Vladimir Nabokov|9876543210018|Soongsil central library 4 floor|Y
-1000019|Brave New World|Harper Collins|Aldous Huxley|9876543210019|Soongsil central library 2 floor|Y
-1000020|The Sound and the Fury|Reed Elsevier|William Faulkner|9876543210020|Soongsil central library 4 floor|Y
-1000021|Catch-22|Reed Elsevier|Joseph Heller|9876543210021|Soongsil central library 2 floor|Y
-1000022|Darkness at Noon|Reed Elsevier|Arthur Koestler|9876543210022|Soongsil central library 3 floor|Y
-1000023|Sons and Lovers|Reed Elsevier|D.H. Lawrence|9876543210023|Soongsil central library 2 floor|Y
-1000024|The Grapes of Wrath|Reed Elsevier|John Steinbeck|9876543210024|Soongsil central library 4 floor|Y
-1000025|Under the Volcano|Reed Elsevier|Malcolm Lowry|9876543210025|Soongsil central library 3 floor|Y
-1000026|The Way of All Flesh|Reed Elsevier|Samuel Butler|9876543210026|Soongsil central library 4 floor|Y
-1000027|1984|Reed Elsevier|George Orwell|9876543210027|Soongsil central library 2 floor|Y
-1000028|I, Claudius|Reed Elsevier|Robert Graves|9876543210028|Soongsil central library 4 floor|Y
-1000029|To the Lighthouse|Reed Elsevier|Virginia Woolf|9876543210029|Soongsil central library 2 floor|Y
-1000030|An American Tragedy|Reed Elsevier|Theodore Dreiser|9876543210030|Soongsil central library 4 floor|Y
-1000031|The Heart Is A Lonely Hunter|Reed Elsevier|Carson McCullers|9876543210031|Soongsil central library 2 floor|Y
-1000032|Slaughterhouse-Five|Reed Elsevier|Kurt Vonnegut|9876543210032|Soongsil central library 4 floor|Y
-1000033|Invisible Man|Pearson|Ralph Ellison|9876543210033|Soongsil central library 3 floor|Y
-1000034|Native Son|Pearson|Richard Wright|9876543210034|Soongsil central library 3 floor|Y
-1000035|Henderson the Rain King|Pearson|Saul Bellow|9876543210035|Soongsil central library 4 floor|Y
-1000036|Appointment in Samarra|Cengage|John O'Hara|9876543210036|Soongsil central library 2 floor|Y
-1000037|U.S.A(trilogy)|Harper Collins|John Dos Passos|9876543210037|Soongsil central library 4 floor|Y
-1000038|Winesburg, Ohid|Harper Collins|Sherwood Anderson|9876543210038|Soongsil central library 3 floor|Y
-1000039|A Passage to India|Pearson|E.M. Forster|9876543210039|Soongsil central library 4 floor|Y
-1000040|The Wings of the Dove|Cengage|Henry James|9876543210040|Soongsil central library 3 floor|Y
-1000041|The Ambassadors|Pearson|Henry James|9876543210041|Soongsil central library 4 floor|Y
-1000042|Tender Is the Night|Pearson|F. Scott Fizgerald|9876543210042|Soongsil central library 3 floor|Y
-1000043|The Studs Lonigan Trilogy|Harper Collins|James T. Farrell|9876543210043|Soongsil central library 2 floor|Y
-1000044|The Good Slodier|Cengage|Ford Madox Ford|9876543210044|Soongsil central library 2 floor|Y
-1000045|Animal Farm|Oxford University Press|George Orwell|9876543210045|Soongsil central library 4 floor|Y
-1000046|The Golden Bowl|Pearson|Henry James|9876543210046|Soongsil central library 3 floor|Y
-1000047|Sister Carrie|Cengage|Theodore Dreiser|9876543210047|Soongsil central library 4 floor|Y
-1000048|A Handful of Dust|Cengage|Evelyn Waugh|9876543210048|Soongsil central library 2 floor|Y
-1000049|As I Lay Dying|Pearson|William Faulkner|9876543210049|Soongsil central library 4 floor|Y
-1000050|All the Kingls Men|Pearson|Robert Penn Warren|9876543210050|Soongsil central library 3 floor|Y
-1000051|The Bridge of San Luis Rey|Harper Collins|Thornton Wilder|9876543210051|Soongsil central library 4 floor|Y
-1000052|Howards End|Pearson|E.M. Forster|9876543210052|Soongsil central library 2 floor|Y
-1000053|Go Tell It on the Mountain|Pearson|James Baldwin|9876543210053|Soongsil central library 3 floor|Y
-1000054|The Heart of the Matter|Oxford University Press|Graham Greene|9876543210054|Soongsil central library 4 floor|Y
-1000055|Lord of the Flies|Pearson|William Golding|9876543210055|Soongsil central library 2 floor|Y
-1000056|Deliverance|Pearson|James Dickey|9876543210056|Soongsil central library 3 floor|Y
-1000057|A Dance to the Misic of Time(series)|Harper Collins|Anthony Powell|9876543210057|Soongsil central library 4 floor|Y
-1000058|Point Counter Point|Pearson|Aldous Huxley|9876543210058|Soongsil central library 3 floor|Y
-1000059|The Sun Also Rises|Oxford University Press|Ernest Hemingway|9876543210059|Soongsil central library 2 floor|Y
-1000060|The Secret Agent|Pearson|Joseph Conrad|9876543210060|Soongsil central library 2 floor|Y
-1000061|Nostromo|Pearson|Joseph Conrad|9876543210061|Soongsil central library 2 floor|Y
-1000062|The Rainbow|Harper Collins|D.H. Lawrence|9876543210062|Soongsil central library 4 floor|Y
-1000063|Women In Love|Oxford University Press|D.H. Rawrence|9876543210063|Soongsil central library 3 floor|Y
-1000064|Tropic of Cancer|Pearson|Henry Miller|9876543210064|Soongsil central library 3 floor|Y
-1000065|The Naked and the Dead|Pearson|Norman Mailer|9876543210065|Soongsil central library 4 floor|Y
-1000066|Porinoy's Complaint|Harper Collins|Philip Roth|9876543210066|Soongsil central library 2 floor|Y
-1000067|Pale Fire|Pearson|Vladimir Nabokov|9876543210067|Soongsil central library 4 floor|Y
-1000068|Light in August|Pearson|William Faulkner|9876543210068|Soongsil central library 3 floor|Y
-1000069|On the Road|Pearson|Jack Kerouac|9876543210069|Soongsil central library 4 floor|Y
-1000070|The Maltese Falcon|Harper Collins|Dashiell Hammett|9876543210070|Soongsil central library 2 floor|Y
-1000071|Parade's End|Oxford University Press|Ford Madox Ford|9876543210071|Soongsil central library 4 floor|Y
-1000072|The Age of Innocence|Harper Collins|Edith Wharton|9876543210072|Soongsil central library 3 floor|Y
-1000073|Zuleika Dobson|Oxford University Press|Max Beerbohm|9876543210073|Soongsil central library 4 floor|Y
-1000074|The Moviegoer|Harper Collins|Walker Percy|9876543210074|Soongsil central library 2 floor|Y
-1000075|The Moviegoer|Harper Collins|Walker Percy|9876543210074|Soongsil central library 2 floor|N
-1000076|The Wapshot Chronicles|Informa|John Cheecer|9876543210077|Soongsil central library 2 floor|Y
-1000077|The Wapshot Chronicles|Informa|John Cheecer|9876543210077|Soongsil central library 2 floor|Y
-1000078|The Catcher in the Rye|Harper Collins|J.D. Salinger|9876543210078|Soongsil central library 3 floor|Y
-1000079|A Clockwork Orange|Harper Collins|Anthony Burgess|9876543210079|Soongsil central library 2 floor|Y
-1000080|Of Human Bondage|Harper Collins|W. Somerset Maughaa|9876543210080|Soongsil central library 2 floor|Y
-1000081|Heart of Darkness|Informa|Joseph Conrad|9876543210081|Soongsil central library 4 floor|Y
-1000082|Main Street|Harper Collins|Sinclair Lewis|9876543210082|Soongsil central library 3 floor|Y
-1000083|The House of Mirth|Informa|Edith Wharton|9876543210083|Soongsil central library 3 floor|Y
-1000084|The Alexandria Quartet|Harper Collins|Lawrence Durell|9876543210084|Soongsil central library 3 floor|Y
-1000085|A High Wind in Jamaica|Harper Collins|Richard Hughes|9876543210085|Soongsil central library 2 floor|Y
-1000086|A House for Mr Biswas|Harper Collins|V.S. Naipaul|9876543210086|Soongsil central library 2 floor|Y
-1000087|The Day of the Locust|Informa|Nathanael West|9876543210087|Soongsil central library 2 floor|Y
-1000088|A Farewell th Arms|Harper Collins|Ernest Hemingway|9876543210088|Soongsil central library 2 floor|Y
-1000089|Scoop|Harper Collins|Evelyn Waugh|9876543210089|Soongsil central library 4 floor|Y
-1000090|The Prime of Miss Jean Brodie|Informa|Muriel Spark|9876543210090|Soongsil central library 4 floor|Y
-1000091|Finnegans Wake|Harper Collins|James Joyce|9876543210091|Soongsil central library 2 floor|Y
-1000092|Kim |Harper Collins| Rudyard Kipling|9876543210092|Soongsil central library 3 floor|Y
-1000093|A Room with a View|Harper Collins|E.M. Forster|9876543210093|Soongsil central library 2 floor|Y
-1000094|Bridgeshead Revisited|Informa|Evelyn Waugh|9876543210094|Soongsil central library 4 floor|Y
-1000095|The Adventures of Augie March|Harper Collins|Saul Bellow|9876543210095|Soongsil central library 4 floor|Y
-1000096|Angle of Repose|Oxford University Press|Wallace Stegner|9876543210096|Soongsil central library 4 floor|Y
-1000097|A Bend in the River|Informa|V.S. Naipaul|9876543210097|Soongsil central library 3 floor|Y
-1000098|The Death of the Heart|Harper Collins|Elizabath Bowen|9876543210098|Soongsil central library 2 floor|Y
-1000099|Lord Jim|Harper Collins|Joseph Conrad|9876543210099|Soongsil central library 3 floor|Y
-1000100|Ragtime|Harper Collins|E.L. Doctorow|9876543210100|Soongsil central library 2 floor|Y
+1000000|The Good Earth|Pearl s.Buck|Harper Collins|9876543210000|Soongsil central library 3 floor|Y
+1000001|The Living Reed|Pearl s.Buck|Harper Collins|9876543210001|Soongsil central library 4 floor|Y
+1000002|The Stories of John Cheever|John Cheever|Harper Collins|9876543210002|Soongsil central 2 floor library|N
+1000003|My Days of Anger|James T. Farrell|Harper Collins|9876543210003|Soongsil central library 4 floor|N
+1000004|The Power and the Glory|Graham Greene|Harper Collins|9876543210004|Soongsil central library 3 floor|Y
+1000005|Roots|Alex Haley|Pearson|9876543210005|Soongsil central library 4 floor|Y
+1000006|Airport|Arthur Hailey|Pearson|9876543210006|Soongsil central library 3 floor|Y
+1000007|The Old Man and the Sea|Ernest Hemingway|Pearson|9876543210007|Soongsil central library 2 floor|Y
+1000008|Gone With the Wind|Margaret Michell|Pearson|9876543210008|Soongsil central library 2 floor|Y
+1000009|Assembly|John O'Hara|Pearson|9876543210009|Soongsil central library 4 floor|Y
+1000010|The Little Prince|Antoine de st-Exupery|Pearson|9876543210010|Soongsil central library 3 floor|Y
+1000012|The Moon is Down|John Steinbeck|Pearson|9876543210012|Soongsil central library 4 floor|Y
+1000013|The Pearl|John Steinbeck|Pearson|9876543210013|Soongsil central library 2 floor|Y
+1000014|Travels With Charley|John Steinbeck|Harper Collins|9876543210014|Soongsil central library 4 floor|Y
+1000015|Ulysses|James Joyce|Pearson|9876543210015|Soongsil central library 2 floor|Y
+1000016|The Great GATSBY|F. Scott Fitzgerald|Pearson|9876543210016|Soongsil central library 3 floor|Y
+1000017|A Portrait of the Artist as A Young Man|James Joyce|Pearson|9876543210017|Soongsil central library 3 floor|Y
+1000018|Lolita | Vladimir Nabokov|Pearson|9876543210018|Soongsil central library 4 floor|Y
+1000019|Brave New World|Aldous Huxley|Harper Collins|9876543210019|Soongsil central library 2 floor|Y
+1000020|The Sound and the Fury|William Faulkner|Reed Elsevier|9876543210020|Soongsil central library 4 floor|Y
+1000021|Catch-22|Joseph Heller|Reed Elsevier|9876543210021|Soongsil central library 2 floor|Y
+1000022|Darkness at Noon|Arthur Koestler|Reed Elsevier|9876543210022|Soongsil central library 3 floor|Y
+1000023|Sons and Lovers|D.H. Lawrence|Reed Elsevier|9876543210023|Soongsil central library 2 floor|Y
+1000024|The Grapes of Wrath|John Steinbeck|Reed Elsevier|9876543210024|Soongsil central library 4 floor|Y
+1000025|Under the Volcano|Malcolm Lowry|Reed Elsevier|9876543210025|Soongsil central library 3 floor|Y
+1000026|The Way of All Flesh|Samuel Butler|Reed Elsevier|9876543210026|Soongsil central library 4 floor|Y
+1000027|1984|George Orwell|Reed Elsevier|9876543210027|Soongsil central library 2 floor|Y
+1000028|I, Claudius|Robert Graves|Reed Elsevier|9876543210028|Soongsil central library 4 floor|Y
+1000029|To the Lighthouse|Virginia Woolf|Reed Elsevier|9876543210029|Soongsil central library 2 floor|Y
+1000030|An American Tragedy|Theodore Dreiser|Reed Elsevier|9876543210030|Soongsil central library 4 floor|Y
+1000031|The Heart Is A Lonely Hunter|Carson McCullers|Reed Elsevier|9876543210031|Soongsil central library 2 floor|Y
+1000032|Slaughterhouse-Five|Kurt Vonnegut|Reed Elsevier|9876543210032|Soongsil central library 4 floor|Y
+1000033|Invisible Man|Ralph Ellison|Pearson|9876543210033|Soongsil central library 3 floor|Y
+1000034|Native Son|Richard Wright|Pearson|9876543210034|Soongsil central library 3 floor|Y
+1000035|Henderson the Rain King|Saul Bellow|Pearson|9876543210035|Soongsil central library 4 floor|Y
+1000036|Appointment in Samarra|John O'Hara|Cengage|9876543210036|Soongsil central library 2 floor|Y
+1000037|U.S.A(trilogy)|John Dos Passos|Harper Collins|9876543210037|Soongsil central library 4 floor|Y
+1000038|Winesburg, Ohid|Sherwood Anderson|Harper Collins|9876543210038|Soongsil central library 3 floor|Y
+1000039|A Passage to India|E.M. Forster|Pearson|9876543210039|Soongsil central library 4 floor|Y
+1000040|The Wings of the Dove|Henry James|Cengage|9876543210040|Soongsil central library 3 floor|Y
+1000041|The Ambassadors|Henry James|Pearson|9876543210041|Soongsil central library 4 floor|Y
+1000042|Tender Is the Night|F. Scott Fizgerald|Pearson|9876543210042|Soongsil central library 3 floor|Y
+1000043|The Studs Lonigan Trilogy|James T. Farrell|Harper Collins|9876543210043|Soongsil central library 2 floor|Y
+1000044|The Good Slodier|Ford Madox Ford|Cengage|9876543210044|Soongsil central library 2 floor|Y
+1000045|Animal Farm|George Orwell|Oxford University Press|9876543210045|Soongsil central library 4 floor|Y
+1000046|The Golden Bowl|Henry James|Pearson|9876543210046|Soongsil central library 3 floor|Y
+1000047|Sister Carrie|Theodore Dreiser|Cengage|9876543210047|Soongsil central library 4 floor|Y
+1000048|A Handful of Dust|Evelyn Waugh|Cengage|9876543210048|Soongsil central library 2 floor|Y
+1000049|As I Lay Dying|William Faulkner|Pearson|9876543210049|Soongsil central library 4 floor|Y
+1000050|All the Kingls Men|Robert Penn Warren|Pearson|9876543210050|Soongsil central library 3 floor|Y
+1000051|The Bridge of San Luis Rey|Thornton Wilder|Harper Collins|9876543210051|Soongsil central library 4 floor|Y
+1000052|Howards End|E.M. Forster|Pearson|9876543210052|Soongsil central library 2 floor|Y
+1000053|Go Tell It on the Mountain|James Baldwin|Pearson|9876543210053|Soongsil central library 3 floor|Y
+1000054|The Heart of the Matter|Graham Greene|Oxford University Press|9876543210054|Soongsil central library 4 floor|Y
+1000055|Lord of the Flies|William Golding|Pearson|9876543210055|Soongsil central library 2 floor|Y
+1000056|Deliverance|James Dickey|Pearson|9876543210056|Soongsil central library 3 floor|Y
+1000057|A Dance to the Misic of Time(series)|Anthony Powell|Harper Collins|9876543210057|Soongsil central library 4 floor|Y
+1000058|Point Counter Point|Aldous Huxley|Pearson|9876543210058|Soongsil central library 3 floor|Y
+1000059|The Sun Also Rises|Ernest Hemingway|Oxford University Press|9876543210059|Soongsil central library 2 floor|Y
+1000060|The Secret Agent|Joseph Conrad|Pearson|9876543210060|Soongsil central library 2 floor|Y
+1000061|Nostromo|Joseph Conrad|Pearson|9876543210061|Soongsil central library 2 floor|Y
+1000062|The Rainbow|D.H. Lawrence|Harper Collins|9876543210062|Soongsil central library 4 floor|Y
+1000063|Women In Love|D.H. Rawrence|Oxford University Press|9876543210063|Soongsil central library 3 floor|Y
+1000064|Tropic of Cancer|Henry Miller|Pearson|9876543210064|Soongsil central library 3 floor|Y
+1000065|The Naked and the Dead|Norman Mailer|Pearson|9876543210065|Soongsil central library 4 floor|Y
+1000066|Porinoy's Complaint|Philip Roth|Harper Collins|9876543210066|Soongsil central library 2 floor|Y
+1000067|Pale Fire|Vladimir Nabokov|Pearson|9876543210067|Soongsil central library 4 floor|Y
+1000068|Light in August|William Faulkner|Pearson|9876543210068|Soongsil central library 3 floor|Y
+1000069|On the Road|Jack Kerouac|Pearson|9876543210069|Soongsil central library 4 floor|Y
+1000070|The Maltese Falcon|Dashiell Hammett|Harper Collins|9876543210070|Soongsil central library 2 floor|Y
+1000071|Parade's End|Ford Madox Ford|Oxford University Press|9876543210071|Soongsil central library 4 floor|Y
+1000072|The Age of Innocence|Edith Wharton|Harper Collins|9876543210072|Soongsil central library 3 floor|Y
+1000073|Zuleika Dobson|Max Beerbohm|Oxford University Press|9876543210073|Soongsil central library 4 floor|Y
+1000074|The Moviegoer|Walker Percy|Harper Collins|9876543210074|Soongsil central library 2 floor|Y
+1000075|The Moviegoer|Walker Percy|Harper Collins|9876543210074|Soongsil central library 2 floor|N
+1000076|The Wapshot Chronicles|John Cheecer|Informa|9876543210077|Soongsil central library 2 floor|Y
+1000077|The Wapshot Chronicles|John Cheecer|Informa|9876543210077|Soongsil central library 2 floor|Y
+1000078|The Catcher in the Rye|J.D. Salinger|Harper Collins|9876543210078|Soongsil central library 3 floor|Y
+1000079|A Clockwork Orange|Anthony Burgess|Harper Collins|9876543210079|Soongsil central library 2 floor|Y
+1000080|Of Human Bondage|W. Somerset Maughaa|Harper Collins|9876543210080|Soongsil central library 2 floor|Y
+1000081|Heart of Darkness|Joseph Conrad|Informa|9876543210081|Soongsil central library 4 floor|Y
+1000082|Main Street|Sinclair Lewis|Harper Collins|9876543210082|Soongsil central library 3 floor|Y
+1000083|The House of Mirth|Edith Wharton|Informa|9876543210083|Soongsil central library 3 floor|Y
+1000084|The Alexandria Quartet|Lawrence Durell|Harper Collins|9876543210084|Soongsil central library 3 floor|Y
+1000085|A High Wind in Jamaica|Richard Hughes|Harper Collins|9876543210085|Soongsil central library 2 floor|Y
+1000086|A House for Mr Biswas|V.S. Naipaul|Harper Collins|9876543210086|Soongsil central library 2 floor|Y
+1000087|The Day of the Locust|Nathanael West|Informa|9876543210087|Soongsil central library 2 floor|Y
+1000088|A Farewell th Arms|Ernest Hemingway|Harper Collins|9876543210088|Soongsil central library 2 floor|Y
+1000089|Scoop|Evelyn Waugh|Harper Collins|9876543210089|Soongsil central library 4 floor|Y
+1000090|The Prime of Miss Jean Brodie|Muriel Spark|Informa|9876543210090|Soongsil central library 4 floor|Y
+1000091|Finnegans Wake|James Joyce|Harper Collins|9876543210091|Soongsil central library 2 floor|Y
+1000092|Kim | Rudyard Kipling|Harper Collins|9876543210092|Soongsil central library 3 floor|Y
+1000093|A Room with a View|E.M. Forster|Harper Collins|9876543210093|Soongsil central library 2 floor|Y
+1000094|Bridgeshead Revisited|Evelyn Waugh|Informa|9876543210094|Soongsil central library 4 floor|Y
+1000095|The Adventures of Augie March|Saul Bellow|Harper Collins|9876543210095|Soongsil central library 4 floor|Y
+1000096|Angle of Repose|Wallace Stegner|Oxford University Press|9876543210096|Soongsil central library 4 floor|Y
+1000097|A Bend in the River|V.S. Naipaul|Informa|9876543210097|Soongsil central library 3 floor|Y
+1000098|The Death of the Heart|Elizabath Bowen|Harper Collins|9876543210098|Soongsil central library 2 floor|Y
+1000099|Lord Jim|Joseph Conrad|Harper Collins|9876543210099|Soongsil central library 3 floor|Y
+1000100|Ragtime|E.L. Doctorow|Harper Collins|9876543210100|Soongsil central library 2 floor|Y
