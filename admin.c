@@ -90,6 +90,11 @@ void deleteBook(bookNode *bookList) {
     scanf("%d", &bookId);
     getchar();
 
+    if (findBookNodeByBookId(findBookResults, bookId)) {
+        printf("해당 도서를 검색한 뒤 삭제해주세요.");
+        return;
+    }
+
     bookNode *hasBookIdResults = findBookNodeByBookId(findBookResults, bookId);
 
     // 책을 빌린 사람이 없다면 대여 가능하고, 대여 가능한 책은 삭제도 가능합니다.
@@ -144,6 +149,27 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
     }
 
     printBookList(*findBookResults, SEARCH);
+    
+    bookNode *searchTmpBookList = findBookResults;
+    while (!isEmptyBook(searchTmpBookList->book)) {
+        // ISBN 발견 시 return
+        if (searchTmpBookList->book.isBorrowable == 'Y') {
+            break;
+        }
+
+        // 모든 책이 대여 불가일 때 에러메세지를 띄웁니다.
+        if (searchTmpBookList->next == NULL) {
+            printf("모든 책이 대여 불가합니다.");
+            return;
+        }
+        searchTmpBookList = searchTmpBookList->next;
+    }
+
+    // 모든 책이 대여 불가일 때 에러메세지를 띄웁니다.
+    if (searchTmpBookList->book.isBorrowable == 'N') {
+        printf("모든 책이 대여 불가합니다.");
+        return;
+    }
 
     printf("\n학번을 입력하세요: ");
     scanf("%d", &studentId);

@@ -72,8 +72,8 @@
 1000071|Parade's End|Ford Madox Ford|Oxford University Press|9876543210071|Soongsil central library 4 floor|Y
 1000072|The Age of Innocence|Edith Wharton|Harper Collins|9876543210072|Soongsil central library 3 floor|Y
 1000073|Zuleika Dobson|Max Beerbohm|Oxford University Press|9876543210073|Soongsil central library 4 floor|Y
-1000074|The Moviegoer|Walker Percy|Harper Collins|9876543210074|Soongsil central library 2 floor|Y
-1000075|The Moviegoer|Walker Percy|Harper Collins|9876543210074|Soongsil central library 2 floor|Y
+1000074|The Moviegoer|Walker Percy|Harper Collins|9876543210074|Soongsil central library 2 floor|N
+1000075|The Moviegoer|Walker Percy|Harper Collins|9876543210074|Soongsil central library 2 floor|N
 1000076|The Wapshot Chronicles|John Cheecer|Informa|9876543210077|Soongsil central library 2 floor|Y
 1000077|The Wapshot Chronicles|John Cheecer|Informa|9876543210077|Soongsil central library 2 floor|Y
 1000078|The Catcher in the Rye|J.D. Salinger|Harper Collins|9876543210078|Soongsil central library 3 floor|Y
@@ -98,4 +98,6 @@
 1000097|A Bend in the River|V.S. Naipaul|Informa|9876543210097|Soongsil central library 3 floor|Y
 1000098|The Death of the Heart|Elizabath Bowen|Harper Collins|9876543210098|Soongsil central library 2 floor|Y
 1000099|Lord Jim|Joseph Conrad|Harper Collins|9876543210099|Soongsil central library 3 floor|Y
+1000100|Ragtime|E.L. Doctorow|Harper Collins|9876543210100|Soongsil central library 2 floor|Y
+or|Y
 1000100|Ragtime|E.L. Doctorow|Harper Collins|9876543210100|Soongsil central library 2 floor|Y

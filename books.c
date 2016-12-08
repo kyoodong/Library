@@ -17,6 +17,8 @@ void loadBookFile(bookNode *books) {
     // book 파일에서 데이터를 추출하여 books 에 저장합니다.
     while (!feof(bookFile)) {
         bookNode* node = readBookFileLine(bookFile);
+        if (node->book.bookId == 0)
+            break;
         addBook(books, node);
     }
     fflush(bookFile);
@@ -417,7 +419,7 @@ void printBook(bookNode bookList, int bookNum, int borrowableBookNum, int mode) 
     printf("\n");
     printf("도서명: %s\n", bookList.book.name);
     printf("출판사: %s\n", bookList.book.publisherName);
-    printf("저자명:     %s\n", bookList.book.authorName);
+    printf("저자명: %s\n", bookList.book.authorName);
     printf("ISBN: %lu\n", bookList.book.ISBN);
     printf("소장처: %s\n", bookList.book.holdingInstitution);
 

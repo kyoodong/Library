@@ -33,7 +33,7 @@ clientNode* readClientFileLine(FILE* clientFile) {
 
 // clientFile 을 clientList 의 정보로 덮어 씁니다.
 void overwriteClientFile(clientNode clientList) {
-    rewind(clientFile);
+    clientFile = fopen(CLIENT_FILE_PATH, "w");
 
     while (!isEmptyClient(clientList.client)) {
         fprintf(clientFile, "%d|%s|%s|%s|%s\n",

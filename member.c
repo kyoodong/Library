@@ -60,6 +60,7 @@ int leaveMember(clientNode *clientList, borrowNode *borrowList, int studentId) {
         return 0;
     }
     removeClient(clientList, indexOfClientNode(clientList, *myInfo));
+    printClientList(*clientList);
     overwriteClientFile(*clientList);
     return 1;
 }
