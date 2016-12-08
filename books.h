@@ -12,9 +12,9 @@
 
 typedef struct {
     int bookId;                             // 책 번호
-    char name[20];                      // 책 이름
-    char publisherName[20];             // 책 출판사
-    char authorName[20];                // 책 지은이
+    char name[40];                      // 책 이름
+    char publisherName[40];             // 책 출판사
+    char authorName[40];                // 책 지은이
     unsigned long ISBN;                 // ISBN
     char holdingInstitution[50];       // 소장처
     char isBorrowable;                  // 대여 가능 여부

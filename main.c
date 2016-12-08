@@ -221,7 +221,7 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
         switch (menu) {
             case 1: // 도서명 검색
                 printf("도서명을 입력하세요: ");
-                scanf("%s", keyword);
+                scanf("%[^\n]", keyword);
                 putchar(getchar());
                 // 도서명이 일치하는 도서를 찾아냅니다.
                 findResults = findBookNodeByBookName(&bookList, keyword);
@@ -238,7 +238,7 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
 
             case 2: // 출판사 검색
                 printf("출판사를 입력하세요: ");
-                scanf("%s", keyword);
+                scanf("%[^\n]", keyword);
                 getchar();
 
                 // 출판사가 일치하는 도서를 찾아냅니다.
@@ -269,7 +269,7 @@ void selectSearchBookMenu(void (*beforeMenu)(void)) {
 
             case 4: // 저자명 검색
                 printf("저자명을 입력하세요: ");
-                scanf("%s", keyword);
+                scanf("%[^\n]", keyword);
                 getchar();
 
                 // 저자명이 일치하는 도서를 모두 찾아냅니다.

@@ -409,13 +409,15 @@ void printBook(bookNode bookList, int bookNum, int borrowableBookNum, int mode) 
 
     // ISBN 이 같은 책들의 bookId와 대여 가능 여부를 출력합니다.
     for (i = 0; i < bookNum; ++i) {
-        printf("%d(삭제 가능 여부: %c) ", tmpBook->book.bookId, tmpBook->book.isBorrowable);
+        printf("%d(삭제 가능 여부: %c)", tmpBook->book.bookId, tmpBook->book.isBorrowable);
         tmpBook = getBookNode(tmpBook, 1);
+        if (i < bookNum - 1)
+            printf(", ");
     }
     printf("\n");
     printf("도서명: %s\n", bookList.book.name);
     printf("출판사: %s\n", bookList.book.publisherName);
-    printf("저자명: %s\n", bookList.book.authorName);
+    printf("저자명:     %s\n", bookList.book.authorName);
     printf("ISBN: %lu\n", bookList.book.ISBN);
     printf("소장처: %s\n", bookList.book.holdingInstitution);
 
