@@ -110,8 +110,8 @@ void removeBorrow(borrowNode *borrowList, int at) {
 
             // 리스트 크기가 1보다 크다면 Header의 위치를 한 칸 옮겨줍니다. 리스트의 헤더가 NULL이 되면 안되기 때문입니다.
         else {
-            borrowNode* header = borrowList;
-            *borrowList = *(borrowList -> next);
+            borrowNode* header = borrowList -> next;
+            *borrowList = *header;
             free(header);
         }
     }

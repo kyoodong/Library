@@ -36,7 +36,7 @@ bookNode* readBookFileLine(FILE* bookFile) {
 
 // bookFile 을 bookList 의 정보로 덮어 씁니다.
 void overwriteBookFile(bookNode bookList) {
-    bookFiles = fopen(BOOK_FILE_PATH, "w");
+    bookFile = fopen(BOOK_FILE_PATH, "w");
 
     while (!isEmptyBook(bookList.book)) {
         fprintf(bookFile, "%d|%s|%s|%s|%lu|%s|%c\n",

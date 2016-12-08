@@ -149,7 +149,7 @@ void lendBook(bookNode *bookList, borrowNode *borrowList, clientNode *clientList
     }
 
     printBookList(*findBookResults, SEARCH);
-    
+
     bookNode *searchTmpBookList = findBookResults;
     while (!isEmptyBook(searchTmpBookList->book)) {
         // ISBN 발견 시 return
@@ -234,6 +234,12 @@ void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowLi
 
     printf(">> 회원의 대여목록 <<\n");
     borrowNode *findBorrowResults = findBorrowNodeByStudentId(borrowList, studentId);
+
+    if (findBorrowResults == NULL) {
+        printf("\n대여한 책이 없습니다.\n\n");
+        return;
+    }
+
     printBorrowList(*findBorrowResults);
 
     printf("반납할 도서를 입력하세요: ");
@@ -250,6 +256,7 @@ void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowLi
     printf("도서를 반납처리 할까요? (Y or N)");
     char c = getchar();
     putchar(getchar());
+
     if (c == 'Y' || c == 'y') {
         // 대여 목록에서 반납된 책을 삭제하고 그 결과를 borrow 파일에 반영합니다.
         removeBorrow(borrowList, indexOfBorrowNode(borrowList, *findBorrowByBookIdResult));
@@ -257,6 +264,7 @@ void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowLi
 
         // 책 정보에서 대여 가능 정보를 대여가능으로 바꾸고 그 결과를 book 파일에 반영합니다.
         findBookByBookIdResult->book.isBorrowable = 'Y';
+        
         overwriteBookFile(*bookList);
         printf("도서가 반납되었습니다.\n");
     } else {
