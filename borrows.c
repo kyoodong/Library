@@ -22,13 +22,13 @@ void loadBorrowFile(borrowNode *borrows) {
         addBorrow(borrows, node);
     }
 
-    fflush(borrowFile);
+    fclose(borrowFile);
 }
 
 
 // borrowFile 을 borrowList 의 정보로 덮어 씁니다.
 void overwriteBorrowFile(borrowNode node) {
-    rewind(borrowFile);
+    borrowFile = fopen(BORROW_FILE_PATH, "w");
 
     while (!isEmptyBorrow(node.borrow)) {
         fprintf(borrowFile, "%d|%d|%d|%d\n",
@@ -42,7 +42,7 @@ void overwriteBorrowFile(borrowNode node) {
 
         node = *(node.next);
     }
-    fflush(borrowFile);
+    fclose(borrowFile);
 }
 
 

@@ -21,7 +21,7 @@ void loadBookFile(bookNode *books) {
             break;
         addBook(books, node);
     }
-    fflush(bookFile);
+    fclose(bookFile);
 }
 
 
@@ -36,7 +36,7 @@ bookNode* readBookFileLine(FILE* bookFile) {
 
 // bookFile 을 bookList 의 정보로 덮어 씁니다.
 void overwriteBookFile(bookNode bookList) {
-    rewind(bookFile);
+    bookFiles = fopen(BOOK_FILE_PATH, "w");
 
     while (!isEmptyBook(bookList.book)) {
         fprintf(bookFile, "%d|%s|%s|%s|%lu|%s|%c\n",
@@ -53,7 +53,7 @@ void overwriteBookFile(bookNode bookList) {
 
         bookList = *(bookList.next);
     }
-    fflush(bookFile);
+    fclose(bookFile);
 }
 
 

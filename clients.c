@@ -20,7 +20,7 @@ void loadClientFile(clientNode *clients) {
         addClient(clients, node);
     }
 
-    fflush(clientFile);
+    fclose(clientFile);
 }
 
 // client 파일을 한 줄 읽습니다.
@@ -48,7 +48,7 @@ void overwriteClientFile(clientNode clientList) {
             break;
         clientList = *(clientList.next);
     }
-    fflush(clientFile);
+    fclose(clientFile);
 }
 
 
