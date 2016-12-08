@@ -26,7 +26,7 @@ void loadBookFile(bookNode *books) {
 // book 파일을 한 줄 읽습니다.
 bookNode* readBookFileLine(FILE* bookFile) {
     bookNode* node = (bookNode *) calloc(1, sizeof(bookNode));
-    fscanf(bookFile, "%d|%[^|]|%[^|]|%[^|]|%ld|%[^|]|%c\n", &(node -> book.bookId), node -> book.name, node -> book.publisherName, node -> book.authorName, &(node -> book.ISBN), node -> book.holdingInstitution, &(node -> book.isBorrowable));
+    fscanf(bookFile, "%d|%[^|]|%[^|]|%[^|]|%ld|%[^|]|%c\n", &(node -> book.bookId), node -> book.name, node -> book.authorName, node -> book.publisherName, &(node -> book.ISBN), node -> book.holdingInstitution, &(node -> book.isBorrowable));
     return node;
 }
 
@@ -409,10 +409,10 @@ void printBook(bookNode bookList, int bookNum, int borrowableBookNum, int mode) 
 
     // ISBN 이 같은 책들의 bookId와 대여 가능 여부를 출력합니다.
     for (i = 0; i < bookNum; ++i) {
-        printf("%d(삭제 가능 여부: %c), ", tmpBook->book.bookId, tmpBook->book.isBorrowable);
+        printf("%d(삭제 가능 여부: %c) ", tmpBook->book.bookId, tmpBook->book.isBorrowable);
         tmpBook = getBookNode(tmpBook, 1);
     }
-    printf("\b\b\n");
+    printf("\n");
     printf("도서명: %s\n", bookList.book.name);
     printf("출판사: %s\n", bookList.book.publisherName);
     printf("저자명: %s\n", bookList.book.authorName);
