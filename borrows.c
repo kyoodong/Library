@@ -111,7 +111,7 @@ void removeBorrow(borrowNode *borrowList, int at) {
             // 리스트 크기가 1보다 크다면 Header의 위치를 한 칸 옮겨줍니다. 리스트의 헤더가 NULL이 되면 안되기 때문입니다.
         else {
             borrowNode* header = borrowList -> next;
-            *borrowList = *header;
+            *borrowList = *(borrowList->next);
             free(header);
         }
     }
@@ -126,8 +126,8 @@ void removeBorrow(borrowNode *borrowList, int at) {
             beforeBorrowNode -> next = NULL;
         } else {
             borrowNode* willRemoveBorrowNode = getBorrowNode(beforeBorrowNode, 1);
-            free(willRemoveBorrowNode);
             borrowNode* nextBorrowNode = getBorrowNode(beforeBorrowNode, 2);
+            free(willRemoveBorrowNode);
             beforeBorrowNode -> next = nextBorrowNode;
         }
     }
@@ -252,11 +252,16 @@ int isEqualBorrow(borrow leftBorrow, borrow rightBorrow) {
 
 // borrowNode index 번호 찾기
 int indexOfBorrowNode(borrowNode* borrowList, borrowNode foundBorrowNode) {
+    if (borrowList == NULL || isEmptyBorrow(foundBorrowNode.borrow))
+        return -1;
     int count = 0;
     while (!isEmptyBorrow(borrowList->borrow)) {
         if (isEqualBorrow(borrowList->borrow, foundBorrowNode.borrow)) {
             return count;
         }
+
+        if (borrowList->next == NULL)
+            return -1;
         borrowList = borrowList->next;
         count++;
     }

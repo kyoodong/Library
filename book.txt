@@ -9,7 +9,6 @@
 1000008|Gone With the Wind|Margaret Michell|Pearson|9876543210008|Soongsil central library 2 floor|Y
 1000009|Assembly|John O'Hara|Pearson|9876543210009|Soongsil central library 4 floor|Y
 1000010|The Little Prince|Antoine de st-Exupery|Pearson|9876543210010|Soongsil central library 3 floor|Y
-1000011|The Human Comedy|William Saroyan|Harper Collins|9876543210011|Soongsil central library 3 floor|Y
 1000012|The Moon is Down|John Steinbeck|Pearson|9876543210012|Soongsil central library 4 floor|Y
 1000013|The Pearl|John Steinbeck|Pearson|9876543210013|Soongsil central library 2 floor|Y
 1000014|Travels With Charley|John Steinbeck|Harper Collins|9876543210014|Soongsil central library 4 floor|Y

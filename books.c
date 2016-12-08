@@ -112,7 +112,7 @@ void removeBook(bookNode *bookList, int at) {
 
         // 리스트 크기가 1보다 크다면 Header의 위치를 한 칸 옮겨줍니다. 리스트의 헤더가 NULL이 되면 안되기 때문입니다.
         else {
-            bookNode *header = bookList;
+            bookNode *header = bookList -> next;
             *bookList = *(bookList -> next);
             free(header);
         }
@@ -128,8 +128,8 @@ void removeBook(bookNode *bookList, int at) {
             beforeBookNode -> next = NULL;
         } else {
             bookNode* willRemoveBookNode = getBookNode(beforeBookNode, 1);
-            free(willRemoveBookNode);
             bookNode* nextBookNode = getBookNode(beforeBookNode, 2);
+            free(willRemoveBookNode);
             beforeBookNode -> next = nextBookNode;
         }
     }
@@ -333,10 +333,14 @@ int isEqualBook(book leftBook, book rightBook) {
 // bookNode index 번호 찾기
 int indexOfBookNode(bookNode* bookList, bookNode foundBookNode) {
     int count = 0;
+    if (bookList == NULL || isEmptyBook(foundBookNode.book))
+        return -1;
     while (!isEmptyBook(bookList->book)) {
         if (isEqualBook(bookList->book, foundBookNode.book)) {
             return count;
         }
+        if (bookList->next == NULL)
+            return -1;
         bookList = bookList->next;
         count++;
     }

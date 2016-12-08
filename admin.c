@@ -90,7 +90,7 @@ void deleteBook(bookNode *bookList) {
     scanf("%d", &bookId);
     getchar();
 
-    if (findBookNodeByBookId(findBookResults, bookId)) {
+    if (findBookNodeByBookId(findBookResults, bookId) == NULL) {
         printf("해당 도서를 검색한 뒤 삭제해주세요.");
         return;
     }
@@ -100,7 +100,7 @@ void deleteBook(bookNode *bookList) {
     // 책을 빌린 사람이 없다면 대여 가능하고, 대여 가능한 책은 삭제도 가능합니다.
     // 삭제 가능하다면 책을 삭제하고 결과를 파일에 반영합니다.
     if (hasBookIdResults -> book.isBorrowable == 'Y') {
-        int index = indexOfBookNode(findBookResults, *hasBookIdResults);
+        int index = indexOfBookNode(bookList, *hasBookIdResults);
         if (index == -1) {
             printf("도서가 없습니다.\n");
         } else {

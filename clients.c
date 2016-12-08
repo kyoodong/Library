@@ -119,8 +119,8 @@ void removeClient(clientNode *clientList, int at) {
             beforeClientNode -> next = NULL;
         } else {
             clientNode* willRemoveClientNode = getClientNode(beforeClientNode, 1);
-            free(willRemoveClientNode);
             clientNode* nextClientNode = getClientNode(beforeClientNode, 2);
+            free(willRemoveClientNode);
             beforeClientNode -> next = nextClientNode;
         }
     }
@@ -193,11 +193,16 @@ int isEqualClient(client leftClient, client rightClient) {
 
 // clientNode index 번호 찾기
 int indexOfClientNode(clientNode* clientList, clientNode foundClientNode) {
+    if (clientList == NULL || isEmptyClient(foundClientNode.client))
+        return -1;
     int count = 0;
     while (!isEmptyClient(clientList->client)) {
         if (isEqualClient(clientList->client, foundClientNode.client)) {
             return count;
         }
+
+        if (clientList->next == NULL)
+            return -1;
         clientList = clientList->next;
         count++;
     }
