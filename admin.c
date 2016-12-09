@@ -112,6 +112,12 @@ void deleteBook(bookNode *bookList) {
         putchar(getchar());
         findBookResults = findBookNodeByISBN(bookList, isbn);
     }
+
+    if (findBookResults == NULL) {
+        printf("해당 도서가 존재하지 않습니다.\n");
+        return;
+    }
+
     printBookList(*findBookResults, DELETE);
 
     printf("삭제할 도서의 번호를 입력하세요: ");

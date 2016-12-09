@@ -2,7 +2,6 @@
 20101761|wlsgh61|jinho|dongdaemun-gu seoul|010-3124-2348
 20102102|tmdgusdl|seunghyun|jung-gu ulsan|010-5995-7680
 20102136|wjdgusdl|jeonghyun|noone-fu seoul|010-1540-3711
-20102410|password|Hong|myHome|01033677355
 20103125|daddy25|gildong|gawngjin-gu seoul|010-2401-1239
 20106399|wlfod99|jieun|gangseo-fu seoul|010-9941-5483
 20108652|duddn97|youngwoo|giheung-gu yongin|010-8423-4566

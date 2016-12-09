@@ -40,29 +40,29 @@
 1000037|U.S.A(trilogy)|Harper Collins|John Dos Passos|9876543210037|Soongsil central library 4 floor|Y
 1000038|Winesburg, Ohid|Harper Collins|Sherwood Anderson|9876543210038|Soongsil central library 3 floor|Y
 1000039|A Passage to India|Pearson|E.M. Forster|9876543210039|Soongsil central library 4 floor|Y
-1000040|The Wings of the Dove|Cengage|Henry James|9876543210040|Soongsil central library 3 floor|Y
-1000041|The Ambassadors|Pearson|Henry James|9876543210041|Soongsil central library 4 floor|Y
-1000042|Tender Is the Night|Pearson|F. Scott Fizgerald|9876543210042|Soongsil central library 3 floor|Y
+1000040|The Wings of the Dove|Cengage|Henry James|9876543210040|Soongsil central library 3 floor|N
+1000041|The Ambassadors|Pearson|Henry James|9876543210041|Soongsil central library 4 floor|N
+1000042|Tender Is the Night|Pearson|F. Scott Fizgerald|9876543210042|Soongsil central library 3 floor|N
 1000043|The Studs Lonigan Trilogy|Harper Collins|James T. Farrell|9876543210043|Soongsil central library 2 floor|Y
-1000044|The Good Slodier|Cengage|Ford Madox Ford|9876543210044|Soongsil central library 2 floor|Y
-1000045|Animal Farm|Oxford University Press|George Orwell|9876543210045|Soongsil central library 4 floor|Y
-1000046|The Golden Bowl|Pearson|Henry James|9876543210046|Soongsil central library 3 floor|Y
-1000047|Sister Carrie|Cengage|Theodore Dreiser|9876543210047|Soongsil central library 4 floor|Y
-1000048|A Handful of Dust|Cengage|Evelyn Waugh|9876543210048|Soongsil central library 2 floor|Y
+1000044|The Good Slodier|Cengage|Ford Madox Ford|9876543210044|Soongsil central library 2 floor|N
+1000045|Animal Farm|Oxford University Press|George Orwell|9876543210045|Soongsil central library 4 floor|N
+1000046|The Golden Bowl|Pearson|Henry James|9876543210046|Soongsil central library 3 floor|N
+1000047|Sister Carrie|Cengage|Theodore Dreiser|9876543210047|Soongsil central library 4 floor|N
+1000048|A Handful of Dust|Cengage|Evelyn Waugh|9876543210048|Soongsil central library 2 floor|N
 1000049|As I Lay Dying|Pearson|William Faulkner|9876543210049|Soongsil central library 4 floor|Y
-1000050|All the Kingls Men|Pearson|Robert Penn Warren|9876543210050|Soongsil central library 3 floor|Y
-1000051|The Bridge of San Luis Rey|Harper Collins|Thornton Wilder|9876543210051|Soongsil central library 4 floor|Y
+1000050|All the Kingls Men|Pearson|Robert Penn Warren|9876543210050|Soongsil central library 3 floor|N
+1000051|The Bridge of San Luis Rey|Harper Collins|Thornton Wilder|9876543210051|Soongsil central library 4 floor|N
 1000052|Howards End|Pearson|E.M. Forster|9876543210052|Soongsil central library 2 floor|Y
-1000053|Go Tell It on the Mountain|Pearson|James Baldwin|9876543210053|Soongsil central library 3 floor|Y
-1000054|The Heart of the Matter|Oxford University Press|Graham Greene|9876543210054|Soongsil central library 4 floor|Y
-1000055|Lord of the Flies|Pearson|William Golding|9876543210055|Soongsil central library 2 floor|Y
+1000053|Go Tell It on the Mountain|Pearson|James Baldwin|9876543210053|Soongsil central library 3 floor|N
+1000054|The Heart of the Matter|Oxford University Press|Graham Greene|9876543210054|Soongsil central library 4 floor|N
+1000055|Lord of the Flies|Pearson|William Golding|9876543210055|Soongsil central library 2 floor|N
 1000056|Deliverance|Pearson|James Dickey|9876543210056|Soongsil central library 3 floor|Y
-1000057|A Dance to the Misic of Time(series)|Harper Collins|Anthony Powell|9876543210057|Soongsil central library 4 floor|Y
-1000058|Point Counter Point|Pearson|Aldous Huxley|9876543210058|Soongsil central library 3 floor|Y
+1000057|A Dance to the Misic of Time(series)|Harper Collins|Anthony Powell|9876543210057|Soongsil central library 4 floor|N
+1000058|Point Counter Point|Pearson|Aldous Huxley|9876543210058|Soongsil central library 3 floor|N
 1000059|The Sun Also Rises|Oxford University Press|Ernest Hemingway|9876543210059|Soongsil central library 2 floor|Y
-1000060|The Secret Agent|Pearson|Joseph Conrad|9876543210060|Soongsil central library 2 floor|Y
+1000060|The Secret Agent|Pearson|Joseph Conrad|9876543210060|Soongsil central library 2 floor|N
 1000061|Nostromo|Pearson|Joseph Conrad|9876543210061|Soongsil central library 2 floor|Y
-1000062|The Rainbow|Harper Collins|D.H. Lawrence|9876543210062|Soongsil central library 4 floor|Y
+1000062|The Rainbow|Harper Collins|D.H. Lawrence|9876543210062|Soongsil central library 4 floor|N
 1000063|Women In Love|Oxford University Press|D.H. Rawrence|9876543210063|Soongsil central library 3 floor|Y
 1000064|Tropic of Cancer|Pearson|Henry Miller|9876543210064|Soongsil central library 3 floor|Y
 1000065|The Naked and the Dead|Pearson|Norman Mailer|9876543210065|Soongsil central library 4 floor|Y
@@ -97,7 +97,8 @@
 1000094|Bridgeshead Revisited|Informa|Evelyn Waugh|9876543210094|Soongsil central library 4 floor|Y
 1000095|The Adventures of Augie March|Harper Collins|Saul Bellow|9876543210095|Soongsil central library 4 floor|Y
 1000096|Angle of Repose|Oxford University Press|Wallace Stegner|9876543210096|Soongsil central library 4 floor|Y
-1000097|A Bend in the River|Informa|V.S. Naipaul|9876543210097|Soongsil central library 3 floor|Y
+1000097|A Bend in the River|Informa|V.S. Naipaul|9876543210097|Soongsil central library 3 floor|N
 1000098|The Death of the Heart|Harper Collins|Elizabath Bowen|9876543210098|Soongsil central library 2 floor|Y
 1000099|Lord Jim|Harper Collins|Joseph Conrad|9876543210099|Soongsil central library 3 floor|Y
 1000100|Ragtime|Harper Collins|E.L. Doctorow|9876543210100|Soongsil central library 2 floor|Y
+1000104|Educate C Programming with Cygwin|a|a|9876543210104|a|Y
