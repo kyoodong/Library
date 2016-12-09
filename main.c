@@ -175,7 +175,7 @@ void selectMemberMenu() {
                 return;
 
             case 2: // 내 대여 목록
-                loadMyBorrowList(&borrowList, myStudentId);
+                loadMyBorrowList(&borrowList, myStudentId, &bookList);
                 break;
 
             case 3: // 개인정보 수정
@@ -184,7 +184,7 @@ void selectMemberMenu() {
 
             case 4: // 회원 탈퇴
                 // 탈퇴 성공 시
-                if (leaveMember(&clientList, &borrowList, myStudentId)) {
+                if (leaveMember(&clientList, &borrowList, myStudentId, &bookList)) {
                     mainMenu();
                     return;
                 }

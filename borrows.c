@@ -269,8 +269,11 @@ int indexOfBorrowNode(borrowNode* borrowList, borrowNode foundBorrowNode) {
 }
 
 
-void printBorrow(borrow b) {
+void printBorrow(borrow b, bookNode *bookList) {
     printf("도서번호: %d\n", b.bookId);
+    printf("%d\n", bookList->book.bookId);
+    bookNode* book = findBookNodeByBookId(bookList, b.bookId);
+    printf("도서명: %s\n", book->book.name);
     printf("학번: %d\n", b.studentId);
     printf("대여일자: ");
     printDate(b.borrowDateSec);
@@ -286,9 +289,9 @@ void printDate(time_t t) {
     printf("%d년 %d월 %d일 %s요일", time->tm_year + 1900, time->tm_mon + 1 , time->tm_mday, wdayList[time->tm_wday]);
 }
 
-void printBorrowList(borrowNode printingBorrow) {
+void printBorrowList(borrowNode printingBorrow, bookNode *bookList) {
     while (!isEmptyBorrow(printingBorrow.borrow)) {
-        printBorrow(printingBorrow.borrow);
+        printBorrow(printingBorrow.borrow, bookList);
         if (printingBorrow.next == NULL)
             break;
         printingBorrow = *printingBorrow.next;

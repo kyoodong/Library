@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdlib.h>
+#include "books.h"
 
 #define BORROW_FILE_PATH "./borrow.txt"
 
@@ -36,9 +37,9 @@ borrowNode* findBorrowNodeByStudentId(borrowNode* borrowList, int studentId);
 borrowNode* findBorrowNodeByBookId(borrowNode* borrowList, int bookId);
 int isEqualBorrow(borrow leftBorrow, borrow rightBorrow);
 int indexOfBorrowNode(borrowNode* borrowList, borrowNode foundBorrowNode);
-void printBorrow(borrow b);
+void printBorrow(borrow b, bookNode *bookList);
 void printDate(time_t t);
-void printBorrowList(borrowNode printingBorrow);
+void printBorrowList(borrowNode printingBorrow, bookNode *bookList);
 void closeBorrowFile();
 
 #endif

@@ -14,7 +14,7 @@ void seachBook() {
 }
 
 // 내 대여 목록
-void loadMyBorrowList(borrowNode *borrowList, int studentId) {
+void loadMyBorrowList(borrowNode *borrowList, int studentId, bookNode *bookList) {
     borrowNode *findBorrowResult = findBorrowNodeByStudentId(borrowList, studentId);
     if (findBorrowResult == NULL) {
         printf("대여목록이 없습니다.\n\n");
@@ -22,7 +22,7 @@ void loadMyBorrowList(borrowNode *borrowList, int studentId) {
     }
 
     printf(">> 내 대여 목록 <<\n");
-    printBorrowList(*findBorrowResult);
+    printBorrowList(*findBorrowResult, bookList);
 }
 
 // 개인정보 수정
@@ -49,14 +49,14 @@ void modifyPersonalInfo(clientNode *clientList, int studentId) {
 }
 
 // 회원 탈퇴
-int leaveMember(clientNode *clientList, borrowNode *borrowList, int studentId) {
+int leaveMember(clientNode *clientList, borrowNode *borrowList, int studentId, bookNode *bookList) {
     clientNode *myInfo = findClientNodeById(clientList, studentId);
     borrowNode *findBorrowResults = findBorrowNodeByStudentId(borrowList, studentId);
 
     // 대여 목록이 있을 때
     if (findBorrowResults != NULL) {
         printf("대여목록이 있으므로 회원탈퇴가 불가능합니다.\n");
-        printBorrowList(*findBorrowResults);
+        printBorrowList(*findBorrowResults, bookList);
         return 0;
     }
     removeClient(clientList, indexOfClientNode(clientList, *myInfo));

@@ -268,7 +268,7 @@ void returnBook(clientNode *clientList, bookNode *bookList, borrowNode *borrowLi
         return;
     }
 
-    printBorrowList(*findBorrowResults);
+    printBorrowList(*findBorrowResults, bookList);
 
     printf("반납할 도서의 도서번호를 입력하세요: ");
     scanf("%d", &bookId);

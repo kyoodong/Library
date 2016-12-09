@@ -15,9 +15,9 @@
 #include "borrows.h"
 
 
-void loadMyBorrowList(borrowNode *borrowList, int studentId);
+void loadMyBorrowList(borrowNode *borrowList, int studentId, bookNode *bookList);
 void modifyPersonalInfo(clientNode *clientList, int studentId);
-int leaveMember(clientNode *clientList, borrowNode *borrowList, int studentId);
+int leaveMember(clientNode *clientList, borrowNode *borrowList, int studentId, bookNode *bookList);
 
 
 #endif /* member_h */
